@@ -17,6 +17,7 @@
 
 <script>
 const axios = require("axios");
+import { login } from "network/login";
 
 export default {
   data() {
@@ -27,23 +28,11 @@ export default {
   },
   methods: {
     subClick() {
-      // 发送请求
-
-      axios
-        .post("http://localhost:3000/login", {
-          name: this.name,
-          password: this.password,
-        })
-        .then(function (response) {
-          console.log(response.data);
-          if (response.status === 200) {
-            // 将token保存到本地
-            window.sessionStorage.setItem("jwt", response.data);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      login(this.name, this.password).then((res) => {
+        console.log(res);
+        // 将token保存到本地
+        window.sessionStorage.setItem("token", res);
+      });
     },
   },
 };
