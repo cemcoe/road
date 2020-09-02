@@ -29,9 +29,9 @@ export default {
   methods: {
     subClick() {
       login(this.name, this.password).then((res) => {
-        console.log(res);
+        console.log(res.token);
         // 将token保存到本地
-        window.sessionStorage.setItem("token", res);
+        window.sessionStorage.setItem("token", res.token);
       });
     },
   },
