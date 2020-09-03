@@ -1,23 +1,37 @@
 <template>
   <div>
-    {{$route.params.id}}
-
+    {{user._id}}
+    {{user.name}}
+    {{user.gender}}
   </div>
 </template>
 
 <script>
-import {getUserInfo} from 'network/profile.js'
+import { getUserInfo } from "network/profile.js";
 export default {
+  name: "Profile",
+  data() {
+    return {
+      _id: null,
+      // 用户信息
+      user: {},
+    };
+  },
   // 有id向服务器发请求
   // 拿到路由传来的参数
   created() {
-    getUserInfo(this.$route.params.id).then(res => [
-      console.log(res)
-    ])
-  }
-}
+    this._id = this.$route.params.id;
+    getUserInfo(this._id).then((res) => {
+      console.log(res);
+      this.user = {
+        _id: res._id,
+        name: res.name,
+        gender: res.gender,
+      };
+    });
+  },
+};
 </script>
 
 <style>
-
 </style>
