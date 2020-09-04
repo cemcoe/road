@@ -38,10 +38,8 @@ export default {
 
 <style scoped>
 .container {
-  position: fixed;
   width: 100%;
   height: 70px;
-  overflow: hidden;
 }
 .home-header {
   display: flex;
