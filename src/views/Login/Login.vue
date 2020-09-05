@@ -22,16 +22,19 @@ import { login } from "network/login";
 export default {
   data() {
     return {
-      name: "",
-      password: "",
+      name: "cemcoe",
+      password: "cemcoe",
     };
   },
   methods: {
     subClick() {
       login(this.name, this.password).then((res) => {
-        console.log(res.token);
+
+        console.log(res);
         // 将token保存到本地
         window.sessionStorage.setItem("token", res.token);
+        // 登录成功跳转到首页
+        this.$router.push("/");
       });
     },
   },

@@ -16,7 +16,8 @@
     <div class="right">
       <span class="style-mode">aa</span>
       <span class="beta">beta</span>
-      <span class="user" @click="goto_profile">{{user.name}}</span>
+      <span v-if="user._id" class="user" @click="goto_profile">{{user.name}}</span>
+      <a v-else class="user" href="/login">登录</a>
       <span class="write">写文章</span>
     </div>
   </div>
@@ -26,7 +27,10 @@
 <script>
 export default {
   props: {
-    user: {},
+    user: {
+      type: Object,
+      // 如果未登录，传来的就是空对象
+    },
   },
   methods: {
     goto_profile() {

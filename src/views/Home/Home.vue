@@ -4,7 +4,7 @@
       <home-header :user="user"></home-header>
       <post-list :postList="postList"></post-list>
       <!-- <router-link to="/">Home</router-link>|
-      <router-link to="/login">login</router-link> -->
+      <router-link to="/login">login</router-link>-->
       <!-- 问题来了，这里的id应该是登录用户的id，如何得到当前用户的id -->
     </div>
   </div>
@@ -31,18 +31,23 @@ export default {
   methods: {},
   created() {
     getUserInfo().then((res) => {
-      console.log(res);
-      this.user = {
-        _id: res._id,
-        name: res.name,
-      };
+      // console.log(res);
+      if (res) {
+        this.user = {
+          _id: res._id,
+          name: res.name,
+        };
+      } else {
+        console.log('请登录')
+      }
+
       // console.log(this.user)
     });
 
-    getHomePostList().then(res => {
-      this.postList = res
-      console.log(this.postList)
-    })
+    getHomePostList().then((res) => {
+      this.postList = res;
+      console.log(this.postList);
+    });
   },
   computed: {},
 };
