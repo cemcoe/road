@@ -1,26 +1,20 @@
 <template>
-<div class="container">
-  <div class="home-header">
-    <div class="left logo">
-      <a href="/">
-        <img src="./imgs/nav-logo.png" alt="logo" />
-      </a>
-      <span>占位</span>
-      <span>占位</span>
-      <span>占位</span>
+  <div class="container">
+    <div class="home-header">
+      <div class="left logo">
+        <a href="/">
+          <img src="./imgs/nav-logo.png" alt="logo" />
+        </a>
+      </div>
+      <div class="center">
+        <input class="search" type="text" placeholder="搜索" />
+        <span>提交</span>
+      </div>
+      <div class="right">
+        <span v-if="user._id" class="user" @click="goto_profile">{{user.name}}</span>
+        <a v-else class="user" href="/login">登录</a>
+      </div>
     </div>
-    <div class="center">
-      <input class="search" type="text" placeholder="搜索" />
-      <span>提交</span>
-    </div>
-    <div class="right">
-      <span class="style-mode">aa</span>
-      <span class="beta">beta</span>
-      <span v-if="user._id" class="user" @click="goto_profile">{{user.name}}</span>
-      <a v-else class="user" href="/login">登录</a>
-      <router-link class="write" to="/write">写文章</router-link>
-    </div>
-  </div>
   </div>
 </template>
 
