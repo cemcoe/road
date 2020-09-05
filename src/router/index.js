@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 const Home = () => import('../views/Home/Home')
 const Login = () => import('../views/Login/Login')
 const Profile = () => import('../views/Profile/Profile')
+const Write = () => import('../views/Write/Write')
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/u/:id',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/write',
+    name: 'Write',
+    component: Write
   },
   {
     path: '/about',

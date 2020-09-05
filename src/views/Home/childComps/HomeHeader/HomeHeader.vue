@@ -18,7 +18,7 @@
       <span class="beta">beta</span>
       <span v-if="user._id" class="user" @click="goto_profile">{{user.name}}</span>
       <a v-else class="user" href="/login">登录</a>
-      <span class="write">写文章</span>
+      <router-link class="write" to="/write">写文章</router-link>
     </div>
   </div>
   </div>
