@@ -2,7 +2,7 @@
   <div class="home">
     <div id="nav">
       <home-header :user="user"></home-header>
-      <post-list :postList="postList"></post-list>
+      <post-list :postList="postList" @loadmore="loadmore"></post-list>
       <!-- <router-link to="/">Home</router-link>|
       <router-link to="/login">login</router-link>-->
       <!-- 问题来了，这里的id应该是登录用户的id，如何得到当前用户的id -->
@@ -26,9 +26,21 @@ export default {
     return {
       user: {},
       postList: [],
+      currentPage: 1,
     };
   },
-  methods: {},
+  methods: {
+    loadmore() {
+      // 当前的页数加1
+      // 将新页数的数据追加
+      // console.log(this.currentPage);
+      this.currentPage ++;
+      getHomePostList(this.currentPage).then((res) => {
+        this.postList = []
+        this.postList.push(...res)
+      });
+    },
+  },
   created() {
     getUserInfo().then((res) => {
       // console.log(res);
@@ -38,7 +50,7 @@ export default {
           name: res.name,
         };
       } else {
-        console.log('请登录')
+        console.log("请登录");
       }
 
       // console.log(this.user)

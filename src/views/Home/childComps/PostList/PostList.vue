@@ -11,6 +11,8 @@
         <a :href="'/u/' + item.author._id">{{item.author.name}}</a>
       </div>
     </div>
+    <button @click="loadmore">加载更多</button>
+
   </div>
 </template>
 
@@ -29,6 +31,12 @@ export default {
   component: {
     
   },
+  methods: {
+    loadmore() {
+      // 当前加载的页数
+      this.$emit('loadmore')
+    }
+  }
 };
 </script>
 
