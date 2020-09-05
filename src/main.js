@@ -3,6 +3,9 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import { Button } from 'vant';
+
+Vue.use(Button);
 
 Vue.config.productionTip = false
 
