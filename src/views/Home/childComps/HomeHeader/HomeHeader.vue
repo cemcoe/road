@@ -11,7 +11,7 @@
         <span>提交</span>
       </div>
       <div class="right">
-        <span v-if="user._id" class="user" @click="goto_profile">{{user.name}}</span>
+        <span v-if="userInfo" class="user" @click="goto_profile">{{userInfo.name}}</span>
         <a v-else class="user" href="/login">登录</a>
       </div>
     </div>
@@ -21,14 +21,14 @@
 <script>
 export default {
   props: {
-    user: {
+    userInfo: {
       type: Object,
       // 如果未登录，传来的就是空对象
     },
   },
   methods: {
     goto_profile() {
-      this.$router.push("/u/" + this.user._id);
+      this.$router.push("/u/" + this.userInfo._id);
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div id="nav">
-      <home-header :user="user"></home-header>
+      <home-header :userInfo="userInfo"></home-header>
       <post-list :postList="postList" @loadmore="loadmore"></post-list>
       <!-- <router-link to="/">Home</router-link>|
       <router-link to="/login">login</router-link>-->
@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      user: {},
       postList: [],
       currentPage: 1,
     };
@@ -42,25 +41,17 @@ export default {
     },
   },
   created() {
-    getUserInfo().then((res) => {
-      // console.log(res);
-      if (res) {
-        this.user = {
-          _id: res._id,
-          name: res.name,
-        };
-      } else {
-        console.log("请登录");
-      }
-
-      // console.log(this.user)
-    });
+    this.$store.dispatch('getUserInfo')
 
     getHomePostList().then((res) => {
       this.postList = res;
       console.log(this.postList);
     });
   },
-  computed: {},
+  computed: {
+    userInfo() {
+      return this.$store.state.userInfo
+    }
+  },
 };
 </script>
