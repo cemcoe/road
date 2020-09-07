@@ -7,8 +7,7 @@
         </a>
       </div>
       <div class="center">
-        <input class="search" type="text" placeholder="搜索" />
-        <span>提交</span>
+        <input class="search" type="text" placeholder="搜索感兴趣的内容" />
       </div>
       <div class="right">
         <span v-if="userInfo" class="user" @click="goto_profile">{{userInfo.name}}</span>
@@ -50,7 +49,7 @@ img {
   height: 56px;
 }
 .home-header .left {
-  flex: 0 0 220px;
+  flex: 0 0 100px;
   display: flex;
   align-items: center;
 }
@@ -58,19 +57,18 @@ img {
   flex: 1;
 }
 .home-header .right {
-  flex: 0 0 300px;
+  flex: 0 0 60px;
   display: flex;
+  
 }
-
-.home-header .right .style-mode {
-  margin: 0 12px;
-}
-
 .home-header .right .user {
-  margin: 0 12px;
-}
-.home-header .right .write {
-  flex: 0 0 100px;
-  margin-left: 20px;
+  height: 60px;
+  line-height: 60px;
+  /* padding-right: 14px; */
+  border-radius: 50%;
+  margin-right: 14px;
+  background-color: rgb(243, 239, 241);
+  box-shadow: 0 0 4px rgb(247, 244, 244);
+
 }
 </style>
