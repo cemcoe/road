@@ -11,5 +11,6 @@ module.exports = {
     },
   }, 
   publicPath: '/jianshu/',
+  productionSourceMap: false,
 }
 
