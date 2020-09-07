@@ -1,8 +1,11 @@
 <template>
   <div>
-    {{user._id}}
-    {{user.name}}
-    {{user.gender}}
+    <div v-if="!user._id">查无此人</div>
+    <div v-else>
+      {{user._id}}
+      {{user.name}}
+      {{user.gender}}
+    </div>
   </div>
 </template>
 
@@ -22,12 +25,14 @@ export default {
   created() {
     this._id = this.$route.params.id;
     getUserInfo(this._id).then((res) => {
-      console.log(res);
-      this.user = {
-        _id: res._id,
-        name: res.name,
-        gender: res.gender,
-      };
+      // 错误处理
+      if (res.status === 404) {
+        console.log("查无此人");
+      }
+      if (res.status === 200) {
+        console.log(res);
+        this.user = res.data.user;
+      }
     });
   },
 };
