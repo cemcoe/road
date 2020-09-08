@@ -11,7 +11,9 @@
       </div>
       <div class="right">
         <span v-if="userInfo" class="user" @click="goto_profile">{{userInfo.name}}</span>
-        <a v-else class="user" href="/login">登录</a>
+        <!-- <a v-else class="user" href="/login">登录</a> -->
+        <router-link v-else class="user" :to="'/login'" replace>登录</router-link>
+        
       </div>
     </div>
   </div>
