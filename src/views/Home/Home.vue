@@ -6,6 +6,10 @@
       <!-- <router-link to="/">Home</router-link>|
       <router-link to="/login">login</router-link>-->
       <!-- 问题来了，这里的id应该是登录用户的id，如何得到当前用户的id -->
+      <!-- <div class="write">
+        写文章
+      </div> -->
+      <router-link class="write" to="/write">写文章</router-link>
     </div>
   </div>
 </template>
@@ -55,3 +59,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.write {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  right: 50px;
+  bottom: 50px;
+  border-radius: 50%;
+  background-color: #f44;
+  color: aliceblue;
+  line-height: 50px;
+  padding: 10px;
+  box-shadow: 0 0 4px #000;
+}
+</style>
