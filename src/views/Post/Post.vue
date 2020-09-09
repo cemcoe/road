@@ -2,9 +2,9 @@
   <div>
     文章详情页
     {{$route.params.id}}
-    <div class="title">{{post.title}}</div>
-    <div class="author">{{post.author.name}}</div>
-    <div class="content">{{post.content}}</div>
+    <div class="title">标题：{{post.title}}</div>
+    <div class="author">作者：{{post.author}}</div>
+    <div class="content">内容：{{post.content}}</div>
   </div>
 </template>
 

@@ -2,9 +2,9 @@
   <div class="container">
     <div v-for="item in postList" :key="item._id" class="post">
       <div class="title">
-        <a :href="'/p/' + item._id">
+        <router-link :to="'/p/' + item._id">
         {{item.title}}
-        </a>
+        </router-link>
       </div>
       <div class="content">{{item.content}}</div>
       <div class="info">
