@@ -22,19 +22,27 @@ import { login } from "network/login";
 export default {
   data() {
     return {
-      name: "cemcoe",
+      name: "hello",
       password: "cemcoe",
     };
   },
   methods: {
     subClick() {
       login(this.name, this.password).then((res) => {
+        // console.log(res);
+        // // 将token保存到本地
+        // window.sessionStorage.setItem("token", res.token);
+        // // 登录成功跳转到首页
+        // this.$router.push("/");
 
-        console.log(res);
-        // 将token保存到本地
-        window.sessionStorage.setItem("token", res.token);
-        // 登录成功跳转到首页
-        this.$router.push("/");
+        console.log(res)
+
+        this.$store.commit("set_token", res.data.token);
+        // 将token信息保存到vuex和localStorage
+        this.$store.commit("setUser", res.data.user);
+        if (this.$store.state.token) {
+          this.$router.push("/");
+        }
       });
     },
   },

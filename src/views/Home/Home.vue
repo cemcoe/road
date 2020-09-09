@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div id="nav">
-      <home-header :userInfo="userInfo"></home-header>
+      <home-header></home-header>
       <post-list :postList="postList" @loadmore="loadmore"></post-list>
       <!-- <router-link to="/">Home</router-link>|
       <router-link to="/login">login</router-link>-->
@@ -41,7 +41,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('getUserInfo')
+    
 
     getHomePostList().then((res) => {
       this.postList = res;

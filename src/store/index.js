@@ -19,7 +19,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 会用到的变量 || 状态
-    userInfo: {},
+    user: {},
+    token: localStorage.getItem('token') || '',
 
   },
   mutations: {
@@ -27,8 +28,19 @@ export default new Vuex.Store({
     // 每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。
     // 要唤醒一个 mutation handler，你需要以相应的 type 调用 store.commit 方法
     // 参数 state 和 playload(剩余参数，格式对象)
-    receive_user_info(state, payload) {
-      state.userInfo = payload
+    // receive_user_info(state, payload) {
+    //   state.userInfo = payload
+    // },
+    set_token(state, token) {
+      state.token = token;
+      localStorage.setItem("token", token);
+    },
+    del_token(state) {
+      state.token = "";
+      localStorage.removeItem("token");
+    },
+    setUser(state, user) {
+      state.user = user;
     }
   },
 
@@ -49,10 +61,10 @@ export default new Vuex.Store({
     // 触发action
     // store.dispatch('increment)
     // 异步获取用户信息
-    async getUserInfo(context) {
-      const result = await getUserInfo()
-      context.commit('receive_user_info', result)
-    },
+    // async getUserInfo(context) {
+    //   const result = await getUserInfo()
+    //   context.commit('receive_user_info', result)
+    // },
   },
   modules: {
   }

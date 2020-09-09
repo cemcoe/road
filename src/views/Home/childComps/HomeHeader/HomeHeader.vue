@@ -8,9 +8,10 @@
       </div>
       <div class="center">
         <input class="search" type="text" placeholder="搜索感兴趣的内容" />
+        {{user}}
       </div>
       <div class="right">
-        <span v-if="userInfo" class="user" @click="goto_profile">{{userInfo.name}}</span>
+        <span v-if="user.name" class="user" @click="goto_profile">{{user.name}}</span>
         <!-- <a v-else class="user" href="/login">登录</a> -->
         <router-link v-else class="user" :to="'/login'" replace>登录</router-link>
         
@@ -20,18 +21,18 @@
 </template>
 
 <script>
+
 export default {
-  props: {
-    userInfo: {
-      type: Object,
-      // 如果未登录，传来的就是空对象
-    },
-  },
   methods: {
     goto_profile() {
-      this.$router.push("/u/" + this.userInfo._id);
+      this.$router.push("/u/" + this.$store.state.user._id);
     },
   },
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
+  }
 };
 </script>
 
