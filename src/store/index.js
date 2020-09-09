@@ -19,9 +19,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 会用到的变量 || 状态
-    user: {},
+    user: JSON.parse(localStorage.getItem('user')) || {},
     token: localStorage.getItem('token') || '',
-
   },
   mutations: {
     // 发生突变，需要传入state参数对state做出操作
@@ -41,6 +40,8 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user;
+      localStorage.setItem('user', JSON.stringify(user));
+      // localStorage 注意格式转换
     }
   },
 
