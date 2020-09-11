@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="home-header">
-      <div class="left logo">
+      <!-- <div class="left logo">
         <router-link to="/">
           <img src="./imgs/nav-logo.png" alt="logo" />
         </router-link>
-      </div>
+      </div>-->
       <div class="center">
         <input class="search" type="text" placeholder="搜索感兴趣的内容" />
       </div>
@@ -63,6 +63,26 @@ img {
 
 .home-header .center {
   flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  border: 0px;
+  border-radius: 20px;
+  padding: 6px;
+  outline-style: none;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .home-header .right {
@@ -81,5 +101,4 @@ img {
   text-align: center;
   color: #f40;
 }
-
 </style>
