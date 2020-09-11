@@ -8,7 +8,8 @@
       </div>
       <div class="content">{{item.content}}</div>
       <div class="info">
-        <a :href="'/u/' + item.author._id">{{item.author.name}}</a>
+        <!-- <a :href="'/u/' + item.author._id">{{item.author.name}}</a> -->
+        <router-link :to="'/u/' + item.author._id">{{item.author.name}}</router-link>
       </div>
     </div>
     <button @click="loadmore">加载更多</button>
