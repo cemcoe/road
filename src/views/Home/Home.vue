@@ -66,7 +66,7 @@ export default {
   width: 50px;
   height: 50px;
   right: 50px;
-  bottom: 50px;
+  bottom: 70px;
   border-radius: 50%;
   background-color: #f44;
   color: aliceblue;
