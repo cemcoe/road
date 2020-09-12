@@ -38,11 +38,16 @@ export default new Vuex.Store({
       state.token = "";
       localStorage.removeItem("token");
     },
+    
     setUser(state, user) {
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
       // localStorage 注意格式转换
-    }
+    },
+    del_user(state) {
+      state.user = {};
+      localStorage.removeItem("user");
+    },
   },
 
   getters: {

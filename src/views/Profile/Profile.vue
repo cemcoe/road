@@ -8,6 +8,7 @@
       {{user.gender}}
       关注：
       粉丝：
+      <button @click="signout">退出登录</button>
     </div>
     <hr />
     
@@ -73,6 +74,17 @@ export default {
     }
     
   },
+
+  methods: {
+    signout() {
+      this.$store.commit("del_token")
+      this.$store.commit("del_user")
+      this.user = {}
+      console.log('退出登录')
+
+    }
+  },
+
 };
 </script>
 
