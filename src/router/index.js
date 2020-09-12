@@ -9,7 +9,7 @@ const Post = () => import('../views/Post/Post')
 
 Vue.use(VueRouter)
 
-  
+
 const routes = [
   {
     path: '/home',
@@ -34,7 +34,8 @@ const routes = [
   {
     path: '/write',
     name: 'Write',
-    component: Write
+    component: Write,
+    meta: { requireAuth: true },
   },
   {
     path: '/p/:id',
