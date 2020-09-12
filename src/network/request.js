@@ -31,8 +31,17 @@ export function request(config) {
   // 3. 响应拦截
   instance.interceptors.response.use(res => {
     return res.data
-  }, err => {
-
+  }, error => {
+    console.log(error.response)
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          // 清楚本地保存的用户信息和token信息
+          localStorage.removeItem("token");
+          localStorage.removeItem('user')  
+      }
+    }
+    return Promise.reject(error.response.data);
   })
 
   // 4. 发送真正的网络请求
