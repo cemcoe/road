@@ -2,15 +2,30 @@
   <div>
     <div v-if="!user._id">查无此人</div>
     <div v-else>
-      {{user._id}}
-      {{user.name}}
-      {{user.gender}}
+      <!-- 用户信息 -->
+      <div class="user-info">
+        <h2>用户</h2>
+        <!-- {{user._id}} -->
+        {{user.name}}
+        {{user.gender}}
+      </div>
+
+      <!-- 用户文章列表 -->
+      <div class="user-posts">
+        <h2>文章</h2>
+        <ul>
+          <li v-for="item in userPosts" :key="item._id">
+            {{item.title}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { getUserInfo } from "network/profile.js";
+import { getUserPosts } from "network/user.js";
 export default {
   name: "Profile",
   data() {
@@ -18,6 +33,7 @@ export default {
       _id: null,
       // 用户信息
       user: {},
+      userPosts: [],
     };
   },
   // 有id向服务器发请求
@@ -33,6 +49,11 @@ export default {
         console.log(res);
         this.user = res.data.user;
       }
+    });
+    // 获取用户的文章列表
+    getUserPosts(this._id).then((res) => {
+      console.log(res);
+      this.userPosts = res.data
     });
   },
 };
