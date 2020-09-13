@@ -9,7 +9,10 @@
       <!-- <div class="write">
         写文章
       </div> -->
-      <router-link class="write" to="/write">写文章</router-link>
+      <div class="write">
+        <router-link to="/write">写文章</router-link>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -73,5 +76,11 @@ export default {
   line-height: 50px;
   padding: 10px;
   box-shadow: 0 0 4px #000;
+}
+.write a {
+  color: aliceblue;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 </style>
