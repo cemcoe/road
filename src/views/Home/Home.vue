@@ -17,7 +17,7 @@
 <script>
 // @ is an alias to /src
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
-import PostList from "./childComps/PostList/PostList";
+import PostList from "components/content/postList/PostList";
 import { getUserInfo, getHomePostList } from "network/home";
 
 export default {

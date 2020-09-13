@@ -13,11 +13,7 @@
       <!-- 用户文章列表 -->
       <div class="user-posts">
         <h2>文章</h2>
-        <ul>
-          <li v-for="item in userPosts" :key="item._id">
-            {{item.title}}
-          </li>
-        </ul>
+        <post-list :postList="userPosts"></post-list>
       </div>
     </div>
   </div>
@@ -26,6 +22,9 @@
 <script>
 import { getUserInfo } from "network/profile.js";
 import { getUserPosts } from "network/user.js";
+
+import PostList from "components/content/postList/PostList";
+
 export default {
   name: "Profile",
   data() {
@@ -35,6 +34,10 @@ export default {
       user: {},
       userPosts: [],
     };
+  },
+  components: {
+    PostList,
+
   },
   // 有id向服务器发请求
   // 拿到路由传来的参数
