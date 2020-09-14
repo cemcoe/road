@@ -58,10 +58,12 @@ export default {
           // 将token信息保存到vuex和localStorage
           this.$store.commit("setUser", res.data.user);
           if (this.$store.state.token) {
+            this.$toast.show('登录成功' , 2000)
             this.$router.push("/");
           }
         } else if (res.status === 401) {
-          console.log(res.message);
+          // console.log(res.message);
+          this.$toast.show('登录失败' , 2000)
         }
       });
     },
@@ -69,9 +71,10 @@ export default {
     registerClick() {
       register(this.name, this.password).then((res) => {
         if (res.status === 200) {
-          console.log(res);
+          
+          this.$toast.show('注册成功' , 2000)
         } else if (res.status === 409) {
-          console.log(res.message);
+          this.$toast.show('注册失败' , 2000)
         }
       });
     },

@@ -80,7 +80,7 @@ export default {
       this.$store.commit("del_token")
       this.$store.commit("del_user")
       this.user = {}
-      console.log('退出登录')
+      this.$toast.show('退出登录成功' , 2000)
 
     }
   },

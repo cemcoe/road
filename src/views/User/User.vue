@@ -95,20 +95,20 @@ export default {
       // 关注当前用户
       followingUser(this._id).then((res) => {
         if (res.status === 401) {
-          console.log("关注失败");
+          this.$toast.show('关注失败，刷新页面' , 2000)
           return;
         }
-        console.log("关注成功");
+        this.$toast.show('关注成功，刷新页面' , 2000)
       });
     },
     unfollowingUser() {
       // 取消当前用户
       unfollowingUser(this._id).then((res) => {
         if (res.status === 401) {
-          console.log("取消关注失败");
+          this.$toast.show('取消关注失败，刷新页面' , 2000)
           return;
         }
-        console.log("取消关注成功");
+        this.$toast.show('取消关注成功，刷新页面' , 2000)
       });
     },
   },

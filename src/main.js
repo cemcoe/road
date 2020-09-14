@@ -4,6 +4,10 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import { Button } from 'vant';
+// main.js
+import toast from 'components/common/toast'
+// 安装toast插件
+Vue.use(toast)
 
 Vue.use(Button);
 

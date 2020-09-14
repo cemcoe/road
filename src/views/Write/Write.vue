@@ -22,6 +22,7 @@ export default {
         console.log("文章创建成功");
         // TODO:
         // 文章创建成功， 跳转文章详情页
+        this.$toast.show('文章创建成功' , 2000)
         this.$router.push("/")
       });
     },

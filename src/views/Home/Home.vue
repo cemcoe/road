@@ -44,6 +44,7 @@ export default {
       getHomePostList(this.currentPage).then((res) => {
         this.postList = []
         this.postList.push(...res)
+        this.$toast.show('数据请求成功' , 2000)
       });
     },
   },
