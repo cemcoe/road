@@ -2,17 +2,19 @@
   <div class="home">
     <div id="nav">
       <home-header></home-header>
-      <post-list :postList="postList" @loadmore="loadmore"></post-list>
+      <div class="post-list">
+        <post-list :postList="postList" @loadmore="loadmore"></post-list>
+      </div>
+
       <!-- <router-link to="/">Home</router-link>|
       <router-link to="/login">login</router-link>-->
       <!-- 问题来了，这里的id应该是登录用户的id，如何得到当前用户的id -->
       <!-- <div class="write">
         写文章
-      </div> -->
+      </div>-->
       <div class="write">
         <router-link to="/write">写文章</router-link>
       </div>
-      
     </div>
   </div>
 </template>
@@ -40,17 +42,15 @@ export default {
       // 当前的页数加1
       // 将新页数的数据追加
       // console.log(this.currentPage);
-      this.currentPage ++;
+      this.currentPage++;
       getHomePostList(this.currentPage).then((res) => {
-        this.postList = []
-        this.postList.push(...res)
-        this.$toast.show('数据请求成功' , 2000)
+        this.postList = [];
+        this.postList.push(...res);
+        this.$toast.show("数据请求成功", 2000);
       });
     },
   },
   created() {
-    
-
     getHomePostList().then((res) => {
       this.postList = res;
       console.log(this.postList);
@@ -58,13 +58,17 @@ export default {
   },
   computed: {
     userInfo() {
-      return this.$store.state.userInfo
-    }
+      return this.$store.state.userInfo;
+    },
   },
 };
 </script>
 
 <style scoped>
+.post-list {
+  height: calc(100vh - 44px - 49px);
+  overflow: scroll;
+}
 .write {
   position: fixed;
   width: 50px;
