@@ -6,6 +6,9 @@ const User = () => import('../views/User/User')
 const Profile = () => import('../views/Profile/Profile')
 const Write = () => import('../views/Write/Write')
 const Post = () => import('../views/Post/Post')
+const Following = () => import('../views/Following/Following')
+const Island = () => import('../views/Island/Island')
+const Message = () => import('../views/Message/Message')
 
 Vue.use(VueRouter)
 
@@ -49,6 +52,23 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/following',
+    name: 'Following',
+    component: Following,
+    meta: { requireAuth: true },
+  },
+  {
+    path: '/island',
+    name: 'Island',
+    component: Island,
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: Message,
+    meta: { requireAuth: true },
   },
   {
     path: '/',
