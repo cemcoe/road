@@ -1,5 +1,50 @@
 import { request } from './request'
 
+
+// 用户注册
+export function register(name, password) {
+  return request({
+    method: "post",
+    url: '/users',
+    data: {
+      name,
+      password
+    },
+  })
+}
+
+// 用户登录
+export function login(name, password) {
+  return request({
+    method: "post",
+    url: '/login',
+    data: {
+      name,
+      password
+    },
+  })
+}
+
+
+// 获取登录用户信息
+// export function getAuthUserInfo() {
+//   return request({
+//     method: "get",
+//     url: '/userinfo',
+//   })
+// }
+
+// 获取特定用户的信息
+export function getUserInfo(id) {
+  return request({
+    method: "get",
+    url: `/users/${id}`,
+  })
+}
+
+
+
+// 获取某人文章列表
 export function getUserPosts(id) {
   return request({
     method: "get",

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { getUserInfo } from "network/profile.js";
+import { getUserInfo } from "network/user";
 export default {
   name: "Profile",
   data() {

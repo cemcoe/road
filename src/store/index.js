@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getUserInfo, getHomePostList } from "network/home";
 // 最好提前在你的 store 中初始化好所有所需属性。
 // 当需要在对象上添加新属性时，你应该以新对象替换老对象。例如，利用对象展开运算符我们可以这样写
 // state.obj = { ...state.obj, newProp: 123 }

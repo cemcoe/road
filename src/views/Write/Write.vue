@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { createPost } from "network/write";
+import { createPost } from "network/post";
 export default {
   data() {
     return {

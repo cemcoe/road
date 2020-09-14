@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import { getUserInfo } from "network/profile.js";
 import {
+  getUserInfo,
   getUserPosts,
   followingUser,
   unfollowingUser,
   listfollowingUser,
   listfollower,
-} from "network/user.js";
+} from "network/user";
 
 import PostList from "components/content/postList/PostList";
 

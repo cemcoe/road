@@ -33,8 +33,7 @@
 
 <script>
 const axios = require("axios");
-import { login } from "network/login";
-import { register } from "network/register";
+import { login, register } from "network/user";
 
 export default {
   data() {
