@@ -72,7 +72,14 @@ export default {
 
 <style scoped>
 .post-list {
-  height: calc(100vh - 44px - 49px);
+  background-color: rgb(248, 240, 240);
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  bottom: 49px;
+  
+  /* height: calc(100vh - 44px - 49px); */
   overflow: scroll;
 }
 .write {
