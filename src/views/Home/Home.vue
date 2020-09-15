@@ -35,6 +35,7 @@ export default {
     return {
       postList: [],
       currentPage: 1,
+      perPage: 10,
     };
   },
   methods: {
@@ -44,15 +45,20 @@ export default {
       // console.log(this.currentPage);
       this.currentPage++;
       getHomePostList(this.currentPage).then((res) => {
-        this.postList = [];
-        this.postList.push(...res);
-        this.$toast.show("数据请求成功", 2000);
+        if (res.status === 200) {
+          // console.log(res);
+          this.postList.push(...res.data.post);
+          this.$toast.show("数据请求成功", 2000);
+          return;
+        }
+        this.$toast.show("没有数据了", 2000);
       });
     },
   },
   created() {
-    getHomePostList().then((res) => {
-      this.postList = res;
+    getHomePostList(this.currentPage).then((res) => {
+      console.log(res);
+      this.postList = res.data.post;
       console.log(this.postList);
     });
   },
