@@ -9,6 +9,9 @@
       关注：
       粉丝：
       <button @click="signout">退出登录</button>
+      <div>
+        <router-link to="/upload">上传图片</router-link>
+      </div>
     </div>
     <hr />
     

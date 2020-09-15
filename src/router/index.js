@@ -9,6 +9,7 @@ const Post = () => import('../views/Post/Post')
 const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
 const Message = () => import('../views/Message/Message')
+const Upload = () => import('../views/Upload/Upload')
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,11 @@ const routes = [
     name: 'Message',
     component: Message,
     meta: { requireAuth: true },
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: Upload,
   },
   {
     path: '/',

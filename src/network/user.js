@@ -103,3 +103,39 @@ export function listfollower(id) {
     }
   })
 }
+
+// 上传用户头像
+// export function uploadImg(imgFile) {
+//   return request({
+//     method: "post",
+//     url: '/upload',
+//     data: {
+//       imgFile
+//     }
+//   })
+// }
+
+export function uploadImg(bodyFormData) {
+  return request({
+    method: 'post',
+    url: '/upload',
+    data: bodyFormData,
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+}
+
+
+// ({
+//   method: 'post',
+//   url: 'myurl',
+//   data: bodyFormData,
+//   headers: { 'Content-Type': 'multipart/form-data' }
+// })
+//   .then(function (response) {
+//     //handle success
+//     console.log(response);
+//   })
+//   .catch(function (response) {
+//     //handle error
+//     console.log(response);
+//   });
