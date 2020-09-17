@@ -19,7 +19,7 @@
 
 <script>
 import { update } from "network/user";
-import Upload from "../Upload/Upload";
+import Upload from "components/common/upload/Upload";
 export default {
   data() {
     return {
