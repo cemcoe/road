@@ -6,11 +6,21 @@
       <!-- {{user._id}} -->
       {{user.name}}
       {{user.gender}}
+      <hr />
+      {{user.bio}}
+      <hr />
+      {{user.avatar}}
+      <hr />
       关注：
       粉丝：
+      <hr />
       <button @click="signout">退出登录</button>
-      <div>
+      <hr />
+      <!-- <div>
         <router-link to="/upload">上传图片</router-link>
+      </div> -->
+      <div>
+        <router-link :to="'/reset/'+user._id">更新用户信息</router-link>
       </div>
     </div>
     <hr />

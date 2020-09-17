@@ -10,6 +10,7 @@ const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
 const Message = () => import('../views/Message/Message')
 const Upload = () => import('../views/Upload/Upload')
+const ResetUser = () => import('../views/ResetUser/ResetUser')
 
 Vue.use(VueRouter)
 
@@ -75,6 +76,11 @@ const routes = [
     path: '/upload',
     name: 'Upload',
     component: Upload,
+  },
+  {
+    path: '/reset/:id',
+    name: 'ResetUser',
+    component: ResetUser,
   },
   {
     path: '/',

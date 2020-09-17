@@ -25,6 +25,15 @@ export function login(name, password) {
   })
 }
 
+// 更新用户信息
+export function update(id, obj) {
+  return request({
+    method: "patch",
+    url: `/users/${id}`,
+    data: obj,
+  })
+}
+
 
 // 获取登录用户信息
 // export function getAuthUserInfo() {

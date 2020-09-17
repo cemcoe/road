@@ -34,6 +34,12 @@ export default {
         console.log(res);
         this.imgUrl = res.data.url;
         this.$toast.show("图片上传成功");
+        // 图片上传成功，将图片在线地址传给需要的组件
+
+        // TODO：
+        // 将该组件改成一个通用组件并移到common文件夹中
+        // 受影响的文件resetUser
+        this.$emit('uploadImgEnd', res.data.url)
       });
     },
   },
