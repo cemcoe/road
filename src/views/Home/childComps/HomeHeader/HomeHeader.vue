@@ -1,12 +1,17 @@
 <template>
   <div class="container">
     <nav-bar>
+      <div slot="left">
+        cemcoe
+      </div>
       <div slot="center">
         <input class="search" type="text" placeholder="搜索感兴趣的内容" />
       </div>
       <div slot="right">
         <div v-if="user.name">
-          <router-link :to="user_detail_link" class="user-info">{{user.name}}</router-link>
+          <router-link :to="user_detail_link" class="user-info">
+            <img :src="user.avatar" alt="avator">
+          </router-link>
         </div>
         <div v-else>
           <router-link :to="'/login'" replace class="login">登录|注册</router-link>
@@ -24,6 +29,10 @@ export default {
     // goto_profile() {
     //   this.$router.push("/u/" + this.$store.state.user._id);
     // },
+  },
+  created() {
+    console.log(this.$store.state.user)
+
   },
   components: {
     NavBar,
@@ -48,7 +57,8 @@ input {
   padding: 6px;
   outline-style: none;
   text-align: center;
-  border: 1px solid #ccc;
+  background-color: rgb(243, 237, 237);
+  /* border: 1px solid #ccc; */
 }
 
 input:focus {
@@ -59,7 +69,7 @@ input:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
     0 0 8px rgba(102, 175, 233, 0.6);
 }
-
+/* 
 .user-info {
   background-color: rgb(232, 232, 243);
   display: inline-block;
@@ -69,8 +79,16 @@ input:focus {
   text-align: center;
   color: #f40;
   border-radius: 50%;
-} 
+}  */
 .login {
   font-size: 14px;
+}
+img {
+  position: absolute;
+  top: 2px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 </style>
