@@ -9,12 +9,12 @@
         <div class="tab-item">
           <router-link :to="'/home'+'/recommend'" replace>推荐</router-link>
         </div>
-        <!-- <div class="tab-item">
-          <router-link :to="'/home/'+'/info'" replace>专题</router-link>
+        <div class="tab-item">
+          <router-link :to="'/home'+'/topic'" replace>专题</router-link>
         </div>
         <div class="tab-item">
-          <router-link :to="'/home/'+'/info'" replace>连载</router-link>
-        </div>-->
+          <router-link :to="'/home'+'/serialization'" replace>连载</router-link>
+        </div>
       </div>
 
       <router-view></router-view>
@@ -22,7 +22,6 @@
       <div class="write">
         <router-link to="/write">写文章</router-link>
       </div>
-      
     </div>
   </div>
 </template>
@@ -50,11 +49,19 @@ export default {
 <style scoped>
 .tab {
   display: flex;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(177, 159, 159);
 }
 .tab-item {
   flex: 1;
+  text-align: center;
 }
 
+.router-link-exact-active {
+  padding-bottom: 6px;
+  border-bottom: 4px solid #f40;
+  color: #000;
+}
 
 .write {
   position: fixed;

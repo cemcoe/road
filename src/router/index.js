@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 const Home = () => import('../views/Home/Home')
 const HomeActivity = () => import('../views/Home/childComps/HomeActivity/HomeActivity')
 const HomeRecommend = () => import('../views/Home/childComps/HomeRecommend/HomeRecommend')
+const HomeTopic = () => import('../views/Home/childComps/HomeTopic/HomeTopic')
+const HomeSerialization = () => import('../views/Home/childComps/HomeSerialization/HomeSerialization')
 const Login = () => import('../views/Login/Login')
 const User = () => import('../views/User/User')
 const Profile = () => import('../views/Profile/Profile')
@@ -19,7 +21,9 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/home',
-    name: 'Home',
+    // name: 'Home',
+    // https://segmentfault.com/q/1010000007788495
+    // https://github.com/vuejs/vue-router/issues/777
     component: Home,
     children: [
       {
@@ -29,6 +33,18 @@ const routes = [
       {
         path: '/home/recommend',
         component: HomeRecommend,
+      },
+      {
+        path: '/home/topic',
+        component: HomeTopic,
+      },
+      {
+        path: '/home/serialization',
+        component: HomeSerialization,
+      },
+      {
+        path: '',
+        redirect: '/home/recommend'
       },
     ]
   },
