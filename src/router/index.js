@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 const Home = () => import('../views/Home/Home')
+const HomeActivity = () => import('../views/Home/childComps/HomeActivity/HomeActivity')
+const HomeRecommend = () => import('../views/Home/childComps/HomeRecommend/HomeRecommend')
 const Login = () => import('../views/Login/Login')
 const User = () => import('../views/User/User')
 const Profile = () => import('../views/Profile/Profile')
@@ -18,7 +20,17 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/home/activity',
+        component: HomeActivity,
+      },
+      {
+        path: '/home/recommend',
+        component: HomeRecommend,
+      },
+    ]
   },
   {
     path: '/login',

@@ -2,19 +2,27 @@
   <div class="home">
     <div id="nav">
       <home-header></home-header>
-      <div class="post-list">
-        <post-list :postList="postList" @loadmore="loadmore"></post-list>
+      <div class="tab">
+        <div class="tab-item">
+          <router-link :to="'/home'+'/activity'" replace>活动</router-link>
+        </div>
+        <div class="tab-item">
+          <router-link :to="'/home'+'/recommend'" replace>推荐</router-link>
+        </div>
+        <!-- <div class="tab-item">
+          <router-link :to="'/home/'+'/info'" replace>专题</router-link>
+        </div>
+        <div class="tab-item">
+          <router-link :to="'/home/'+'/info'" replace>连载</router-link>
+        </div>-->
       </div>
 
-      <!-- <router-link to="/">Home</router-link>|
-      <router-link to="/login">login</router-link>-->
-      <!-- 问题来了，这里的id应该是登录用户的id，如何得到当前用户的id -->
-      <!-- <div class="write">
-        写文章
-      </div>-->
+      <router-view></router-view>
+
       <div class="write">
         <router-link to="/write">写文章</router-link>
       </div>
+      
     </div>
   </div>
 </template>
@@ -22,45 +30,14 @@
 <script>
 // @ is an alias to /src
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
-import PostList from "components/content/postList/PostList";
-import { getHomePostList } from "network/post";
 
 export default {
   name: "Home",
   components: {
     HomeHeader,
-    PostList,
   },
   data() {
-    return {
-      postList: [],
-      currentPage: 1,
-      perPage: 10,
-    };
-  },
-  methods: {
-    loadmore() {
-      // 当前的页数加1
-      // 将新页数的数据追加
-      // console.log(this.currentPage);
-      this.currentPage++;
-      getHomePostList(this.currentPage).then((res) => {
-        if (res.status === 200) {
-          // console.log(res);
-          this.postList.push(...res.data.post);
-          this.$toast.show("数据请求成功", 2000);
-          return;
-        }
-        this.$toast.show("没有数据了", 2000);
-      });
-    },
-  },
-  created() {
-    getHomePostList(this.currentPage).then((res) => {
-      console.log(res);
-      this.postList = res.data.post;
-      console.log(this.postList);
-    });
+    return {};
   },
   computed: {
     userInfo() {
@@ -71,17 +48,14 @@ export default {
 </script>
 
 <style scoped>
-.post-list {
-  background-color: rgb(248, 240, 240);
-  position: absolute;
-  top: 44px;
-  left: 0;
-  right: 0;
-  bottom: 49px;
-  
-  /* height: calc(100vh - 44px - 49px); */
-  overflow: scroll;
+.tab {
+  display: flex;
 }
+.tab-item {
+  flex: 1;
+}
+
+
 .write {
   position: fixed;
   width: 50px;
