@@ -1,14 +1,12 @@
 import { request } from './request'
 
 // 创建文章
-export function createPost(title, content) {
+export function createPost(post) {
   return request({
+    // 传一个对象过来，以后如果添加字段时就简单了
     method: "post",
     url: '/posts',
-    data: {
-      title,
-      content
-    },
+    data: post,
   })
 }
 

@@ -3,7 +3,7 @@
     <div class="title">
       <router-link :to="'/p/' + post._id">{{post.title}}</router-link>
     </div>
-    <div class="abstract">{{post.content}}</div>
+    <div class="abstract">{{post.abstract}}</div>
     <div class="meta">
       <!-- <a :href="'/u/' + item.author._id">{{item.author.name}}</a> -->
       <router-link :to="'/u/' + post.author._id" class="nickname">{{post.author.name}}</router-link>
@@ -27,7 +27,7 @@ export default {
   margin-bottom: 12px;
   background-color: #fff;
 }
-.title a{
+.title a {
   font-weight: 700;
   font-size: 18px;
   color: #000000;
