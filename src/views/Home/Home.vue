@@ -3,7 +3,10 @@
     <div id="nav">
       <home-header></home-header>
       <home-tab-control></home-tab-control>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+
       <div class="write">
         <router-link to="/write">写文章</router-link>
       </div>
@@ -23,8 +26,7 @@ export default {
     HomeTabControl,
   },
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     userInfo() {
