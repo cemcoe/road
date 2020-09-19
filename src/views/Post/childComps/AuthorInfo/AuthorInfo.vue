@@ -5,7 +5,9 @@
       <div class="info-item avatar">
         <img :src="authorInfo.avatar" alt="avatar" />
       </div>
-      <div class="info-item username">{{authorInfo.name}}</div>
+      <div class="info-item username">
+        <router-link :to="'/u/' + authorInfo._id">{{authorInfo.name}}</router-link>
+      </div>
     </div>
 
     <div class="follow">

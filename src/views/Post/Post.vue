@@ -1,18 +1,20 @@
 <template>
-  <div>
+  <div class="container">
     <post-header></post-header>
-    <hr>
 
-    <div class="title">标题：{{post.title}}</div>
-
-    <hr>
+    <div class="title">
+      <h2>{{post.title}}</h2>
+    </div>
 
     <author-info :authorInfo="post.author"></author-info>
 
+    <post-info :postInfo="post.createdAt"></post-info>
+
     <!-- {{$route.params.id}} -->
-    <hr>
+    <hr />
     <!-- <div class="author">作者：{{post.author}}</div> -->
-    <div class="content">内容：{{post.content}}</div>
+    <post-content :postContent="post.content"></post-content>
+    <!-- <div class="content">内容：{{post.content}}</div> -->
   </div>
 </template>
 
@@ -21,11 +23,15 @@ import { getPostDetail } from "network/post";
 
 import PostHeader from "./childComps/PostHeader/PostHeader";
 import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
+import PostInfo from "./childComps/PostInfo/PostInfo";
+import PostContent from "./childComps/PostContent/PostContent";
 
 export default {
   components: {
     PostHeader,
     AuthorInfo,
+    PostContent,
+    PostInfo,
   },
   data() {
     return {
@@ -43,13 +49,14 @@ export default {
   created() {
     getPostDetail(this.$route.params.id).then((res) => {
       this.post = res;
+      console.log(this.post);
     });
   },
 };
 </script>
 
 <style scoped>
-.author {
-  margin: 40px auto;
+h2 {
+  padding-left: 10px;
 }
 </style>
