@@ -1,5 +1,6 @@
 <template>
   <div>
+    <post-header></post-header>
     文章详情页
     {{$route.params.id}}
     <div class="title">标题：{{post.title}}</div>
@@ -10,7 +11,12 @@
 
 <script>
 import { getPostDetail } from "network/post";
+
+import PostHeader from "./childComps/PostHeader/PostHeader";
 export default {
+  components: {
+    PostHeader
+  },
   data() {
     return {
       post: {
