@@ -1,32 +1,21 @@
 <template>
   <div>
-    <div v-if="!user._id">查无此人</div>
-    <div v-else>
-      <!-- 用户信息 -->
-      <div class="user-info">
-        <h2>用户</h2>
-        <!-- {{user._id}} -->
-        {{user.name}}
-        {{user.gender}}
-      </div>
-      <button>简信</button>
+    <user-header></user-header>
+    <user-info :userInfo="user"></user-info>
+    <div class="follow">
       <button @click="followingUser">关注</button>
       <button @click="unfollowingUser">取消关注</button>
-      <button>礼物</button>
 
-      <div class="follow">
+      <div>
         <span>{{followingUsers.length}} 关注</span> ||
         <span>{{followers.length}} 粉丝</span>
       </div>
       <hr />
-
-      <div>简书优秀创作者</div>
-
-      <!-- 用户文章列表 -->
-      <div class="user-posts">
-        <h2>文章</h2>
-        <post-list :postList="userPosts"></post-list>
-      </div>
+    </div>
+    <!-- 用户文章列表 -->
+    <div class="user-posts">
+      <h2>文章 ({{userPosts.length}}) </h2>
+      <post-list :postList="userPosts"></post-list>
     </div>
   </div>
 </template>
@@ -41,7 +30,9 @@ import {
   listfollower,
 } from "network/user";
 
+import UserHeader from "./childComps/UserHeader/UserHeader";
 import PostList from "components/content/postList/PostList";
+import UserInfo from "./childComps/UserInfo/UserInfo";
 
 export default {
   name: "Profile",
@@ -56,6 +47,8 @@ export default {
     };
   },
   components: {
+    UserHeader,
+    UserInfo,
     PostList,
   },
 
@@ -95,25 +88,28 @@ export default {
       // 关注当前用户
       followingUser(this._id).then((res) => {
         if (res.status === 401) {
-          this.$toast.show('关注失败，刷新页面' , 2000)
+          this.$toast.show("关注失败，刷新页面", 2000);
           return;
         }
-        this.$toast.show('关注成功，刷新页面' , 2000)
+        this.$toast.show("关注成功，刷新页面", 2000);
       });
     },
     unfollowingUser() {
       // 取消当前用户
       unfollowingUser(this._id).then((res) => {
         if (res.status === 401) {
-          this.$toast.show('取消关注失败，刷新页面' , 2000)
+          this.$toast.show("取消关注失败，刷新页面", 2000);
           return;
         }
-        this.$toast.show('取消关注成功，刷新页面' , 2000)
+        this.$toast.show("取消关注成功，刷新页面", 2000);
       });
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.follow {
+  padding: 10px;
+}
 </style>
