@@ -1,10 +1,17 @@
 <template>
   <div>
     <post-header></post-header>
-    文章详情页
-    {{$route.params.id}}
+    <hr>
+
     <div class="title">标题：{{post.title}}</div>
-    <div class="author">作者：{{post.author}}</div>
+
+    <hr>
+
+    <author-info :authorInfo="post.author"></author-info>
+
+    <!-- {{$route.params.id}} -->
+    <hr>
+    <!-- <div class="author">作者：{{post.author}}</div> -->
     <div class="content">内容：{{post.content}}</div>
   </div>
 </template>
@@ -13,9 +20,12 @@
 import { getPostDetail } from "network/post";
 
 import PostHeader from "./childComps/PostHeader/PostHeader";
+import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
+
 export default {
   components: {
-    PostHeader
+    PostHeader,
+    AuthorInfo,
   },
   data() {
     return {
@@ -41,6 +51,5 @@ export default {
 <style scoped>
 .author {
   margin: 40px auto;
-
 }
 </style>
