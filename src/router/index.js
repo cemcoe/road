@@ -15,6 +15,11 @@ const Island = () => import('../views/Island/Island')
 const Message = () => import('../views/Message/Message')
 const ResetUser = () => import('../views/ResetUser/ResetUser')
 
+// meta变量说明
+// requireAuth: true 是否登录才能访问
+// showFooter: true 是否要展示底部导航
+
+
 Vue.use(VueRouter)
 
 
@@ -29,18 +34,30 @@ const routes = [
       {
         path: '/home/activity',
         component: HomeActivity,
+        meta: {
+          showFooter: true
+        },
       },
       {
         path: '/home/recommend',
         component: HomeRecommend,
+        meta: {
+          showFooter: true
+        },
       },
       {
         path: '/home/topic',
         component: HomeTopic,
+        meta: {
+          showFooter: true
+        },
       },
       {
         path: '/home/serialization',
         component: HomeSerialization,
+        meta: {
+          showFooter: true
+        },
       },
       {
         path: '',
@@ -51,17 +68,27 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      showFooter: false
+    }
   },
   {
     path: '/u/:id',
     name: 'User',
-    component: User
+    component: User,
+    meta: {
+      showFooter: false
+    }
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      showFooter: false,
+      showFooter: true,
+    }
   },
   {
     path: '/write',
@@ -72,7 +99,10 @@ const routes = [
   {
     path: '/p/:id',
     name: 'Post',
-    component: Post
+    component: Post,
+    meta: {
+      showFooter: false
+    }
   },
   {
     path: '/about',
@@ -86,23 +116,27 @@ const routes = [
     path: '/following',
     name: 'Following',
     component: Following,
-    meta: { requireAuth: true },
+    meta: { requireAuth: true, showFooter: true },
   },
   {
     path: '/island',
     name: 'Island',
     component: Island,
+    meta: {
+      showFooter: true
+    },
   },
   {
     path: '/message',
     name: 'Message',
     component: Message,
-    meta: { requireAuth: true },
+    meta: { requireAuth: true, showFooter: true },
   },
   {
     path: '/reset/:id',
     name: 'ResetUser',
     component: ResetUser,
+    meta: { requireAuth: true, showFooter: true },
   },
   {
     path: '/',
