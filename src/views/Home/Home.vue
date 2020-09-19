@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .tab {
   display: flex;
-  padding-bottom: 8px;
+  padding: 8px;
   border-bottom: 1px solid rgb(177, 159, 159);
 }
 .tab-item {
