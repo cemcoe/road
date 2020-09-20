@@ -1,5 +1,6 @@
 import axios from 'axios'
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}` || ''
+// axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}` || ''
+// 当token变化时不能及时更改，只有刷新页面时才行
 
 // 多环境配置
 let apiUrl
@@ -23,7 +24,8 @@ export function request(config) {
   // 2. 请求拦截器，添加jwt token
 
   instance.interceptors.request.use(config => {
-    // config.headers.Authorization = `Bearer ${sessionStorage.getItem('token')}` || ''
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}` || ''
+    // 每个请求都重新设置有点耗费资源，一般token发生改变会是换账号登录，或token过期，可能会有更好的方案。
     return config
   }, err => {
 
