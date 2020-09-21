@@ -33,6 +33,9 @@ export default {
       return this.$store.state.userInfo;
     },
   },
+  created() {
+    this.$toast.show('再次提醒，网站文章数据由狗屁不同文章生成器生成，不具有任何的价值，仅供占位使用。亦不代表本人观点。', 4000)
+  },
 };
 </script>
 
