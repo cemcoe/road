@@ -12,6 +12,8 @@ import Vuex from 'vuex'
 // Action 提交的是 mutation，而不是直接变更状态。
 // Action 可以包含任意异步操作。
 
+import { listfollowingUser } from "network/user";
+
 
 Vue.use(Vuex)
 
@@ -20,6 +22,7 @@ export default new Vuex.Store({
     // 会用到的变量 || 状态
     user: JSON.parse(localStorage.getItem('user')) || {},
     token: localStorage.getItem('token') || '',
+    followingUsers: [], // 用户关注列表
   },
   mutations: {
     // 发生突变，需要传入state参数对state做出操作
@@ -37,7 +40,7 @@ export default new Vuex.Store({
       state.token = "";
       localStorage.removeItem("token");
     },
-    
+
     setUser(state, user) {
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
@@ -47,6 +50,12 @@ export default new Vuex.Store({
       state.user = {};
       localStorage.removeItem("user");
     },
+
+    // 设置用户关注列表
+    receive_following_user(state, followingUsers) {
+      state.followingUsers = followingUsers
+    }
+    
   },
 
   getters: {
@@ -70,6 +79,14 @@ export default new Vuex.Store({
     //   const result = await getUserInfo()
     //   context.commit('receive_user_info', result)
     // },
+
+    async listfollowingUser(context) {
+      // 向服务器要关注的用户列表
+      const result = await listfollowingUser(context.state.user._id);
+      const followingUsers = result.data.following
+      // 触发mutations更改state
+      context.commit('receive_following_user', followingUsers)
+    }
   },
   modules: {
   }
