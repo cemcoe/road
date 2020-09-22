@@ -3,20 +3,18 @@
     <profile-header></profile-header>
     <div class="user">
       <div class="profile">
-      <img :src="user.avatar" alt="avatar">
-      {{user.name}}
+        <img :src="user.avatar" alt="avatar" />
+        {{user.name}}
+      </div>
+      <div class="mine">
+        <ul>
+          <li>我的文章</li>
+          <li>我的贴子</li>
+          <li>赞和收藏</li>
+          <li>我的书架</li>
+        </ul>
+      </div>
     </div>
-    <div class="mine">
-      <ul>
-        <li>我的文章</li>
-        <li>我的贴子</li>
-        <li>赞和收藏</li>
-        <li>我的书架</li>
-      </ul>
-    </div>
-
-    </div>
-    
 
     <div>
       <button @click="signout">退出登录</button>
@@ -26,6 +24,9 @@
       </div>-->
       <div>
         <router-link :to="'/reset/'+user._id">更新用户信息</router-link>
+      </div>
+      <div>
+        <router-link to="/about">关于</router-link>
       </div>
     </div>
     <hr />
@@ -112,8 +113,6 @@ export default {
   background-color: rgb(247, 241, 241);
   border-radius: 10px;
   padding: 20px;
-
-
 }
 
 .mine ul {
@@ -121,14 +120,12 @@ export default {
   justify-content: center;
 }
 
-.mine ul li{
+.mine ul li {
   flex: 1;
   /* background-color: #000; */
   height: 100px;
   text-align: center;
   line-height: 100px;
-  
-
 }
 
 img {
