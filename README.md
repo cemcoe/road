@@ -1,5 +1,7 @@
 # jianshu_client
-客户端
+仿简书web页面
+
+预览地址：demo.cemcoe.com/jianshu
 
 ## 技术栈
 vue2 + vuex + vue-router + webpack + ES6/7 + axios + flex
@@ -15,12 +17,12 @@ cd jianshu_client
 
 npm install
 
-npm run serve
+npm run dev
 ```
 
 ## 目标功能
-- [] 首页
-- [] 文章详情页
-- [] 个人页面
-- [] 写文章页面
+- [x] 首页推荐子页
+- [ ] 文章详情页
+- [ ] 个人页面
+- [ ] 写文章页面
 
