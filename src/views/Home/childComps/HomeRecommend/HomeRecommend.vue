@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div class="post-list">
+    <div class="post-list" v-if="postList.length">
       <post-list :postList="postList" @loadmore="loadmore"></post-list>
+    </div>
+    <div v-else>
+      <loading></loading>
     </div>
   </div>
 </template>
 
 <script>
 import PostList from "components/content/postList/PostList";
+import Loading from 'components/common/loading/Loading'
 import { getHomePostList } from "network/post";
 export default {
   components: {
     PostList,
+    Loading,
   },
   data() {
     return {
@@ -49,7 +54,7 @@ export default {
 
 <style scoped>
 .post-list {
-  background-color: rgb(248, 240, 240);
+  background-color: rgb(243, 243, 243);
   position: absolute;
   top: 84px;
   left: 0;
