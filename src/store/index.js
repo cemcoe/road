@@ -12,7 +12,7 @@ import Vuex from 'vuex'
 // Action 提交的是 mutation，而不是直接变更状态。
 // Action 可以包含任意异步操作。
 
-import { listfollowingUser } from "network/user";
+import { followingUser, unfollowingUser, listfollowingUser } from "network/user";
 
 
 Vue.use(Vuex)
@@ -55,7 +55,7 @@ export default new Vuex.Store({
     receive_following_user(state, followingUsers) {
       state.followingUsers = followingUsers
     }
-    
+
   },
 
   getters: {
@@ -86,8 +86,32 @@ export default new Vuex.Store({
       const followingUsers = result.data.following
       // 触发mutations更改state
       context.commit('receive_following_user', followingUsers)
+    },
+
+
+    // 用户关注用户
+    async followingUser(context, id) {
+      // 关注当前用户
+      const res = await followingUser(id)
+      if (res.status === 401) {
+        this.$toast.show("关注失败，刷新页面", 2000);
+        return;
+      }
+      // TODO 将关注的用户添加到state上
+      this.$toast.show("关注成功，刷新页面", 2000);
+    },
+
+    // 用户取消关注
+    async unfollowingUser(context, id) {
+      const res = await unfollowingUser(id)
+      if (res.status === 401) {
+        this.$toast.show("取消关注失败，刷新页面", 2000);
+        return;
+      }
+      // TODO 将取消关注的用户移除state
+      this.$toast.show("取消关注成功，刷新页面", 2000);
     }
   },
-  modules: {
-  }
+modules: {
+}
 })

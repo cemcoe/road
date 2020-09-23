@@ -14,7 +14,7 @@
     </div>
     <!-- 用户文章列表 -->
     <div class="user-posts">
-      <h2>文章 ({{userPosts.length}}) </h2>
+      <h2>文章 ({{userPosts.length}})</h2>
       <post-list :postList="userPosts"></post-list>
     </div>
   </div>
@@ -86,23 +86,11 @@ export default {
   methods: {
     followingUser() {
       // 关注当前用户
-      followingUser(this._id).then((res) => {
-        if (res.status === 401) {
-          this.$toast.show("关注失败，刷新页面", 2000);
-          return;
-        }
-        this.$toast.show("关注成功，刷新页面", 2000);
-      });
+      this.$store.dispatch("followingUser", _id);
     },
     unfollowingUser() {
       // 取消当前用户
-      unfollowingUser(this._id).then((res) => {
-        if (res.status === 401) {
-          this.$toast.show("取消关注失败，刷新页面", 2000);
-          return;
-        }
-        this.$toast.show("取消关注成功，刷新页面", 2000);
-      });
+      this.$store.dispatch("unfollowingUser", _id);
     },
   },
 };
