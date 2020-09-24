@@ -1,7 +1,7 @@
 # jianshu_client
 仿简书web页面
 
-预览地址：demo.cemcoe.com/jianshu
+预览地址：https://jian.cemcoe.com/home/recommend
 
 ## 技术栈
 vue2 + vuex + vue-router + webpack + ES6/7 + axios + flex
