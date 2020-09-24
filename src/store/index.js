@@ -12,6 +12,20 @@ import Vuex from 'vuex'
 // Action 提交的是 mutation，而不是直接变更状态。
 // Action 可以包含任意异步操作。
 
+// 图片地址多环境配置
+let imgBaseUrl
+if (process.env.NODE_ENV == 'production') {
+  //线上
+  imgBaseUrl = 'https://jian.cemcoe.com/jianshu_api'
+} else if (process.env.NODE_ENV == 'development') {
+  //本地
+  imgBaseUrl = 'http://localhost:3000'
+} else {
+  //预发布
+  imgBaseUrl = 'http://localhost:3000'
+}
+
+
 import { followingUser, unfollowingUser, listfollowingUser } from "network/user";
 
 
@@ -23,6 +37,7 @@ export default new Vuex.Store({
     user: JSON.parse(localStorage.getItem('user')) || {},
     token: localStorage.getItem('token') || '',
     followingUsers: [], // 用户关注列表
+    imgBaseUrl: imgBaseUrl, // 图片地址
   },
   mutations: {
     // 发生突变，需要传入state参数对state做出操作
@@ -42,6 +57,9 @@ export default new Vuex.Store({
     },
 
     setUser(state, user) {
+      // 拿到完整的图片地址
+      user.avatar = state.imgBaseUrl + user.avatar
+
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
       // localStorage 注意格式转换
