@@ -10,7 +10,7 @@ module.exports = {
       }
     },
   }, 
-  publicPath: '/jianshu/',
+  // publicPath: '/jianshu/',
   productionSourceMap: false,
 }
 
