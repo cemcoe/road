@@ -6,7 +6,7 @@ import axios from 'axios'
 let apiUrl
 if (process.env.NODE_ENV == 'production') {
   //线上
-  apiUrl = 'http://demo.cemcoe.com/jianshu_api'
+  apiUrl = 'https://demo.cemcoe.com/jianshu_api'
 } else if (process.env.NODE_ENV == 'development') {
   //本地
   apiUrl = 'http://localhost:3000'
