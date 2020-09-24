@@ -27,6 +27,7 @@ if (process.env.NODE_ENV == 'production') {
 
 
 import { followingUser, unfollowingUser, listfollowingUser } from "network/user";
+import {getPostDetail} from 'network/post'
 
 
 Vue.use(Vuex)
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     token: localStorage.getItem('token') || '',
     followingUsers: [], // 用户关注列表
     imgBaseUrl: imgBaseUrl, // 图片地址
+
+    post: {}, // 当前文章
+    author: {}, // 文章作者信息
   },
   mutations: {
     // 发生突变，需要传入state参数对state做出操作
@@ -72,7 +76,17 @@ export default new Vuex.Store({
     // 设置用户关注列表
     receive_following_user(state, followingUsers) {
       state.followingUsers = followingUsers
-    }
+    },
+
+    // 设置文章信息
+    set_post(state, post) {
+      state.post = post;
+    },
+
+    // 设置作者信息
+    set_author(state, author) {
+      state.author = author;
+    },
 
   },
 
@@ -128,8 +142,26 @@ export default new Vuex.Store({
       }
       // TODO 将取消关注的用户移除state
       this.$toast.show("取消关注成功，刷新页面", 2000);
+    },
+
+
+    // 获取文章信息
+    async getPostDetail(context, id) {
+      const res = await getPostDetail(id)
+      const post = res.data.post
+      const author = post.author
+      console.log(res, 'vuexxxxxxxxxxxxxxxxxxxxxxxxx')
+      // 更新文章信息
+      context.commit('set_post', post)
+      // 更新作者信息
+      context.commit('set_author', author)
     }
+    // (this.$route.params.id).then((res) => {
+    //   this.post = res;
+    //   this.author = res.author;
+    //   console.log(this.post);
+    // });
   },
-modules: {
-}
+  modules: {
+  }
 })
