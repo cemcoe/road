@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { getUserInfo } from "network/user";
+// import { getUserInfo } from "network/user";
 import ProfileHeader from "./childComps/ProfileHeader/ProfileHeader";
 export default {
   name: "Profile",
@@ -73,7 +73,7 @@ export default {
     return {
       // _id: this.$store.state.user._id || null,
       // 用户信息
-      user: {},
+      user: this.$store.state.user
     };
   },
   // 有id向服务器发请求
@@ -81,18 +81,18 @@ export default {
   created() {
     // // this._id = this.$route.params.id;
     // console.log(this._id)
-    if (this.$store.state.user._id) {
-      getUserInfo(this.$store.state.user._id).then((res) => {
-        // 错误处理
-        if (res.status === 404) {
-          console.log("查无此人");
-        }
-        if (res.status === 200) {
-          console.log(res);
-          this.user = res.data.user;
-        }
-      });
-    }
+    // if (this.$store.state.user._id) {
+    //   getUserInfo(this.$store.state.user._id).then((res) => {
+    //     // 错误处理
+    //     if (res.status === 404) {
+    //       console.log("查无此人");
+    //     }
+    //     if (res.status === 200) {
+    //       console.log(res);
+    //       this.user = res.data.user;
+    //     }
+    //   });
+    // }
   },
 
   methods: {
