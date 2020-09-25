@@ -60,6 +60,13 @@ export default {
   computed: {
     ...mapState(["post", "author"]),
   },
+  // 组件销毁，文章数据重置，避免缓存
+  destroyed() {
+    // 重置文章数据
+    this.$store.commit('set_post', {})
+    // 重置作者数据
+    this.$store.commit('set_author', {})
+  }
 };
 </script>
 
