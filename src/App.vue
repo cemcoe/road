@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+    
     <main-tab-bar v-if="$route.meta.showFooter" class="main-tab-bar"></main-tab-bar>
   </div>
 </template>
