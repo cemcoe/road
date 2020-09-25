@@ -26,8 +26,8 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 
-import { followingUser, unfollowingUser, listfollowingUser } from "network/user";
-import {getPostDetail} from 'network/post'
+import { getUserInfo, followingUser, unfollowingUser, listfollowingUser } from "network/user";
+import { getPostDetail } from 'network/post'
 
 
 Vue.use(Vuex)
@@ -85,6 +85,8 @@ export default new Vuex.Store({
 
     // 设置作者信息
     set_author(state, author) {
+      // 拿到完整的图片地址
+      author.avatar = state.imgBaseUrl + author.avatar
       state.author = author;
     },
 
@@ -155,12 +157,22 @@ export default new Vuex.Store({
       context.commit('set_post', post)
       // 更新作者信息
       context.commit('set_author', author)
-    }
+    },
     // (this.$route.params.id).then((res) => {
     //   this.post = res;
     //   this.author = res.author;
     //   console.log(this.post);
     // });
+
+    // 获取作者信息，通过url获取id
+    async getAuthorInfo(context, id) {
+      const res = await getUserInfo(id)
+      console.log(res, 'vuexxxxxxxxxxxxxxxxxxxxx')
+      this.commit('set_author', res.data.user)
+
+
+    }
+
   },
   modules: {
   }
