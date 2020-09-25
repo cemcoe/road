@@ -14,6 +14,7 @@ import PostList from "components/content/postList/PostList";
 import Loading from 'components/common/loading/Loading'
 import { getHomePostList } from "network/post";
 export default {
+  name: "HomeRecommend",
   components: {
     PostList,
     Loading,

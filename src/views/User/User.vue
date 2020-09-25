@@ -37,7 +37,7 @@ import UserInfo from "./childComps/UserInfo/UserInfo";
 import { mapState } from "vuex";
 
 export default {
-  name: "Profile",
+  name: "User",
   data() {
     return {
       _id: null,
@@ -103,6 +103,11 @@ export default {
     ...mapState(['author'])
 
   },
+
+  // 组件销毁，数据重置，避免缓存
+  destroyed() {
+    this.$store.commit('set_author', {})
+  }
 };
 </script>
 

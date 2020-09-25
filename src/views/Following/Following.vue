@@ -43,6 +43,7 @@
 <script>
 import UserList from './childComps/UserList/UserList'
 export default {
+  name: "Following",
   data() {
     return {
       // userId: this.$store.state.user._id,
