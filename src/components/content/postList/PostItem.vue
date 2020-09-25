@@ -28,7 +28,7 @@ export default {
   background-color: #fff;
 }
 .title a {
-  font-weight: 700;
+  
   font-size: 18px;
   color: #000000;
 }

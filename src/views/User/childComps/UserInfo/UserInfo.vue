@@ -17,6 +17,7 @@
       
       <!-- {{userInfo.gender}} -->
     </div>
+    <hr>
     <button>简信</button>
 
     <!-- <button @click="followingUser">关注</button>
@@ -48,16 +49,22 @@ export default {
 .user {
   padding: 10px;
 }
-img {
+.avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: 10px solid rgb(202, 122, 218);
 }
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  
+}
 .bio {
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 12px;
-  border: 1px solid rgb(46, 44, 44);
+  color: rgb(56, 58, 59);
 }
 </style>

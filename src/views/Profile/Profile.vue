@@ -6,6 +6,7 @@
         <img :src="user.avatar" alt="avatar" />
         {{user.name}}
       </div>
+      <hr>
       <div class="mine">
         <ul>
           <li>我的文章</li>
@@ -109,10 +110,10 @@ export default {
 <style scoped>
 .user {
   width: 90%;
+
   margin: 10px auto;
   background-color: rgb(247, 241, 241);
   border-radius: 10px;
-  padding: 20px;
 }
 
 .mine ul {
