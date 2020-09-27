@@ -26,7 +26,7 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 
-import { getUserInfo, followingUser, unfollowingUser, listfollowingUser } from "network/user";
+import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower } from "network/user";
 import { getPostDetail } from 'network/post'
 
 
@@ -42,6 +42,7 @@ export default new Vuex.Store({
 
     post: {}, // 当前文章
     author: {}, // 文章作者信息
+    authorFollowers: [], // 作者的粉丝
   },
   mutations: {
     // 发生突变，需要传入state参数对state做出操作
@@ -90,6 +91,11 @@ export default new Vuex.Store({
       state.author = author;
     },
 
+    // authorFollowers
+    receive_author_following_user(state, followers) {
+      state.authorFollowers = followers
+
+    }
   },
 
   getters: {
@@ -123,27 +129,50 @@ export default new Vuex.Store({
     },
 
 
+    //////////// 粉丝经济
+
     // 用户关注用户
+    // 关注成功更新粉丝列表
     async followingUser(context, id) {
       // 关注当前用户
       const res = await followingUser(id)
       if (res.status === 401) {
-        this.$toast.show("关注失败，刷新页面", 2000);
+        console.log("关注失败，刷新页面");
         return;
       }
       // TODO 将关注的用户添加到state上
-      this.$toast.show("关注成功，刷新页面", 2000);
+      console.log("关注成功，刷新页面");
+      // 更新作者粉丝列表
+      // 向服务器要关注的用户列表
+      const result = await listfollower(id);
+      const followers = result.data.followers
+      // 触发mutations更改state
+      // console.log(result, '33333333333333333333333')
+      context.commit('receive_author_following_user', followers)
+      /////////////////////////////////
+      ///////////////////////let user = [1,11,1,1,]
+      /////////////////////////////////////////////////
+      // context.commit('receive_author_following_user', id)
+
     },
 
     // 用户取消关注
+    // 取消关注成功更新粉丝列表
     async unfollowingUser(context, id) {
       const res = await unfollowingUser(id)
       if (res.status === 401) {
-        this.$toast.show("取消关注失败，刷新页面", 2000);
+        console.log("取消关注失败，刷新页面");
         return;
       }
       // TODO 将取消关注的用户移除state
-      this.$toast.show("取消关注成功，刷新页面", 2000);
+      console.log("取消关注成功，刷新页面");
+       // 更新作者粉丝列表
+      // 向服务器要关注的用户列表
+      const result = await listfollower(id);
+      const followers = result.data.followers
+      // 触发mutations更改state
+      // console.log(result, '33333333333333333333333')
+      context.commit('receive_author_following_user', followers)
     },
 
 
@@ -169,9 +198,18 @@ export default new Vuex.Store({
       const res = await getUserInfo(id)
       console.log(res, 'vuexxxxxxxxxxxxxxxxxxxxx')
       this.commit('set_author', res.data.user)
+    },
 
-
-    }
+    // 获取作者粉丝列表
+    async listAuthorFollowingUser(context, id) {
+      // 向服务器要关注的用户列表
+      const result = await listfollower(id);
+      const followers = result.data.followers
+      // 触发mutations更改state
+      console.log(result, '33333333333333333333333')
+      context.commit('receive_author_following_user', followers)
+    },
+    
 
   },
   modules: {

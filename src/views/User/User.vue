@@ -8,7 +8,7 @@
 
       <div>
         <span>{{ followingUsers.length }} 关注</span> ||
-        <span>{{ followers.length }} 粉丝</span>
+        <span>{{ authorFollowers.length }} 粉丝</span>
       </div>
       <hr />
     </div>
@@ -45,7 +45,7 @@ export default {
       // user: {},
       userPosts: [],
       followingUsers: [], // 关注
-      followers: [], // 粉丝
+      // followers: [], // 粉丝
     };
   },
   components: {
@@ -58,20 +58,8 @@ export default {
   // 拿到路由传来的参数
   created() {
     this._id = this.$route.params.id;
-
-
     this.$store.dispatch('getAuthorInfo', this._id)
-    // getUserInfo(this._id).then((res) => {
-    //   // 错误处理
-    //   if (res.status === 404) {
-    //     console.log("查无此人");
-    //   }
-    //   if (res.status === 200) {
-    //     console.log(res);
-    //     this.user = res.data.user;
-    //   }
-    // });
-    // 获取用户的文章列表
+    this.$store.dispatch('listAuthorFollowingUser', this._id)
     getUserPosts(this._id).then((res) => {
       // console.log(res);
       this.userPosts = res.data;
@@ -83,24 +71,26 @@ export default {
       this.followingUsers = res.data.following;
     });
     // 获取用户粉丝列表
-    listfollower(this._id).then((res) => {
-      // console.log(res)
-      this.followers = res.data.followers;
-    });
+    // listfollower(this._id).then((res) => {
+    //   // console.log(res)
+    //   this.followers = res.data.followers;
+    // });
   },
   methods: {
     followingUser() {
       // 关注当前用户
-      this.$store.dispatch("followingUser", _id);
+      this.$store.dispatch("followingUser", this._id);
+      
+
     },
     unfollowingUser() {
-      // 取消当前用户
-      this.$store.dispatch("unfollowingUser", _id);
+      // 取消关注当前用户
+      this.$store.dispatch("unfollowingUser", this._id);
     },
   },
 
   computed: {
-    ...mapState(['author'])
+    ...mapState(['author', 'authorFollowers'])
 
   },
 
