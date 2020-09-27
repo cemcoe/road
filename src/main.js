@@ -13,6 +13,8 @@ Vue.use(Button);
 
 Vue.config.productionTip = false
 
+import './assets/css/reset.css'
+
 // https://forum.vuejs.org/t/vue-router-vuex/43055
 
 router.beforeEach((to, from, next) => {
