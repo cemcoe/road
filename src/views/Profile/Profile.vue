@@ -2,11 +2,14 @@
   <div>
     <profile-header></profile-header>
     <div class="user">
-      <div class="profile">
+      <div class="profile" v-if="user._id">
         <img :src="user.avatar" alt="avatar" />
-        {{user.name}}
+        {{ user.name }}
       </div>
-      <hr>
+      <div v-else>
+        <router-link :to="'/login/'">登录</router-link>
+      </div>
+      <hr />
       <div class="mine">
         <ul>
           <li>我的文章</li>
@@ -18,35 +21,18 @@
     </div>
 
     <div>
-      <button @click="signout">退出登录</button>
-      <hr />
-      <!-- <div>
-        <router-link to="/upload">上传图片</router-link>
-      </div>-->
-      <div>
-        <router-link :to="'/reset/'+user._id">更新用户信息</router-link>
-      </div>
-      <div>
-        <router-link to="/about">关于</router-link>
+      <button v-if="user._id" @click="signout">退出登录</button>
+      <div v-if="user._id">
+        <router-link :to="'/reset/' + user._id">更新用户信息</router-link>
       </div>
     </div>
-    <hr />
 
-    <div>
-      <li>我的文章</li>
-      <li>我的帖子</li>
-      <li>赞和收藏</li>
-      <li>我的书架</li>
+    <div class="product">
+      <div>简述砖</div>
+      <div>简书会员</div>
+      <div>天天抽奖</div>
+      <div>排行榜</div>
     </div>
-    <hr />
-
-    <div>
-      <li>简述砖</li>
-      <li>简书会员</li>
-      <li>天天抽奖</li>
-      <li>排行榜</li>
-    </div>
-    <hr />
 
     <div>
       <li>简书公告1</li>
@@ -54,48 +40,32 @@
     </div>
     <hr />
 
-    <div>
-      <li>我的钱包</li>
-      <li>简书活动</li>
-      <li>每日任务</li>
+    <div class="li-item">
+      <div>我的钱包</div>
+      <div>简书活动</div>
+      <div>每日任务</div>
+      <div>我的小岛</div>
+      <div>浏览历史</div>
+      <div>开启夜间模式</div>
+      <div>设置</div>
+      <div>
+        <router-link to="/about">关于</router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { getUserInfo } from "network/user";
 import ProfileHeader from "./childComps/ProfileHeader/ProfileHeader";
+import { mapState } from "vuex";
 export default {
   name: "Profile",
   components: {
     ProfileHeader,
   },
   data() {
-    return {
-      // _id: this.$store.state.user._id || null,
-      // 用户信息
-      user: this.$store.state.user
-    };
+    return {};
   },
-  // 有id向服务器发请求
-  // 拿到路由传来的参数
-  created() {
-    // // this._id = this.$route.params.id;
-    // console.log(this._id)
-    // if (this.$store.state.user._id) {
-    //   getUserInfo(this.$store.state.user._id).then((res) => {
-    //     // 错误处理
-    //     if (res.status === 404) {
-    //       console.log("查无此人");
-    //     }
-    //     if (res.status === 200) {
-    //       console.log(res);
-    //       this.user = res.data.user;
-    //     }
-    //   });
-    // }
-  },
-
   methods: {
     signout() {
       this.$store.commit("del_token");
@@ -103,6 +73,9 @@ export default {
       this.user = {};
       this.$toast.show("退出登录成功", 2000);
     },
+  },
+  computed: {
+    ...mapState(["user"]),
   },
 };
 </script>
@@ -133,5 +106,29 @@ img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+.product {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  background-color: rgb(231, 231, 238);
+}
+
+.product div {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.li-item {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.li-item div {
+  padding: 10px;
+  background-color: rgb(227, 227, 238);
+  margin-bottom: 4px;
 }
 </style>
