@@ -15,7 +15,8 @@ export default {
   //////////// 粉丝经济
 
   // 用户关注用户
-  // 关注成功更新粉丝列表
+  // 1. 更新用户关注列表
+  // 2. 更新作者粉丝列表
   async followingUser(context, id) {
     // 关注当前用户
     const res = await followingUser(id)
@@ -23,24 +24,26 @@ export default {
       console.log("关注失败，刷新页面");
       return;
     }
-    // TODO 将关注的用户添加到state上
-    console.log("关注成功，刷新页面");
-    // 更新作者粉丝列表
-    // 向服务器要关注的用户列表
+    console.log("关注成功，为您刷新数据");
+
+    // 1. 更新用户的关注列表
+    const followingUsers = (await listfollowingUser(context.state.user._id)).data.following
+    // 触发mutations更改state
+    context.commit('receive_following_user', followingUsers)
+    console.log("用户关注列表更新成功");
+
+
+    // 2. 更新作者粉丝列表
     const result = await listfollower(id);
     const followers = result.data.followers
-    // 触发mutations更改state
-    // console.log(result, '33333333333333333333333')
     context.commit('receive_author_following_user', followers)
-    /////////////////////////////////
-    ///////////////////////let user = [1,11,1,1,]
-    /////////////////////////////////////////////////
-    // context.commit('receive_author_following_user', id)
-
+    console.log("作者粉丝列表更新成功");
   },
 
+
   // 用户取消关注
-  // 取消关注成功更新粉丝列表
+  // 1. 更新用户关注列表
+  // 2. 更新作者粉丝列表
   async unfollowingUser(context, id) {
     const res = await unfollowingUser(id)
     if (res.status === 401) {
@@ -48,14 +51,20 @@ export default {
       return;
     }
     // TODO 将取消关注的用户移除state
-    console.log("取消关注成功，刷新页面");
-     // 更新作者粉丝列表
-    // 向服务器要关注的用户列表
+    console.log("取消关注成功，为您刷新数据");
+
+    // 1. 更新用户关注列表
+    const followingUsers = (await listfollowingUser(context.state.user._id)).data.following
+    // 触发mutations更改state
+    context.commit('receive_following_user', followingUsers)
+    console.log("用户关注列表更新成功");
+
+
+    // 2. 更新作者粉丝列表
     const result = await listfollower(id);
     const followers = result.data.followers
-    // 触发mutations更改state
-    // console.log(result, '33333333333333333333333')
     context.commit('receive_author_following_user', followers)
+    console.log("作者粉丝列表更新成功");
   },
 
 
@@ -92,6 +101,6 @@ export default {
     console.log(result, '33333333333333333333333')
     context.commit('receive_author_following_user', followers)
   },
-  
+
 
 }
