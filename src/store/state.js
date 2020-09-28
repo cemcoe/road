@@ -17,7 +17,7 @@ export default {
   // 会用到的变量 || 状态
   user: JSON.parse(localStorage.getItem('user')) || {},
   token: localStorage.getItem('token') || '',
-  followingUsers: [], // 用户关注列表
+  followingUsers: JSON.parse(localStorage.getItem('followingUsers')) || [], // 用户关注列表
   imgBaseUrl: imgBaseUrl, // 图片地址
   post: {}, // 当前文章
   author: {}, // 文章作者信息

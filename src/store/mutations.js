@@ -21,11 +21,13 @@ export default {
   del_user(state) {
     state.user = {};
     localStorage.removeItem("user");
+    localStorage.removeItem("followingUsers");
   },
 
   // 设置用户关注列表
   receive_following_user(state, followingUsers) {
     state.followingUsers = followingUsers
+    localStorage.setItem("followingUsers", JSON.stringify(followingUsers));
   },
 
   // 设置文章信息

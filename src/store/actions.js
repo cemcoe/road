@@ -3,8 +3,8 @@ import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfol
 import { getPostDetail } from 'network/post'
 
 export default {
+  // 请求用户关注列表
   async listfollowingUser(context) {
-    // 向服务器要关注的用户列表
     const result = await listfollowingUser(context.state.user._id);
     const followingUsers = result.data.following
     // 触发mutations更改state

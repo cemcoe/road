@@ -67,6 +67,8 @@ export default {
           this.$store.commit("set_token", res.data.token);
           // 将token信息保存到vuex和localStorage
           this.$store.commit("setUser", res.data.user);
+          // 用户关注列表持久化存储
+          this.$store.dispatch('listfollowingUser')
           if (this.$store.state.token) {
             this.$toast.show("登录成功", 2000);
             this.$router.push("/");
