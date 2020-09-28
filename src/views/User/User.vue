@@ -7,7 +7,7 @@
       <button @click="unfollowingUser">取消关注</button>
 
       <div>
-        <span>{{ followingUsers.length }} 关注</span> ||
+        <span>{{ authorFollowingUsers.length }} 关注</span> ||
         <span>{{ authorFollowers.length }} 粉丝</span>
       </div>
       <hr />
@@ -22,10 +22,7 @@
 
 <script>
 import {
-  // getUserInfo,
   getUserPosts,
-  followingUser,
-  unfollowingUser,
   listfollowingUser,
   listfollower,
 } from "network/user";
@@ -41,11 +38,8 @@ export default {
   data() {
     return {
       _id: null,
-      // 用户信息
-      // user: {},
       userPosts: [],
-      followingUsers: [], // 关注
-      // followers: [], // 粉丝
+      authorFollowingUsers: [], // 关注
     };
   },
   components: {
@@ -61,27 +55,17 @@ export default {
     this.$store.dispatch('getAuthorInfo', this._id)
     this.$store.dispatch('listAuthorFollowingUser', this._id)
     getUserPosts(this._id).then((res) => {
-      // console.log(res);
       this.userPosts = res.data;
     });
-    // 获取用户的关注列表
+    // 获取作者的关注列表
     listfollowingUser(this._id).then((res) => {
-      // console.log(res);
-      // this.userPosts = res.data;
-      this.followingUsers = res.data.following;
+      this.authorFollowingUsers = res.data.following;
     });
-    // 获取用户粉丝列表
-    // listfollower(this._id).then((res) => {
-    //   // console.log(res)
-    //   this.followers = res.data.followers;
-    // });
   },
   methods: {
     followingUser() {
       // 关注当前用户
       this.$store.dispatch("followingUser", this._id);
-      
-
     },
     unfollowingUser() {
       // 取消关注当前用户
