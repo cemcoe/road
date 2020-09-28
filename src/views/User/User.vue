@@ -3,8 +3,9 @@
     <user-header></user-header>
     <user-info :userInfo="author"></user-info>
     <div class="follow">
-      <button @click="followingUser">关注</button>
-      <button @click="unfollowingUser">取消关注</button>
+      <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span>
+      <button v-if="!$store.getters.isFollowingAuthor" @click="followingUser">关注</button>
+      <button v-else @click="unfollowingUser">取消关注</button>
 
       <div>
         <span>{{ authorFollowingUsers.length }} 关注</span> ||
