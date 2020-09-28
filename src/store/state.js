@@ -6,7 +6,7 @@ if (process.env.NODE_ENV == 'production') {
   imgBaseUrl = 'https://jian.cemcoe.com/jianshu_api'
 } else if (process.env.NODE_ENV == 'development') {
   //本地
-  imgBaseUrl = 'http://localhost:3000'
+  imgBaseUrl = 'https://jian.cemcoe.com/jianshu_api'
 } else {
   //预发布
   imgBaseUrl = 'http://localhost:3000'

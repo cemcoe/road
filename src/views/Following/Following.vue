@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="followingheader">
-      header 你关注了以下账号
-
-    </div>
+    <following-header></following-header>
     <!-- 
       不使用action的情况下，请求关注用户列表的逻辑：
       // 我要知道当前登录的用户是谁，该信息存在state中，$store.state.user._id
@@ -41,6 +38,7 @@
 </template>
 
 <script>
+import FollowingHeader from './childComps/FollowingHeader/FollowingHeader'
 import UserList from './childComps/UserList/UserList'
 export default {
   name: "Following",
@@ -51,6 +49,7 @@ export default {
     };
   },
   components: {
+    FollowingHeader,
     UserList,
   },
   mounted() {
@@ -65,8 +64,4 @@ export default {
 </script>
 
 <style scoped>
-.followingheader {
-  height: 44px;
-  background-color: #ddd;
-}
 </style>
