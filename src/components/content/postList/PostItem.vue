@@ -1,14 +1,18 @@
 <template>
   <div class="post-item">
-    <div class="title">
-      <router-link :to="'/p/' + post._id">{{post.title}}</router-link>
-    </div>
-    <div class="abstract">{{post.abstract}}</div>
-    <div class="meta">
-      <!-- <a :href="'/u/' + item.author._id">{{item.author.name}}</a> -->
-      <router-link :to="'/u/' + post.author._id" class="nickname">{{post.author.name}}</router-link>
-      <span class="creat-date">{{post.createdAt}}</span>
-    </div>
+    <router-link :to="'/p/' + post._id">
+      <div class="title">
+        <span>{{ post.title }}</span>
+      </div>
+      <div class="abstract">{{ post.abstract }}</div>
+      <div class="meta">
+        <!-- <a :href="'/u/' + item.author._id">{{item.author.name}}</a> -->
+        <router-link :to="'/u/' + post.author._id" class="nickname">{{
+          post.author.name
+        }}</router-link>
+        <span class="creat-date">{{ post.createdAt }}</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -27,10 +31,13 @@ export default {
   margin-bottom: 12px;
   background-color: #fff;
 }
-.title a {
-  
-  font-size: 18px;
+.title span {
+  font-size: 16px;
+  line-height: 24px;
   color: #000000;
+}
+.post-item:hover {
+  background-color: rgba(233, 224, 224, 0.6);
 }
 .abstract {
   font-size: 16px;

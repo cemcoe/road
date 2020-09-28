@@ -25,7 +25,6 @@ export default {
   height: 44px;
 }
 .nav-bar {
-  position: fixed;
   display: flex;
   width: 100%;
   height: 44px;

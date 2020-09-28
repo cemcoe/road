@@ -8,7 +8,7 @@
       </keep-alive>
 
       <div class="write">
-        <router-link to="/write">写文章</router-link>
+        <router-link to="/write">写</router-link>
       </div>
     </div>
   </div>
@@ -42,14 +42,15 @@ export default {
 <style scoped>
 .write {
   position: fixed;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   right: 50px;
-  bottom: 70px;
+  bottom: 80px;
   border-radius: 50%;
   background-color: #f44;
   color: aliceblue;
-  line-height: 50px;
+  line-height: 40px;
+  text-align: center;
   padding: 10px;
   box-shadow: 0 0 4px #000;
 }

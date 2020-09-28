@@ -1,7 +1,11 @@
 <template>
+<div class="container">
   <div id="tab-bar">
     <slot></slot>
   </div>
+
+</div>
+  
 </template>
 
 <script>
@@ -11,6 +15,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 49px;
+}
 #tab-bar {
   display: flex;
   background-color: #f6f6f6;

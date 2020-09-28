@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tab-control">
     <tab-control :tabObj="tabObj"></tab-control>
   </div>
 </template>
@@ -24,5 +24,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.tab-control {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  padding: 4px;
+}
 </style>
