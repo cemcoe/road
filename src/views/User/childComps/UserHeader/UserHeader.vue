@@ -30,9 +30,4 @@ export default {
 </script>
 
 <style scoped>
-
-.container {
-  border-bottom: 8px solid #000;
-  
-}
 </style>

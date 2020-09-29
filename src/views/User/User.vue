@@ -1,18 +1,12 @@
 <template>
   <div>
     <user-header></user-header>
-    <user-info :userInfo="author"></user-info>
-    <div class="follow">
-      <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span>
-      <button v-if="!$store.getters.isFollowingAuthor" @click="followingUser">关注</button>
-      <button v-else @click="unfollowingUser">取消关注</button>
-
-      <div>
-        <span>{{ authorFollowingUsers.length }} 关注</span> ||
-        <span>{{ authorFollowers.length }} 粉丝</span>
-      </div>
-      <hr />
-    </div>
+    <user-info 
+    :userInfo="author"
+    :authorFollowingUsers="authorFollowingUsers"
+    :authorFollowers="authorFollowers"
+    ></user-info>
+    
     <!-- 用户文章列表 -->
     <div class="user-posts">
       <h2>文章 ({{ userPosts.length }})</h2>
