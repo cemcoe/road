@@ -3,8 +3,11 @@
     <div v-for="post in postList" :key="post._id" class="post">
       <post-item :post="post"></post-item>
     </div>
-    <button @click="loadmore">加载更多</button>
+    <div class="no-data">
+      哇哦，没有数据了。
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -17,13 +20,12 @@ export default {
     PostItem,
   },
   methods: {
-    loadmore() {
-      // 当前加载的页数
-      this.$emit("loadmore");
-    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.no-data {
+  background-color: rgb(233, 227, 227);
+}
 </style>

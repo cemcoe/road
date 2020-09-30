@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="post-list" v-if="postList.length">
-      <post-list :postList="postList" @loadmore="loadmore"></post-list>
+    <div class="post-list" v-if="postList.length" @scroll="onScroll">
+      <post-list :postList="postList"></post-list>
     </div>
     <div v-else>
       <loading></loading>
@@ -11,7 +11,7 @@
 
 <script>
 import PostList from "components/content/postList/PostList";
-import Loading from 'components/common/loading/Loading'
+import Loading from "components/common/loading/Loading";
 import { getHomePostList } from "network/post";
 export default {
   name: "HomeRecommend",
@@ -42,6 +42,24 @@ export default {
         this.$toast.show("没有数据了", 2000);
       });
     },
+    onScroll() {
+      // 上拉加载更多
+      console.log("页面进行滚动");
+      const postList = document.querySelector(".post-list");
+
+      let clientHeight = postList.clientHeight;
+      let scrollHeight = postList.scrollHeight;
+      let scrollTop = postList.scrollTop;
+      console.log(clientHeight, scrollHeight, scrollTop);
+
+      let distance = 50; //距离底部还有50的时候，开始触发；
+
+      if (scrollTop + clientHeight >= scrollHeight - distance) {
+        console.log("到底了，开始加载数据");
+        // 加载数据
+        this.loadmore();
+      }
+    },
   },
   created() {
     getHomePostList(this.currentPage).then((res) => {
@@ -56,13 +74,13 @@ export default {
 <style scoped>
 .post-list {
   background-color: rgb(243, 243, 243);
-  /* position: absolute;
+  position: absolute;
   top: 84px;
   left: 0;
   right: 0;
-  bottom: 49px; */
+  bottom: 49px;
 
   /* height: calc(100vh - 44px - 49px); */
-  /* overflow: scroll; */
+  overflow-y: scroll;
 }
 </style>
