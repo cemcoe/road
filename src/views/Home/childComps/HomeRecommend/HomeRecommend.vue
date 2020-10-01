@@ -27,20 +27,25 @@ export default {
     };
   },
   methods: {
-    loadmore() {
+    async loadmore() {
       // 当前的页数加1
       // 将新页数的数据追加
       // console.log(this.currentPage);
       this.currentPage++;
-      getHomePostList(this.currentPage).then((res) => {
-        if (res.status === 200) {
-          // console.log(res);
-          this.postList.push(...res.data.post);
-          this.$toast.show("数据请求成功", 2000);
-          return;
-        }
+      const res = await getHomePostList(this.currentPage);
+      console.log(
+        res,
+        "ddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        this.currentPage
+      );
+      if (res.status === 404) {
         this.$toast.show("没有数据了", 2000);
-      });
+        return;
+      } else if (res.status === 200) {
+        this.postList.push(...res.data.post);
+        this.$toast.show("数据请求成功", 2000);
+        return;
+      }
     },
     onScroll() {
       // 上拉加载更多
@@ -61,12 +66,17 @@ export default {
       }
     },
   },
-  created() {
-    getHomePostList(this.currentPage).then((res) => {
-      console.log(res);
-      this.postList = res.data.post;
-      console.log(this.postList);
-    });
+  async created() {
+    const res = await getHomePostList();
+    console.log(res, "ddddddddddddddddddddddddddddddddddddddddddddddddddd");
+    if (res.status === 404) {
+      this.$toast.show("没有数据了", 2000);
+      return;
+    } else if (res.status === 200) {
+      this.postList.push(...res.data.post);
+      this.$toast.show("数据请求成功", 2000);
+      return;
+    }
   },
 };
 </script>
