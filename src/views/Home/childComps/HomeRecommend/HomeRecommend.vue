@@ -13,6 +13,9 @@
 import PostList from "components/content/postList/PostList";
 import Loading from "components/common/loading/Loading";
 import { getHomePostList } from "network/post";
+
+import { _throttle } from "@/utils/gloal";
+
 export default {
   name: "HomeRecommend",
   components: {
@@ -47,7 +50,7 @@ export default {
         return;
       }
     },
-    onScroll() {
+    onScroll: _throttle(function() {
       // 上拉加载更多
       console.log("页面进行滚动");
       const postList = document.querySelector(".post-list");
@@ -64,7 +67,7 @@ export default {
         // 加载数据
         this.loadmore();
       }
-    },
+    }, 1000),
   },
   async created() {
     const res = await getHomePostList();
