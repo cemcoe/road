@@ -1,20 +1,22 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left">
-        cemcoe
-      </div>
+      <div slot="left">cemcoe</div>
       <div slot="center">
-        <input class="search" type="text" placeholder="搜索感兴趣的内容" />
+        <router-link to="/search">
+          <input class="search" type="text" placeholder="搜索感兴趣的内容" />
+        </router-link>
       </div>
       <div slot="right">
         <div v-if="user.name">
           <router-link :to="user_detail_link" class="user-info">
-            <img :src="user.avatar" alt="avator">
+            <img :src="user.avatar" alt="avator" />
           </router-link>
         </div>
         <div v-else>
-          <router-link :to="'/login'" replace class="login">登录|注册</router-link>
+          <router-link :to="'/login'" replace class="login"
+            >登录|注册</router-link
+          >
         </div>
       </div>
     </nav-bar>
@@ -31,8 +33,7 @@ export default {
     // },
   },
   created() {
-    console.log(this.$store.state.user)
-
+    console.log(this.$store.state.user);
   },
   components: {
     NavBar,
@@ -49,8 +50,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 input {
   border: 0px;
   border-radius: 20px;

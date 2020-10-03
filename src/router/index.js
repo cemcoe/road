@@ -13,6 +13,7 @@ const Post = () => import('../views/Post/Post')
 const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
 const Message = () => import('../views/Message/Message')
+const Search = () => import('../views/Search/Search')
 const ResetUser = () => import('../views/ResetUser/ResetUser')
 
 // meta变量说明
@@ -137,6 +138,14 @@ const routes = [
     name: 'ResetUser',
     component: ResetUser,
     meta: { requireAuth: true, showFooter: true },
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    meta: {
+      showFooter: false,
+    }
   },
   {
     path: '/',
