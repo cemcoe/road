@@ -26,3 +26,11 @@ npm run dev
 - [ ] 个人页面
 - [ ] 写文章页面
 
+## 文章存储格式
+https://github.com/hinesboy/mavonEditor
+
+
+
+前端页面用户采用 markdown 编写文章，数据库中存放原始 markdown 文件。
+
+在文章详情页，前端拿到 markdown 文件渲染展示。
