@@ -2,7 +2,9 @@
   <div class="container">
     <div class="author-info">
       <div class="info-item avatar">
-        <img :src="author.avatar" alt="avatar" />
+        <router-link :to="'/u/' + author._id">
+          <img :src="author.avatar" alt="avatar"
+        /></router-link>
       </div>
       <div class="info-item username">
         <router-link :to="'/u/' + author._id">{{ author.name }}</router-link>
@@ -58,6 +60,13 @@ export default {
   margin-left: 10px;
   display: flex;
   align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgb(226, 217, 217);
 }
 img {
   width: 40px;

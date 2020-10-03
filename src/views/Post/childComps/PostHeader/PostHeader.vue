@@ -11,26 +11,21 @@
 import NavBar from "components/common/navbar/NavBar";
 export default {
   name: "PostHeader",
-  methods: {
-  },
-  created() {},
   components: {
     NavBar,
   },
   methods: {
     more() {
       this.$toast.show('还没写呢，收藏，分享，收入专题，显示模式，举报')
-
     }
   },
-  computed: {},
+
 };
 </script>
 
 <style scoped>
-
 .container {
-  border-bottom: 8px solid #000;
-  
+  box-shadow: 0 0 4px #000;
 }
+
 </style>

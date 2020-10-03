@@ -10,16 +10,14 @@
 
     <post-info :postInfo="post.createdAt"></post-info>
 
-    <!-- {{$route.params.id}} -->
+    
     <hr />
-    <!-- <div class="author">作者：{{post.author}}</div> -->
+
     <post-content :postContent="post.content"></post-content>
-    <!-- <div class="content">内容：{{post.content}}</div> -->
   </div>
 </template>
 
 <script>
-// import { getPostDetail } from "network/post";
 
 import { mapState } from "vuex";
 
@@ -72,6 +70,6 @@ export default {
 
 <style scoped>
 h2 {
-  padding-left: 10px;
+  padding: 10px;
 }
 </style>

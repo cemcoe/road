@@ -5,7 +5,7 @@
       字数111-阅读111
     </div>
     <div class="right">
-      {{postInfo}}
+      {{ postInfo }}
     </div>
   </div>
 </template>
@@ -15,11 +15,9 @@ export default {
   props: {
     postInfo: {
       // 2020-09-18T07:01:04.609Z
-
-    }
-  }
-
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -30,7 +28,4 @@ export default {
   color: rgba(39, 40, 41, 0.6);
   padding: 10px;
 }
-
-
-
 </style>
