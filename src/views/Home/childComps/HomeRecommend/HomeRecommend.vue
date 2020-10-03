@@ -46,7 +46,7 @@ export default {
         return;
       } else if (res.status === 200) {
         this.postList.push(...res.data.post);
-        this.$toast.show("数据请求成功", 2000);
+        this.$toast.show("数据请求成功" + this.currentPage, 2000);
         return;
       }
     },
@@ -60,14 +60,14 @@ export default {
       let scrollTop = postList.scrollTop;
       console.log(clientHeight, scrollHeight, scrollTop);
 
-      let distance = 50; //距离底部还有50的时候，开始触发；
+      let distance = 220; //距离底部还有220的时候，开始触发；
 
       if (scrollTop + clientHeight >= scrollHeight - distance) {
         console.log("到底了，开始加载数据");
         // 加载数据
         this.loadmore();
       }
-    }, 1000),
+    }, 800),
   },
   async created() {
     const res = await getHomePostList();
