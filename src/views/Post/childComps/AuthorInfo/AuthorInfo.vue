@@ -1,36 +1,50 @@
 <template>
   <div class="container">
-    <!-- {{authorInfo}} -->
     <div class="author-info">
       <div class="info-item avatar">
-        <img :src="authorInfo.avatar" alt="avatar" />
+        <img :src="author.avatar" alt="avatar" />
       </div>
       <div class="info-item username">
-        <router-link :to="'/u/' + authorInfo._id">{{authorInfo.name}}</router-link>
+        <router-link :to="'/u/' + author._id">{{ author.name }}</router-link>
       </div>
     </div>
 
     <div class="follow">
-      <button @click="follow">+关注</button>
+      <button
+        v-if="!$store.getters.isFollowingAuthor(author)"
+        @click="followingUser(author._id)"
+      >
+        关注
+      </button>
+      <button v-else @click="unfollowingUser(author._id)">取消关注</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: {
-    authorInfo: {},
-  },
   methods: {
-    follow() {
-      this.$toast.show("还没写内");
+    followingUser(_id) {
+      // 关注当前用户
+      this.$store.dispatch("followingUser", _id);
     },
+    unfollowingUser(_id) {
+      // 取消关注当前用户
+      this.$store.dispatch("unfollowingUser", _id);
+    },
+  },
+
+  computed: {
+    ...mapState(["author"]),
   },
 };
 </script>
 
 <style scoped>
 .container {
+  padding-top: 6px;
+  padding-bottom: 6px;
   display: flex;
   align-items: center;
 }
