@@ -16,7 +16,7 @@
             <div class="follow">
               <!-- <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span> -->
               <button
-                v-if="!$store.getters.isFollowingAuthor"
+                v-if="!$store.getters.isFollowingAuthor(userInfo)"
                 @click="followingUser"
               >
                 关注
