@@ -22,4 +22,6 @@ export default {
   post: {}, // 当前文章
   author: {}, // 文章作者信息
   authorFollowers: [], // 作者的粉丝
+  searchResult: '', // 搜索结果
+
 }

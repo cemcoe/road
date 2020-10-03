@@ -46,5 +46,14 @@ export default {
   receive_author_following_user(state, followers) {
     state.authorFollowers = followers
 
-  }
+  },
+
+  // 更改搜索结果
+  receive_search_result(state, result) {
+    state.searchResult = result
+
+  },
+
+
+
 }

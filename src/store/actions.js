@@ -1,6 +1,7 @@
 
 import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower } from "network/user";
 import { getPostDetail } from 'network/post'
+import { search } from 'network/search'
 
 export default {
   // 请求用户关注列表
@@ -101,6 +102,22 @@ export default {
     console.log(result, '33333333333333333333333')
     context.commit('receive_author_following_user', followers)
   },
+
+
+  // 搜索标题和正文中含有搜索词的文章
+  async reqSearchResult(context, q) {
+    const result = await search(q)
+    console.log(result)
+    // 触发mutations更改state
+    if (result.status === 200) {
+      const searchResult = result.data.post
+      context.commit('receive_search_result', searchResult)
+    } else {
+      return 404
+    }
+  },
+
+
 
 
 }
