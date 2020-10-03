@@ -6,6 +6,11 @@ import store from './store'
 import { Button } from 'vant';
 // main.js
 import toast from 'components/common/toast'
+
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
+Vue.use(mavonEditor)
 // 安装toast插件
 Vue.use(toast)
 

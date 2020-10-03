@@ -1,11 +1,38 @@
 <template>
-  <div>
-    <button @click="btnClick" :disabled="!rightPost" :class="{on:rightPost}">提交，确保内容填写完整，否则无法提交</button>
+  <!-- <div>
+    <button @click="btnClick" :disabled="!rightPost" :class="{ on: rightPost }">
+      提交，确保内容填写完整，否则无法提交
+    </button>
     <input type="text" class="title" placeholder="输入标题" v-model="title" />
-    <input type="text" class="abstract" placeholder="输入摘要" v-model="abstract" />
-    <!-- <input type="text" class="content" v-model="content" /> -->
+    <input
+      type="text"
+      class="abstract"
+      placeholder="输入摘要"
+      v-model="abstract"
+    />
 
-    <textarea class="content" rows="5" cols="40" placeholder="输入内容" v-model="content"></textarea>
+    <textarea
+      class="content"
+      rows="5"
+      cols="40"
+      placeholder="输入内容"
+      v-model="content"
+    ></textarea>
+  </div> -->
+  <div>
+    <button @click="btnClick" :disabled="!rightPost" :class="{ on: rightPost }">
+      提交，确保内容填写完整，否则无法提交
+    </button>
+    <input type="text" class="title" placeholder="输入标题" v-model="title" />
+    <input
+      type="text"
+      class="abstract"
+      placeholder="输入摘要"
+      v-model="abstract"
+    />
+    <div id="main">
+      <mavon-editor v-model="content" />
+    </div>
   </div>
 </template>
 
@@ -57,7 +84,6 @@ textarea {
   padding: 4px;
   height: 300px;
 }
-
 
 button {
   width: 100%;

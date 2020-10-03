@@ -1,17 +1,22 @@
 <template>
   <div class="content">
-    {{postContent}}
+    <mavon-editor
+      v-model="post.content"
+      :subfield="false"
+      :boxShadow="false"
+      defaultOpen="preview"
+      :toolbarsFlag="false"
+    />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: {
-    postContent: {
-    }
-  }
-
-}
+  computed: {
+    ...mapState(["post"]),
+  },
+};
 </script>
 
 <style scoped>
@@ -19,8 +24,9 @@ export default {
   font-size: 16px;
   line-height: 28px;
   padding: 10px;
-  font-family: -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
-
-
 </style>
