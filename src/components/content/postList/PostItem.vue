@@ -40,13 +40,16 @@ export default {
   background-color: rgba(233, 224, 224, 0.6);
 }
 .abstract {
-  font-size: 16px;
+  font-size: 14px;
   color: rgb(97, 101, 105);
-  /* height: 60px;
-  overflow: hidden; */
-  padding-top: 12px;
-  padding-bottom: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   line-height: 26px;
+  /* 多行文本截断 */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .meta {
   font-size: 14px;
