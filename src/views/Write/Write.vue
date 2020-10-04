@@ -11,7 +11,7 @@
       v-model="abstract"
     />
     <div id="main">
-      <mavon-editor v-model="content" />
+      <mavon-editor :subfield="false" v-model="content" />
     </div>
   </div>
 </template>
