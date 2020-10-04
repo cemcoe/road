@@ -98,6 +98,12 @@ const routes = [
     meta: { requireAuth: true },
   },
   {
+    path: '/writer/:id',
+    name: 'Writer',
+    component: Write,
+    meta: { requireAuth: true },
+  },
+  {
     path: '/p/:id',
     name: 'Post',
     component: Post,

@@ -2,6 +2,7 @@
   <div>
     <button @click="btnClick" :disabled="!rightPost" :class="{ on: rightPost }">
       提交，确保内容填写完整，否则无法提交
+      {{$route.params.id}}
     </button>
     <input type="text" class="title" placeholder="输入标题" v-model="title" />
     <input
@@ -17,6 +18,13 @@
 </template>
 
 <script>
+// TODO 
+// 拦截请求，如果是从文章详情页跳转过来的
+// 就是修改文章，修改文章数据
+//  {{$route.params.id}}
+// 那文章id获取文章最初的数据，为修改准备
+
+
 import { createPost } from "network/post";
 export default {
   data() {
