@@ -1,27 +1,29 @@
 <template>
   <div>
     <user-header></user-header>
-    <user-info 
-    :userInfo="author"
-    :authorFollowingUsers="authorFollowingUsers"
-    :authorFollowers="authorFollowers"
-    ></user-info>
-    
-    <!-- 用户文章列表 -->
-    <div class="user-posts">
-      <h2>文章 ({{ userPosts.length }})</h2>
-      <post-list :postList="userPosts"></post-list>
+    <div v-if="author._id">
+      <user-info
+        :userInfo="author"
+        :authorFollowingUsers="authorFollowingUsers"
+        :authorFollowers="authorFollowers"
+      ></user-info>
+
+      <!-- 用户文章列表 -->
+      <div class="user-posts">
+        <h2>文章 ({{ userPosts.length }})</h2>
+        <post-list :postList="userPosts"></post-list>
+      </div>
+    </div>
+    <div v-else>
+      <loading />
     </div>
   </div>
 </template>
 
 <script>
-import {
-  getUserPosts,
-  listfollowingUser,
-  listfollower,
-} from "network/user";
+import { getUserPosts, listfollowingUser, listfollower } from "network/user";
 
+import Loading from "components/common/loading/Loading";
 import UserHeader from "./childComps/UserHeader/UserHeader";
 import PostList from "components/content/postList/PostList";
 import UserInfo from "./childComps/UserInfo/UserInfo";
@@ -38,6 +40,7 @@ export default {
     };
   },
   components: {
+    Loading,
     UserHeader,
     UserInfo,
     PostList,
@@ -47,8 +50,8 @@ export default {
   // 拿到路由传来的参数
   created() {
     this._id = this.$route.params.id;
-    this.$store.dispatch('getAuthorInfo', this._id)
-    this.$store.dispatch('listAuthorFollowingUser', this._id)
+    this.$store.dispatch("getAuthorInfo", this._id);
+    this.$store.dispatch("listAuthorFollowingUser", this._id);
     getUserPosts(this._id).then((res) => {
       this.userPosts = res.data;
     });
@@ -69,14 +72,13 @@ export default {
   },
 
   computed: {
-    ...mapState(['author', 'authorFollowers'])
-
+    ...mapState(["author", "authorFollowers"]),
   },
 
   // 组件销毁，数据重置，避免缓存
   destroyed() {
-    this.$store.commit('set_author', {})
-  }
+    this.$store.commit("set_author", {});
+  },
 };
 </script>
 

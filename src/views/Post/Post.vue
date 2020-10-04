@@ -1,26 +1,29 @@
 <template>
   <div class="container">
     <post-header></post-header>
+    <div v-if="post.title">
+      <div class="title">
+        <h2>{{ post.title }}</h2>
+      </div>
 
-    <div class="title">
-      <h2>{{ post.title }}</h2>
+      <author-info :authorInfo="author"></author-info>
+
+      <post-info :postInfo="post.createdAt"></post-info>
+
+      <hr />
+
+      <post-content :postContent="post.content"></post-content>
     </div>
-
-    <author-info :authorInfo="author"></author-info>
-
-    <post-info :postInfo="post.createdAt"></post-info>
-
-    
-    <hr />
-
-    <post-content :postContent="post.content"></post-content>
+    <div v-else>
+      <loading />
+    </div>
   </div>
 </template>
 
 <script>
-
 import { mapState } from "vuex";
 
+import Loading from "components/common/loading/Loading";
 import PostHeader from "./childComps/PostHeader/PostHeader";
 import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
 import PostInfo from "./childComps/PostInfo/PostInfo";
@@ -28,6 +31,7 @@ import PostContent from "./childComps/PostContent/PostContent";
 
 export default {
   components: {
+    Loading,
     PostHeader,
     AuthorInfo,
     PostContent,
@@ -61,10 +65,10 @@ export default {
   // 组件销毁，文章数据重置，避免缓存
   destroyed() {
     // 重置文章数据
-    this.$store.commit('set_post', {})
+    this.$store.commit("set_post", {});
     // 重置作者数据
-    this.$store.commit('set_author', {})
-  }
+    this.$store.commit("set_author", {});
+  },
 };
 </script>
 
