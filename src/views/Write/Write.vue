@@ -1,24 +1,4 @@
 <template>
-  <!-- <div>
-    <button @click="btnClick" :disabled="!rightPost" :class="{ on: rightPost }">
-      提交，确保内容填写完整，否则无法提交
-    </button>
-    <input type="text" class="title" placeholder="输入标题" v-model="title" />
-    <input
-      type="text"
-      class="abstract"
-      placeholder="输入摘要"
-      v-model="abstract"
-    />
-
-    <textarea
-      class="content"
-      rows="5"
-      cols="40"
-      placeholder="输入内容"
-      v-model="content"
-    ></textarea>
-  </div> -->
   <div>
     <button @click="btnClick" :disabled="!rightPost" :class="{ on: rightPost }">
       提交，确保内容填写完整，否则无法提交
@@ -56,11 +36,13 @@ export default {
         content: this.content,
       };
       createPost(post).then((res) => {
-        console.log("文章创建成功");
-        // TODO:
+        console.log("文章创建成功", res);
+        this.$toast.show("文章创建成功，1s后为您跳转到文章页面");
         // 文章创建成功， 跳转文章详情页
-        this.$toast.show("文章创建成功", 2000);
-        this.$router.push("/");
+        setTimeout(() => {
+          // 跳转到文章详情页
+          this.$router.push(`/p/${res._id}`);
+        }, 1000);
       });
     },
   },
