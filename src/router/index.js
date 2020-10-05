@@ -8,7 +8,7 @@ const HomeSerialization = () => import('../views/Home/childComps/HomeSerializati
 const Login = () => import('../views/Login/Login')
 const User = () => import('../views/User/User')
 const Profile = () => import('../views/Profile/Profile')
-const Write = () => import('../views/Write/Write')
+const Writer = () => import('../views/Writer/Writer')
 const Post = () => import('../views/Post/Post')
 const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
@@ -92,15 +92,15 @@ const routes = [
     }
   },
   {
-    path: '/write',
+    path: '/writer',
     name: 'Write',
-    component: Write,
+    component: Writer,
     meta: { requireAuth: true },
   },
   {
     path: '/writer/:id',
-    name: 'Writer',
-    component: Write,
+    name: 'Edit',
+    component: Writer,
     meta: { requireAuth: true },
   },
   {
