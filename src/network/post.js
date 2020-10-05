@@ -30,3 +30,12 @@ export function getPostDetail(id) {
     url: `/posts/${id}`,
   })
 }
+
+// 更新文章
+export function updatePost(post, id) {
+  return request({
+    method: "patch",
+    url: `/posts/${id}`,
+    data: post,
+  })
+}
