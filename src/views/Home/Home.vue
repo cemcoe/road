@@ -8,7 +8,7 @@
 
     <!-- TODO：将write按钮抽离成一个content组件 -->
     <div class="write">
-      <router-link to="/write">写</router-link>
+      <router-link to="/writer">写</router-link>
     </div>
   </div>
 </template>

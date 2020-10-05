@@ -3,7 +3,7 @@
     <nav-bar>
       <div slot="left" @click="more">相机</div>
       <div slot="right">
-        <router-link to="/write">Write</router-link>
+        <router-link to="/writer">Write</router-link>
       </div>
     </nav-bar>
   </div>
