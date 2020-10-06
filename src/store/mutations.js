@@ -42,6 +42,12 @@ export default {
     state.author = author;
   },
 
+  // 收到文章评论，更新
+  receive_post_comments(state, postComments) {
+    state.postComments = postComments
+  },
+
+
   // authorFollowers
   receive_author_following_user(state, followers) {
     state.authorFollowers = followers

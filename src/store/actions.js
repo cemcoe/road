@@ -2,6 +2,7 @@
 import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower } from "network/user";
 import { getPostDetail } from 'network/post'
 import { search } from 'network/search'
+import { getPostComments } from 'network/comment'
 
 export default {
   // 请求用户关注列表
@@ -92,6 +93,16 @@ export default {
     console.log(res, 'vuexxxxxxxxxxxxxxxxxxxxx')
     this.commit('set_author', res.data.user)
   },
+
+  // 获取文章评论
+  async getPostComments(context, postId) {
+    const result = await getPostComments(postId) 
+    const postComments = result.data.comments
+    // console.log(comments)
+    // 触发mutations更改state
+    context.commit('receive_post_comments', postComments)
+  },
+
 
   // 获取作者粉丝列表
   async listAuthorFollowingUser(context, id) {

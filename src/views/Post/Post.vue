@@ -13,6 +13,8 @@
       <hr />
 
       <post-content :postContent="post.content"></post-content>
+
+      <post-comments :postComments="postComments"></post-comments>
     </div>
     <div v-else>
       <loading />
@@ -28,6 +30,7 @@ import PostHeader from "./childComps/PostHeader/PostHeader";
 import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
 import PostInfo from "./childComps/PostInfo/PostInfo";
 import PostContent from "./childComps/PostContent/PostContent";
+import PostComments from './childComps/PostComments/PostComments'
 
 export default {
   components: {
@@ -36,6 +39,7 @@ export default {
     AuthorInfo,
     PostContent,
     PostInfo,
+    PostComments,
   },
   data() {
     return {
@@ -58,9 +62,10 @@ export default {
     // });
 
     this.$store.dispatch("getPostDetail", this.$route.params.id);
+    this.$store.dispatch("getPostComments", this.$route.params.id)
   },
   computed: {
-    ...mapState(["post", "author"]),
+    ...mapState(["post", "author", "postComments"]),
   },
   // 组件销毁，文章数据重置，避免缓存
   destroyed() {
