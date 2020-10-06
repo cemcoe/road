@@ -15,6 +15,8 @@
       <post-content :postContent="post.content"></post-content>
 
       <post-comments :postComments="postComments"></post-comments>
+
+      <post-tab-bar></post-tab-bar>
     </div>
     <div v-else>
       <loading />
@@ -31,6 +33,7 @@ import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
 import PostInfo from "./childComps/PostInfo/PostInfo";
 import PostContent from "./childComps/PostContent/PostContent";
 import PostComments from './childComps/PostComments/PostComments'
+import PostTabBar from './childComps/PostTabBar/PostTabBar'
 
 export default {
   components: {
@@ -40,6 +43,7 @@ export default {
     PostContent,
     PostInfo,
     PostComments,
+    PostTabBar,
   },
   data() {
     return {
