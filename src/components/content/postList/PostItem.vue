@@ -1,18 +1,25 @@
 <template>
   <div class="post-item">
-    <router-link :to="'/p/' + post._id">
+    <router-link :to="postUrl">
       <div class="title">
         <span>{{ post.title }}</span>
       </div>
+    </router-link>
+    <router-link :to="postUrl">
       <div class="abstract">{{ post.abstract }}</div>
-      <div class="meta">
-        <!-- <a :href="'/u/' + item.author._id">{{item.author.name}}</a> -->
-        <router-link :to="'/u/' + post.author._id" class="nickname">{{
+    </router-link>
+    <div class="meta">
+      <span>
+        <router-link :to="authorUrl" class="nickname">{{
           post.author.name
         }}</router-link>
-        <span class="creat-date">{{ post.createdAt }}</span>
-      </div>
-    </router-link>
+      </span>
+
+      <span class="creat-date">{{ createDate }}</span>
+      <span>0阅读</span>
+      <span>0评论</span>
+      <span>0赞</span>
+    </div>
   </div>
 </template>
 
@@ -20,6 +27,17 @@
 export default {
   props: {
     post: {},
+  },
+  computed: {
+    postUrl() {
+      return "/p/" + this.post._id;
+    },
+    authorUrl() {
+      return "/u/" + this.post.author._id;
+    },
+    createDate() {
+      return this.post.createdAt.split("T")[0];
+    },
   },
 };
 </script>
@@ -36,9 +54,6 @@ export default {
   line-height: 24px;
   color: #000000;
 }
-.post-item:hover {
-  background-color: rgba(233, 224, 224, 0.6);
-}
 .abstract {
   font-size: 14px;
   color: rgb(97, 101, 105);
@@ -53,11 +68,11 @@ export default {
 }
 .meta {
   font-size: 14px;
+  color: #b4b4b4;
+  padding-right: 12px;
 }
 
-.meta .nickname,
-.creat-date {
-  color: #b4b4b4;
+.meta span {
   padding-right: 12px;
 }
 </style>
