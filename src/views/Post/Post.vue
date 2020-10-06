@@ -16,7 +16,7 @@
 
       <post-comments :postComments="postComments"></post-comments>
 
-      <post-tab-bar></post-tab-bar>
+      <post-tab-bar :postId="post._id"></post-tab-bar>
     </div>
     <div v-else>
       <loading />

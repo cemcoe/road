@@ -8,3 +8,14 @@ export function getPostComments(postId) {
   })
 
 }
+
+// 创建文章评论
+export function createPostComment(postId, content) {
+  return request({
+    method: "post",
+    url: `/posts/${postId}/comments`,
+    data: {
+      content
+    }
+  })
+}

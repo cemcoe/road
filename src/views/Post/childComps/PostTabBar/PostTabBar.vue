@@ -2,10 +2,10 @@
   <div class="box">
     <div class="container">
       <div class="left">
-        <input type="text" placeholder="说点什么吧啊" />
+        <input type="text" v-model="content" placeholder="说点什么吧啊" />
       </div>
       <div class="right">
-        <span>评论 </span>
+        <span @click="commentSubmit">评论 </span>
         <span>点赞</span>
         <span>分享</span>
       </div>
@@ -14,7 +14,33 @@
 </template>
 
 <script>
-export default {};
+import { createPostComment } from "network/comment";
+export default {
+  props: {
+    postId: {},
+  },
+  data() {
+    return {
+      content: "",
+    };
+  },
+  methods: {
+    async commentSubmit() {
+      // console.log(this.content);
+
+      const result = await createPostComment(this.postId, this.content);
+      console.log(result);
+      if (result.status === 200) {
+        this.$toast.show("评论创建成功，为你更新评论列表");
+        // 重新请求评论数据，并更新state
+        this.$store.dispatch("getPostComments", this.postId);
+        // this.$store.commit('receive_post_comments', result.data.commit)
+      } else {
+        this.$toast.show("评论失败了耶");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -59,6 +85,5 @@ input {
 
 input:focus {
   background-color: #fff;
-
 }
 </style>
