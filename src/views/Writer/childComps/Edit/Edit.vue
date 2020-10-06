@@ -60,7 +60,7 @@ export default {
         // 文章修改成功， 跳转文章详情页
         setTimeout(() => {
           // 跳转到文章详情页
-          this.$router.push(`/p/${result.data.post._id}`);
+          this.$router.replace(`/p/${result.data.post._id}`);
         }, 1000);
       }
       console.log(result, 1111111111111111111111111);

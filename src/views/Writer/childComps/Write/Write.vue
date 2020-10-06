@@ -49,7 +49,7 @@ export default {
         // 文章创建成功， 跳转文章详情页
         setTimeout(() => {
           // 跳转到文章详情页
-          this.$router.push(`/p/${res._id}`);
+          this.$router.replace(`/p/${res._id}`);
         }, 1000);
       });
     },
