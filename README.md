@@ -2,6 +2,9 @@
 仿简书web页面
 
 预览地址：https://jian.cemcoe.com
+开发日志: https://www.jianshu.com/nb/47900649
+
+一个仿简书的项目，使用真实的后端数据。后端Koa + MongoDB，前端使用 Vue 全家桶。登录注册采用 JWT 方案，功能方面目前在用户模块中实现了注册登录功能，在文章管理模块中实现了创建文章和修改文章功能，在粉丝模块实现了对作者的关注和取消关注功能，在评论模块实现了一级评论的创建和展示。文章数据格式存储方面数据库中存放原始 markdown 文件，由前端渲染成页面。
 
 ## 技术栈
 vue2 + vuex + vue-router + webpack + ES6/7 + axios + flex
@@ -29,7 +32,11 @@ npm run dev
 - [ ] 专题
 - [ ] 活动
 - [ ] 连载
+- [ ] 用户信息修改
 - [x] 首页推荐子页
+- [x] 首页文章列表下拉加载更多
+- [x] 用户关注和取消关注
+- [x] 用户对文章的一级评论
 - [x] 文章详情页
 - [x] 个人页面
 - [x] 写文章页面
@@ -37,9 +44,12 @@ npm run dev
 - [x] 搜索页面
 
 
-## 文章存储格式
-https://github.com/hinesboy/mavonEditor
+## 文章数据
 
+大部分文章数据由 [狗屁不通文章生成器](https://suulnnka.github.io/BullshitGenerator/index.html) 生成，没有任何的价值，仅供展示占位使用。
+
+
+文章渲染借助 [mavonEditor](https://github.com/hinesboy/mavonEditor) 采用前端渲染的方式。
 
 
 前端页面用户采用 markdown 编写文章，数据库中存放原始 markdown 文件。
@@ -51,6 +61,8 @@ https://github.com/hinesboy/mavonEditor
 ## 通用组件
 - [ ] upload
 - [ ] swiper
+- [ ] button
+- [ ] input
 - [x] tabbar
 - [x] toast
 - [x] loading
