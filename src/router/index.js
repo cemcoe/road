@@ -6,7 +6,7 @@ const HomeRecommend = () => import('../views/Home/childComps/HomeRecommend/HomeR
 const HomeTopic = () => import('../views/Home/childComps/HomeTopic/HomeTopic')
 const HomeSerialization = () => import('../views/Home/childComps/HomeSerialization/HomeSerialization')
 const Login = () => import('../views/Login/Login')
-const User = () => import('../views/User/User')
+const Author = () => import('../views/Author/Author')
 const Profile = () => import('../views/Profile/Profile')
 const Writer = () => import('../views/Writer/Writer')
 const Post = () => import('../views/Post/Post')
@@ -76,8 +76,8 @@ const routes = [
   },
   {
     path: '/u/:id',
-    name: 'User',
-    component: User,
+    name: 'Author',
+    component: Author,
     meta: {
       showFooter: false
     }

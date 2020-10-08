@@ -1,12 +1,12 @@
 <template>
   <div>
-    <user-header></user-header>
+    <author-header></author-header>
     <div v-if="author._id">
-      <user-info
+      <author-info
         :userInfo="author"
         :authorFollowingUsers="authorFollowingUsers"
         :authorFollowers="authorFollowers"
-      ></user-info>
+      ></author-info>
 
       <!-- 用户文章列表 -->
       <div class="user-posts">
@@ -24,14 +24,14 @@
 import { getUserPosts, listfollowingUser, listfollower } from "network/user";
 
 import Loading from "components/common/loading/Loading";
-import UserHeader from "./childComps/UserHeader/UserHeader";
+import AuthorHeader from "./childComps/AuthorHeader/AuthorHeader";
 import PostList from "components/content/postList/PostList";
-import UserInfo from "./childComps/UserInfo/UserInfo";
+import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
 
 import { mapState } from "vuex";
 
 export default {
-  name: "User",
+  name: "Author",
   data() {
     return {
       _id: null,
@@ -41,8 +41,8 @@ export default {
   },
   components: {
     Loading,
-    UserHeader,
-    UserInfo,
+    AuthorHeader,
+    AuthorInfo,
     PostList,
   },
 
