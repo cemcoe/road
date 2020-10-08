@@ -54,6 +54,10 @@ export default {
 
   },
 
+  receive_author_posts(state, posts) {
+    state.authorPosts = posts
+  },
+
   // 更改搜索结果
   receive_search_result(state, result) {
     state.searchResult = result

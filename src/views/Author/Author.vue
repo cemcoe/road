@@ -8,15 +8,9 @@
         :authorFollowers="authorFollowers"
       ></author-info>
 
-      <author-tab-control></author-tab-control>
+      <author-tab-control />
 
       <router-view></router-view>
-
-      <!-- 用户文章列表 -->
-      <!-- <div class="user-posts">
-        <h2>文章 ({{ userPosts.length }})</h2>
-        <post-list :postList="userPosts"></post-list>
-      </div> -->
     </div>
     <div v-else>
       <loading />
@@ -26,21 +20,18 @@
 
 <script>
 import { getUserPosts, listfollowingUser, listfollower } from "network/user";
+import { mapState } from "vuex";
 
 import Loading from "components/common/loading/Loading";
 import AuthorHeader from "./childComps/AuthorHeader/AuthorHeader";
-import PostList from "components/content/postList/PostList";
 import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
-import AuthorTabControl from './childComps/AuthorTabControl/AuthorTabControl'
-
-import { mapState } from "vuex";
+import AuthorTabControl from "./childComps/AuthorTabControl/AuthorTabControl";
 
 export default {
   name: "Author",
   data() {
     return {
       _id: null,
-      userPosts: [],
       authorFollowingUsers: [], // 关注
     };
   },
@@ -49,7 +40,6 @@ export default {
     AuthorHeader,
     AuthorInfo,
     AuthorTabControl,
-    PostList,
   },
 
   // 有id向服务器发请求
@@ -58,9 +48,6 @@ export default {
     this._id = this.$route.params.id;
     this.$store.dispatch("getAuthorInfo", this._id);
     this.$store.dispatch("listAuthorFollowingUser", this._id);
-    getUserPosts(this._id).then((res) => {
-      this.userPosts = res.data;
-    });
     // 获取作者的关注列表
     listfollowingUser(this._id).then((res) => {
       this.authorFollowingUsers = res.data.following;

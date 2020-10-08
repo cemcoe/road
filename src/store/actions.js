@@ -1,5 +1,6 @@
 
-import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower } from "network/user";
+import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower,
+  getUserPosts } from "network/user";
 import { getPostDetail } from 'network/post'
 import { search } from 'network/search'
 import { getPostComments } from 'network/comment'
@@ -112,6 +113,17 @@ export default {
     // 触发mutations更改state
     console.log(result, '33333333333333333333333')
     context.commit('receive_author_following_user', followers)
+  },
+
+  // 获取作者文章列表
+  async listAuthorPosts(context, id) {
+    // 向服务器要作者的文章列表
+    const result = await getUserPosts(id)
+    const posts = result.data
+    // console.log(posts, 'ddddddddddddddddddddddddddddddddddddd')
+    // 触发mutations更改state
+    context.commit('receive_author_posts', posts)
+
   },
 
 
