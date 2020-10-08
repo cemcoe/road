@@ -7,6 +7,8 @@ const HomeTopic = () => import('../views/Home/childComps/HomeTopic/HomeTopic')
 const HomeSerialization = () => import('../views/Home/childComps/HomeSerialization/HomeSerialization')
 const Login = () => import('../views/Login/Login')
 const Author = () => import('../views/Author/Author')
+const AuthorPosts = () => import('../views/Author/childComps/AuthorPosts/AuthorPosts')
+const AuthorMore = () => import('../views/Author/childComps/AuthorMore/AuthorMore')
 const Profile = () => import('../views/Profile/Profile')
 const Writer = () => import('../views/Writer/Writer')
 const Post = () => import('../views/Post/Post')
@@ -76,11 +78,30 @@ const routes = [
   },
   {
     path: '/u/:id',
-    name: 'Author',
+    // name: 'Author',
     component: Author,
     meta: {
       showFooter: false
-    }
+    },
+    children: [
+      {
+        path: '/u/:id/posts',
+        component: AuthorPosts,
+        meta: {
+          showFooter: true
+        },
+      },{
+        path: '/u/:id/more',
+        component: AuthorMore,
+        meta: {
+          showFooter: true
+        },
+      },
+      {
+        path: '',
+        redirect: '/u/:id/posts'
+      },
+    ]
   },
   {
     path: '/profile',
