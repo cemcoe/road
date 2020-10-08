@@ -3,11 +3,8 @@
     <div v-for="post in postList" :key="post._id" class="post">
       <post-item :post="post"></post-item>
     </div>
-    <div class="no-data">
-      哇哦，没有数据了。
-    </div>
+    <div class="no-data">哇哦，没有数据了。</div>
   </div>
-  
 </template>
 
 <script>
@@ -19,13 +16,13 @@ export default {
   components: {
     PostItem,
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
 <style scoped>
 .no-data {
-  background-color: rgb(233, 227, 227);
+  background-color: var(--main-bgc-color);
+  color: var(--main-text-color);
 }
 </style>

@@ -19,6 +19,7 @@ Vue.use(Button);
 Vue.config.productionTip = false
 
 import './assets/css/reset.css'
+import './assets/css/values.css'
 
 // https://forum.vuejs.org/t/vue-router-vuex/43055
 
