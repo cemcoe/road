@@ -5,25 +5,23 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-
-    <!-- TODO：将write按钮抽离成一个content组件 -->
-    <div class="write">
-      <router-link to="/writer">写</router-link>
-    </div>
+    <go-writer-button />
   </div>
 </template>
 
 <script>
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
 import HomeTabControl from "./childComps/HomeTabControl/HomeTabControl";
+import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
   components: {
     HomeHeader,
     HomeTabControl,
+    GoWriterButton,
   },
   data() {
     return {};
@@ -35,31 +33,10 @@ export default {
     );
   },
   computed: {
-    ...mapState(['userInfo']),
-    
+    ...mapState(["userInfo"]),
   },
 };
 </script>
 
 <style scoped>
-.write {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  right: 50px;
-  bottom: 80px;
-  border-radius: 50%;
-  background-color: #f44;
-  color: aliceblue;
-  line-height: 40px;
-  text-align: center;
-  padding: 10px;
-  box-shadow: 0 0 4px #000;
-}
-.write a {
-  color: aliceblue;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 </style>
