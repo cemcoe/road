@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       noteBookTitle: "",
+      notebook: {},
     };
   },
   methods: {
@@ -33,7 +34,12 @@ export default {
       // 发送网络请求
       const result = await createNoteBook(data);
       console.log(result);
-      this.$toast.show("新连载创建成功");
+      this.notebook = result.data.notebook;
+      // 连载创建成功， 跳转连载详情页
+      setTimeout(() => {
+        // 跳转到连载详情页
+        this.$router.replace(`/nb/${this.notebook._id}`);
+      }, 1000);
     },
   },
   computed: {

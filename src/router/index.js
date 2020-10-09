@@ -15,6 +15,7 @@ const Post = () => import('../views/Post/Post')
 const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
 const Message = () => import('../views/Message/Message')
+const NoteBook = () => import('../views/NoteBook/NoteBook')
 const Search = () => import('../views/Search/Search')
 const ResetUser = () => import('../views/ResetUser/ResetUser')
 
@@ -90,7 +91,7 @@ const routes = [
         meta: {
           showFooter: true
         },
-      },{
+      }, {
         path: '/u/:id/more',
         component: AuthorMore,
         meta: {
@@ -102,6 +103,14 @@ const routes = [
         redirect: '/u/:id/posts'
       },
     ]
+  },
+  {
+    path: '/nb/:id',
+    name: 'NoteBook',
+    component: NoteBook,
+    meta: {
+      showFooter: false
+    }
   },
   {
     path: '/profile',
