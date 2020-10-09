@@ -61,6 +61,14 @@ export function getUserPosts(id) {
   })
 }
 
+// 获取某人连载列表
+export function getAuthorNoteBooks(id) {
+  return request({
+    method: "get",
+    url: `/users/${id}/nbs`,
+  })
+}
+
 // 关注某人
 // router.put('/users/following/:id',auth, follow)
 export function followingUser(id) {

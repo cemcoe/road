@@ -22,6 +22,7 @@ export default {
   post: {}, // 当前文章
   author: {}, // 文章作者信息
   authorPosts: [], // 作者文章列表
+  authorNoteBooks: [], // 作者连载列表
   postComments: [], // 文章评论
   authorFollowers: [], // 作者的粉丝
   searchResult: '', // 搜索结果
