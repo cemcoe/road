@@ -9,3 +9,12 @@ export function createNoteBook(notebook) {
     data: notebook,
   })
 }
+
+
+// 获取连载详情
+export function getNoteBookDetail(id) {
+  return request({
+    method: "get",
+    url: `/nbs/${id}`,
+  })
+}
