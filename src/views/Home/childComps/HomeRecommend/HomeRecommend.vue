@@ -6,12 +6,14 @@
     <div v-else>
       <loading></loading>
     </div>
+    <go-writer-button />
   </div>
 </template>
 
 <script>
 import PostList from "components/content/postList/PostList";
 import Loading from "components/common/loading/Loading";
+import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 import { getHomePostList } from "network/post";
 
 import { _throttle } from "@/utils/gloal";
@@ -21,6 +23,7 @@ export default {
   components: {
     PostList,
     Loading,
+    GoWriterButton,
   },
   data() {
     return {

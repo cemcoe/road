@@ -5,14 +5,12 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <go-writer-button />
   </div>
 </template>
 
 <script>
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
 import HomeTabControl from "./childComps/HomeTabControl/HomeTabControl";
-import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 
 import { mapState } from "vuex";
 
@@ -21,7 +19,6 @@ export default {
   components: {
     HomeHeader,
     HomeTabControl,
-    GoWriterButton,
   },
   data() {
     return {};
