@@ -18,3 +18,16 @@ export function getNoteBookDetail(id) {
     url: `/nbs/${id}`,
   })
 }
+
+// 获取连载列表
+// http://localhost:3000/nbs?per_page=10&page=1
+export function getNoteBookList(page = 1, per_page = 10) {
+  return request({
+    method: "get",
+    url: '/nbs',
+    params: {
+      page,
+      per_page,
+    }
+  })
+}
