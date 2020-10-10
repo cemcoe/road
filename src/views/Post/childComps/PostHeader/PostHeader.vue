@@ -2,11 +2,24 @@
   <div class="container">
     <nav-bar>
       <div slot="left" @click="$router.back()">返回</div>
-      <div v-if="$store.getters.isAuthor()" slot="right" @click="editPost">
-        编辑
-      </div>
-      <div v-else slot="right" @click="more">
-        更多{{ $store.getters.isAuthor() }}
+      <div slot="right">
+        <div class="more" @click="more">更多</div>
+        <div class="menu" v-show="isShowMenu">
+          <!-- v-if="$store.getters.isAuthor()" -->
+          <!-- 文章所有者 -->
+          <ul v-if="$store.getters.isAuthor()">
+            <li @click="unable">收藏</li>
+            <li @click="unable">分享</li>
+            <li class="enable" @click="editPost">编辑</li>
+            <li @click="unable">收入连载</li>
+            <li @click="unable">删除</li>
+          </ul>
+          <!-- 看别人的文章 -->
+          <ul v-else>
+            <li>收藏</li>
+            <li>分享</li>
+          </ul>
+        </div>
       </div>
     </nav-bar>
   </div>
@@ -16,17 +29,25 @@
 import NavBar from "components/common/navbar/NavBar";
 export default {
   name: "PostHeader",
+  data() {
+    return {
+      isShowMenu: false, // 是否展示菜单
+    };
+  },
   components: {
     NavBar,
   },
   methods: {
     more() {
-      this.$toast.show("还没写呢，收藏，分享，收入专题，显示模式，举报");
+      this.isShowMenu = !this.isShowMenu;
     },
     editPost() {
       console.log("编辑文章");
       console.log(this.$store.state.post);
       this.$router.replace("/writer/" + this.$store.state.post._id);
+    },
+    unable() {
+      this.$toast.show("还没写呢，点点编辑试一试");
     },
   },
 };
@@ -35,5 +56,24 @@ export default {
 <style scoped>
 .container {
   box-shadow: 0 0 4px #000;
+}
+
+.menu {
+  position: fixed;
+  right: 0;
+  top: 44px;
+  background-color: rgb(226, 217, 217);
+  z-index: 1504;
+  min-width: 80px;
+}
+.menu li {
+  line-height: 30px;
+  padding: 6px;
+
+}
+
+.enable {
+  /* 可以使用 */
+  background-color: rgb(245, 235, 235);
 }
 </style>
