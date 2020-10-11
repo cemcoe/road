@@ -11,7 +11,7 @@
             <li @click="unable">收藏</li>
             <li @click="unable">分享</li>
             <li class="enable" @click="editPost">编辑</li>
-            <li @click="unable">收入连载</li>
+            <li class="enable" @click="addPostToNoteBook">收入连载</li>
             <li @click="unable">删除</li>
           </ul>
           <!-- 看别人的文章 -->
@@ -45,6 +45,12 @@ export default {
       console.log("编辑文章");
       console.log(this.$store.state.post);
       this.$router.replace("/writer/" + this.$store.state.post._id);
+    },
+    addPostToNoteBook() {
+      // 向父组件传递数据
+      this.$emit('addPostToNoteBook')
+      this.isShowMenu = false
+
     },
     unable() {
       this.$toast.show("还没写呢，点点编辑试一试");

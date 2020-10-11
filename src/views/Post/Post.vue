@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <post-header></post-header>
+    <post-header @addPostToNoteBook="addPostToNoteBook"></post-header>
     <div v-if="post.title">
       <div class="title">
         <h2>{{ post.title }}</h2>
@@ -17,6 +17,14 @@
       <post-comments :postComments="postComments"></post-comments>
 
       <post-tab-bar :postId="post._id"></post-tab-bar>
+
+      <note-book-list v-show="isShowNoteBookList"></note-book-list>
+
+      <div
+        class="overlay"
+        v-show="isShowNoteBookList"
+        @click="overlayClick"
+      ></div>
     </div>
     <div v-else>
       <loading />
@@ -32,8 +40,9 @@ import PostHeader from "./childComps/PostHeader/PostHeader";
 import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
 import PostInfo from "./childComps/PostInfo/PostInfo";
 import PostContent from "./childComps/PostContent/PostContent";
-import PostComments from './childComps/PostComments/PostComments'
-import PostTabBar from './childComps/PostTabBar/PostTabBar'
+import PostComments from "./childComps/PostComments/PostComments";
+import PostTabBar from "./childComps/PostTabBar/PostTabBar";
+import NoteBookList from "./childComps/NoteBookList/NoteBookList";
 
 export default {
   components: {
@@ -44,9 +53,11 @@ export default {
     PostInfo,
     PostComments,
     PostTabBar,
+    NoteBookList,
   },
   data() {
     return {
+      isShowNoteBookList: false,
       // post: this.$store.state.post,
       //   // author: {},
       //   // 要拿到作者的名字
@@ -58,6 +69,16 @@ export default {
       // author: this.$store.state.author,
     };
   },
+  methods: {
+    addPostToNoteBook() {
+      console.log("添加到连载按钮被点击，展示连载列表");
+      this.isShowNoteBookList = true;
+    },
+    overlayClick() {
+      console.log("遮罩被点击，为你隐藏连载列表");
+      this.isShowNoteBookList = false;
+    },
+  },
   mounted() {
     // getPostDetail(this.$route.params.id).then((res) => {
     //   this.post = res.data.post;
@@ -66,7 +87,7 @@ export default {
     // });
 
     this.$store.dispatch("getPostDetail", this.$route.params.id);
-    this.$store.dispatch("getPostComments", this.$route.params.id)
+    this.$store.dispatch("getPostComments", this.$route.params.id);
   },
   computed: {
     ...mapState(["post", "author", "postComments"]),
@@ -84,5 +105,15 @@ export default {
 <style scoped>
 h2 {
   padding: 10px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 29999;
+  background-color: #000;
+  opacity: 0.8;
 }
 </style>
