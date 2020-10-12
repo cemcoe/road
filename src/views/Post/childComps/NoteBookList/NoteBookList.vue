@@ -1,20 +1,8 @@
 <template>
   <div>
     <div class="notebooks">
-      <div class="notebook">
-        <span>连载1</span>
-        <button>加入</button>
-      </div>
-      <div class="notebook">
-        <span>连载1</span>
-        <button>加入</button>
-      </div>
-      <div class="notebook">
-        <span>连载1</span>
-        <button>加入</button>
-      </div>
-      <div class="notebook">
-        <span>连载1</span>
+      <div class="notebook" v-for="notebook in notebooks" :key="notebook._id">
+        <span>{{ notebook.title }}</span>
         <button>加入</button>
       </div>
     </div>
@@ -22,7 +10,20 @@
 </template>
 
 <script>
-export default {};
+import { getAuthorNoteBooks } from "network/user.js";
+export default {
+  data() {
+    return {
+      notebooks: [],
+    };
+  },
+  async created() {
+    // 获取登录用户连载列表
+    const res = await getAuthorNoteBooks(this.$store.state.user._id);
+    this.notebooks = res.data.notebooks;
+    // console.log(res, "44444444444");
+  },
+};
 </script>
 
 <style scoped>
