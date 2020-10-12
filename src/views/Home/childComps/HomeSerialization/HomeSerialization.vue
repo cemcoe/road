@@ -2,13 +2,13 @@
   <div>
     <div class="items">
       <div class="item" v-for="notebook in notebooks" :key="notebook._id">
-        <div class="icon">
+        <div class="icon" @click="gotoNDetail(notebook._id)">
           <img src="https://cemcoe.com/m.png" alt="icon" />
         </div>
-        <div class="meta">
+        <div class="meta" @click="gotoNDetail(notebook._id)">
           {{ notebook.title }}
         </div>
-        <div class="author">
+        <div class="author" @click="gotoUDetail(notebook.author._id)">
           {{ notebook.author.name }}
         </div>
       </div>
@@ -30,6 +30,18 @@ export default {
     const res = await getNoteBookList(1, 10);
     this.notebooks = res.data.notebook;
     console.log(res);
+  },
+  methods: {
+    gotoNDetail(nid) {
+      console.log(nid);
+      const detailUrl = `/nb/${nid}`;
+      this.$router.push(detailUrl);
+    },
+    gotoUDetail(uid) {
+      console.log(uid);
+      const detailUrl = `/u/${uid}`;
+      this.$router.push(detailUrl);
+    },
   },
 };
 </script>
