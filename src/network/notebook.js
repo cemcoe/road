@@ -31,3 +31,12 @@ export function getNoteBookList(page = 1, per_page = 10) {
     }
   })
 }
+
+
+// 将文章添加到连载中
+export function addPostToNoteBook(nid, pid) {
+  return request({
+    method: "put",
+    url: `/nbs/${nid}/${pid}`,
+  })
+}
