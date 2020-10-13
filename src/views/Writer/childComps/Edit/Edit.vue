@@ -18,7 +18,7 @@
       <input
         type="text"
         class="abstract"
-        placeholder="输入摘要"
+        placeholder="输入摘要，不填将选取前100字符"
         v-model="post.abstract"
       />
       <div id="main">

@@ -14,7 +14,7 @@
       <input
         type="text"
         class="abstract"
-        placeholder="输入摘要"
+        placeholder="输入摘要，不填将选取前100个字符"
         v-model="abstract"
       />
       <div id="main">
@@ -57,7 +57,7 @@ export default {
 
   computed: {
     rightPost() {
-      return this.title && this.abstract && this.content;
+      return this.title && this.content;
     },
   },
 };
