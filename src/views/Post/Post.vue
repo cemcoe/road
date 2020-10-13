@@ -58,15 +58,6 @@ export default {
   data() {
     return {
       isShowNoteBookList: false,
-      // post: this.$store.state.post,
-      //   // author: {},
-      //   // 要拿到作者的名字
-      //   // {{post.author.name}}
-      //   // 使用{{}}双花括号在html页面进行数据绑定时，从一个对象中获取，超过两个.就报错，
-      //   // 因为获取服务器是异步的，所以 vue 先绑定数据。
-      //   // 绑定数据时，你的post赋值为空对象的话，而post里面的author属性便为 undefined，所以报"cannot read property 'name' of undefined"。
-      //   // 所以在初始化时，author 属性赋值为空对象就行了。
-      // author: this.$store.state.author,
     };
   },
   methods: {
@@ -80,12 +71,6 @@ export default {
     },
   },
   mounted() {
-    // getPostDetail(this.$route.params.id).then((res) => {
-    //   this.post = res.data.post;
-    //   this.author = res.data.post.author;
-    //   console.log(this.post);
-    // });
-
     this.$store.dispatch("getPostDetail", this.$route.params.id);
     this.$store.dispatch("getPostComments", this.$route.params.id);
   },

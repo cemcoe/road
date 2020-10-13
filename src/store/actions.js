@@ -1,6 +1,8 @@
-
-import { getUserInfo, followingUser, unfollowingUser, listfollowingUser, listfollower,
-  getUserPosts } from "network/user";
+import {
+  getUserInfo, followingUser, unfollowingUser,
+  listfollowingUser, listfollower,
+  getUserPosts
+} from "network/user";
 import { getPostDetail } from 'network/post'
 import { search } from 'network/search'
 import { getPostComments } from 'network/comment'
@@ -72,21 +74,20 @@ export default {
 
 
   // 获取文章信息
-  async getPostDetail(context, id) {
+  async getPostDetail(context, id, callback) {
     const res = await getPostDetail(id)
-    const post = res.data.post
-    const author = post.author
-    console.log(res, 'vuexxxxxxxxxxxxxxxxxxxxxxxxx')
-    // 更新文章信息
-    context.commit('set_post', post)
-    // 更新作者信息
-    context.commit('set_author', author)
+    console.log(res)
+    if (res.status === 200) {
+      const post = res.data.post
+      const author = post.author
+      // 更新文章信息
+      context.commit('set_post', post)
+      // 更新作者信息
+      context.commit('set_author', author)
+    } else if (res.status === 404) {
+      console.log('该id没有对应文章')
+    }
   },
-  // (this.$route.params.id).then((res) => {
-  //   this.post = res;
-  //   this.author = res.author;
-  //   console.log(this.post);
-  // });
 
   // 获取作者信息，通过url获取id
   async getAuthorInfo(context, id) {
@@ -97,7 +98,7 @@ export default {
 
   // 获取文章评论
   async getPostComments(context, postId) {
-    const result = await getPostComments(postId) 
+    const result = await getPostComments(postId)
     const postComments = result.data.comments
     // console.log(comments)
     // 触发mutations更改state
