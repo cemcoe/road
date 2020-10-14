@@ -2,10 +2,12 @@
   <div class="info">
     <div class="left">
       <!-- TODO 后端添加字段 -->
-      字数111-阅读111
+      <span>字数{{ postInfo.wordcount }} </span>
+      <span> 阅读111</span>
+      <!-- 字数111-阅读111 -->
     </div>
     <div class="right">
-      {{ postInfo }}
+      {{ postInfo.createdAt }}
     </div>
   </div>
 </template>
@@ -13,9 +15,7 @@
 <script>
 export default {
   props: {
-    postInfo: {
-      // 2020-09-18T07:01:04.609Z
-    },
+    postInfo: {},
   },
 };
 </script>

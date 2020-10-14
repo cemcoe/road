@@ -8,7 +8,7 @@
 
       <author-info :authorInfo="author"></author-info>
 
-      <post-info :postInfo="post.createdAt"></post-info>
+      <post-info :postInfo="post"></post-info>
 
       <hr />
 
