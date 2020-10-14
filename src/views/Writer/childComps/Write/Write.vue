@@ -1,24 +1,20 @@
 <template>
   <div>
+    <write-header @preview="preview" @publish="publish"></write-header>
     <div class="write">
-      <!-- 写新文章 -->
-      <button
-        @click="btnClick"
-        :disabled="!rightPost"
-        :class="{ on: rightPost }"
-      >
-        提交，确保内容填写完整，否则无法提交
-        {{ $route.params.id }}
-      </button>
-      <input type="text" class="title" placeholder="输入标题" v-model="title" />
-      <input
+      <textarea
         type="text"
-        class="abstract"
-        placeholder="输入摘要，不填将选取前100个字符"
-        v-model="abstract"
+        class="title"
+        placeholder="请输入标题"
+        v-model="title"
       />
       <div id="main">
-        <mavon-editor :subfield="false" v-model="content" />
+        <mavon-editor
+          :subfield="false"
+          :toolbarsFlag="false"
+          placeholder="请输入正文"
+          v-model="content"
+        />
       </div>
     </div>
   </div>
@@ -26,21 +22,21 @@
 
 <script>
 import { createPost } from "network/post";
+import WriteHeader from "./childComps/WriteHeader/WriteHeader";
 export default {
   data() {
     return {
       title: "",
-      abstract: "",
       content: "",
     };
   },
+  components: {
+    WriteHeader,
+  },
   methods: {
-    btnClick() {
-      // 将文章传到后端
-      // 这里格式
+    createNewPost() {
       let post = {
         title: this.title,
-        abstract: this.abstract,
         content: this.content,
       };
       createPost(post).then((res) => {
@@ -53,34 +49,39 @@ export default {
         }, 1000);
       });
     },
-  },
 
-  computed: {
+    // 检查内容是否填写完整
     rightPost() {
       return this.title && this.content;
     },
+
+    preview() {
+      if (!this.rightPost()) {
+        this.$toast.show("哇哦，内容没有填写完整");
+      } else {
+        this.$toast.show("还没写呢");
+      }
+    },
+    publish() {
+      // this.$toast.show("父组件接受到publish事件");
+      // 发布前检查
+      if (!this.rightPost()) {
+        this.$toast.show("哇哦，内容没有填写完整");
+      } else {
+        this.createNewPost();
+      }
+    },
   },
+
+  computed: {},
 };
 </script>
 
 <style scoped>
-input,
 textarea {
-  display: block;
+  width: 98%;
   margin: 0 auto;
-  margin-bottom: 10px;
-}
-textarea {
-  padding: 4px;
-  height: 300px;
-}
-
-button {
-  width: 100%;
-  height: 44px;
-  margin-bottom: 10px;
-}
-.on {
-  background-color: green;
+  padding: 10px;
+  border: 0;
 }
 </style>
