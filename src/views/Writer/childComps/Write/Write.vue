@@ -83,5 +83,6 @@ textarea {
   margin: 0 auto;
   padding: 10px;
   border: 0;
+  box-sizing: border-box;
 }
 </style>
