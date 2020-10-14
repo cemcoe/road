@@ -1,18 +1,21 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left" @click="more">扫一扫</div>
-      <div slot="center">
-        我的
+      <div slot="left" @click="more">
+        <cem-icon name="scann"></cem-icon>
       </div>
+      <div slot="center">我的</div>
       <div slot="right">
-        <router-link to="/writer">写</router-link>
+        <router-link to="/writer">
+          <cem-icon name="write"></cem-icon
+        ></router-link>
       </div>
     </nav-bar>
   </div>
 </template>
 
 <script>
+import CemIcon from "components/common/icon/Icon";
 import NavBar from "components/common/navbar/NavBar";
 export default {
   name: "ProfileHeader",
@@ -20,6 +23,7 @@ export default {
   created() {},
   components: {
     NavBar,
+    CemIcon,
   },
   methods: {
     more() {

@@ -5,9 +5,18 @@
         <input type="text" v-model="content" placeholder="说点什么吧啊" />
       </div>
       <div class="right">
-        <span @click="commentSubmit">评论 </span>
-        <span>点赞</span>
-        <span>分享</span>
+        <div @click="commentSubmit" class="item">
+          <cem-icon name="comment"></cem-icon>
+          <span>评论</span>
+        </div>
+        <div class="item">
+          <cem-icon name="like"></cem-icon>
+          <span>喜欢</span>
+        </div>
+        <div class="item">
+          <cem-icon name="share"></cem-icon>
+          <span>分享</span>
+        </div>
       </div>
     </div>
   </div>
@@ -15,6 +24,7 @@
 
 <script>
 import { createPostComment } from "network/comment";
+import CemIcon from "components/common/icon/Icon";
 export default {
   props: {
     postId: {},
@@ -23,6 +33,9 @@ export default {
     return {
       content: "",
     };
+  },
+  components: {
+    CemIcon,
   },
   methods: {
     async commentSubmit() {
@@ -78,12 +91,18 @@ input {
   padding: 6px;
   outline-style: none;
   width: 90%;
-
-  background-color: rgb(243, 237, 237);
-  /* border: 1px solid #ccc; */
+  background-color: rgb(199, 191, 191);
 }
 
 input:focus {
   background-color: #fff;
+}
+
+.right span {
+  font-size: 12px;
+}
+
+.right .item {
+  text-align: center;
 }
 </style>

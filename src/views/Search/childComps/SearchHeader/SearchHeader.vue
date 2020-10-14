@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left" @click="$router.back()">返回</div>
+      <div slot="left" @click="$router.back()">
+        <cem-icon name="back"></cem-icon>
+      </div>
       <div slot="center">
         <router-link to="/search">
           <input
@@ -14,7 +16,7 @@
       </div>
       <div slot="right">
         <button @click="readySearch">
-          搜索
+          <cem-icon name="search"></cem-icon>
         </button>
       </div>
     </nav-bar>
@@ -23,25 +25,23 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import CemIcon from "components/common/icon/Icon";
 export default {
   name: "SearchHeader",
   data() {
     return {
-      key: '', // 搜索词
-    }
-  },
-  methods: {
-    readySearch() {
-      console.log('子组件准备搜索: ', this.key)
-      this.$emit('readySearch', this.key)
-    }
-
-  },
-  created() {
-
+      key: "", // 搜索词
+    };
   },
   components: {
     NavBar,
+    CemIcon,
+  },
+  methods: {
+    readySearch() {
+      console.log("子组件准备搜索: ", this.key);
+      this.$emit("readySearch", this.key);
+    },
   },
   computed: {},
 };
@@ -64,5 +64,4 @@ input:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
     0 0 8px rgba(102, 175, 233, 0.6);
 }
-
 </style>

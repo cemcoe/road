@@ -1,9 +1,11 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left" @click="$router.back()">返回</div>
+      <div slot="left" @click="$router.back()">
+        <cem-icon name="back"></cem-icon>
+      </div>
       <div slot="right">
-        <div class="more" @click="more">更多</div>
+        <div class="more" @click="more"><cem-icon name="more"></cem-icon></div>
         <div class="menu" v-show="isShowMenu">
           <!-- v-if="$store.getters.isAuthor()" -->
           <!-- 文章所有者 -->
@@ -27,6 +29,7 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import CemIcon from "components/common/icon/Icon";
 export default {
   name: "PostHeader",
   data() {
@@ -36,6 +39,7 @@ export default {
   },
   components: {
     NavBar,
+    CemIcon,
   },
   methods: {
     more() {
@@ -48,9 +52,8 @@ export default {
     },
     addPostToNoteBook() {
       // 向父组件传递数据
-      this.$emit('addPostToNoteBook')
-      this.isShowMenu = false
-
+      this.$emit("addPostToNoteBook");
+      this.isShowMenu = false;
     },
     unable() {
       this.$toast.show("还没写呢，点点编辑试一试");
@@ -75,7 +78,6 @@ export default {
 .menu li {
   line-height: 30px;
   padding: 6px;
-
 }
 
 .enable {

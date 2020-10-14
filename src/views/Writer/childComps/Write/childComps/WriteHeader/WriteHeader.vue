@@ -2,8 +2,10 @@
   <div class="container">
     <nav-bar>
       <div slot="left">
-        <button @click="$router.back()">返回</button>
-        <span>{{0}}字</span>
+        <button @click="$router.back()">
+          <cem-icon name="back"></cem-icon>
+        </button>
+        <span>{{ 0 }}字</span>
       </div>
 
       <div slot="right">
@@ -16,6 +18,7 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import CemIcon from "components/common/icon/Icon";
 export default {
   name: "WriteHeader",
   data() {
@@ -23,6 +26,7 @@ export default {
   },
   components: {
     NavBar,
+    CemIcon,
   },
   methods: {
     preview() {

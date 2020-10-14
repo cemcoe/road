@@ -1,12 +1,16 @@
 <template>
-  <!-- TODO：将write按钮抽离成一个content组件 -->
   <div class="write">
-    <router-link to="/writer">写</router-link>
+    <router-link to="/writer"> <cem-icon name="write"></cem-icon></router-link>
   </div>
 </template>
 
 <script>
-export default {};
+import CemIcon from "components/common/icon/Icon";
+export default {
+  components: {
+    CemIcon,
+  },
+};
 </script>
 
 
@@ -24,13 +28,12 @@ export default {};
   text-align: center;
   padding: 10px;
   /* box-shadow: 0 0 40px rgb(8, 8, 8); */
-  box-shadow:4px 4px 6px #666,10px 10px 50px 10px inset;
+  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 .write a {
   width: 100%;
   height: 100%;
   display: block;
   color: #fff;
-
 }
 </style>

@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left" @click="$router.back()">返回</div>
+      <div slot="left" @click="$router.back()">
+        <cem-icon name="back"></cem-icon>
+      </div>
       <div slot="right">
-        <button @click="more">搜索 更多</button>
+        <button @click="$router.push('/search')">
+          <cem-icon name="search"></cem-icon>
+        </button>
+        <button @click="more"><cem-icon name="more"></cem-icon></button>
       </div>
     </nav-bar>
   </div>
@@ -11,19 +16,19 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import CemIcon from "components/common/icon/Icon";
 export default {
   name: "AuthorHeader",
-  methods: {
-  },
+  methods: {},
   created() {},
   components: {
     NavBar,
+    CemIcon,
   },
   methods: {
     more() {
-      this.$toast.show('还没写呢')
-
-    }
+      this.$toast.show("还没写呢");
+    },
   },
   computed: {},
 };
