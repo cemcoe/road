@@ -16,6 +16,17 @@ Vue.use(toast)
 
 Vue.use(Button);
 
+
+// 图片懒加载
+import VueLazyload from 'vue-lazyload'
+
+import loading from './assets/img/loading/loading.gif'
+Vue.use(VueLazyload, {
+  loading,
+  
+})
+
+
 Vue.config.productionTip = false
 
 import './assets/css/reset.css'

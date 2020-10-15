@@ -23,7 +23,7 @@
             <div class="text">
               {{ post.abstract }}
             </div>
-            <img :src="imgs[0]" alt="imgs" />
+            <img v-lazy="imgs[0]" alt="imgs" />
             <!-- 文章中有{{imgs.length}}张图片 -->
           </div>
         </router-link>
@@ -34,7 +34,7 @@
       <div class="more-pic" v-if="imgsLinkLength >= 3">
         <router-link :to="postUrl">
           <div class="content">
-            <img v-for="img in imgs" :src="img" alt="img" />
+            <img v-for="img in imgs" v-lazy="img" alt="img" />
           </div>
         </router-link>
       </div>
