@@ -15,12 +15,6 @@
         placeholder="输入标题"
         v-model="post.title"
       />
-      <input
-        type="text"
-        class="abstract"
-        placeholder="输入摘要，不填将选取前100字符"
-        v-model="post.abstract"
-      />
       <div id="main">
         <mavon-editor :subfield="false" v-model="post.content" />
       </div>
@@ -49,7 +43,6 @@ export default {
       // 这里格式
       let post = {
         title: this.$store.state.post.title,
-        abstract: this.$store.state.post.abstract,
         content: this.$store.state.post.content,
       };
       console.log(post);
@@ -71,7 +64,6 @@ export default {
     rightPost() {
       return (
         this.$store.state.post.title &&
-        this.$store.state.post.abstract &&
         this.$store.state.post.content
       );
     },
