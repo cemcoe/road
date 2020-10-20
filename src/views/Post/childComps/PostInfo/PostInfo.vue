@@ -1,10 +1,8 @@
 <template>
   <div class="info">
     <div class="left">
-      <!-- TODO 后端添加字段 -->
-      <span>字数{{ postInfo.wordcount }} </span>
-      <span> 阅读111</span>
-      <!-- 字数111-阅读111 -->
+      <span>字数 {{ postInfo.wordcount }} - </span>
+      <span>阅读 111</span>
     </div>
     <div class="right">
       {{ postInfo.createdAt }}

@@ -16,7 +16,7 @@
         v-if="!$store.getters.isFollowingAuthor(author)"
         @click="followingUser(author._id)"
       >
-        关注
+        + 关注
       </button>
       <button v-else @click="unfollowingUser(author._id)">取消关注</button>
     </div>
@@ -44,6 +44,10 @@ export default {
 </script>
 
 <style scoped>
+button {
+  border: none;
+  outline: none;
+}
 .container {
   padding-top: 6px;
   padding-bottom: 6px;
@@ -60,6 +64,11 @@ export default {
   margin-left: 10px;
   display: flex;
   align-items: center;
+}
+
+.author-info .username a {
+  color: #000;
+  font-size: 14px;
 }
 
 .avatar {
@@ -84,10 +93,12 @@ img {
 }
 
 .follow button {
-  background-color: green;
+  background-color: rgb(38, 148, 38);
   margin-right: 10px;
-  width: 60px;
+  width: 80px;
+  padding: 6px 8px;
   text-align: center;
   color: aliceblue;
+  border-radius: 20px;
 }
 </style>

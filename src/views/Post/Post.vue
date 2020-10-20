@@ -10,8 +10,6 @@
 
       <post-info :postInfo="post"></post-info>
 
-      <hr />
-
       <post-content :postContent="post.content"></post-content>
 
       <post-comments :postComments="postComments"></post-comments>
@@ -90,6 +88,8 @@ export default {
 <style scoped>
 h2 {
   padding: 10px;
+  font-weight: 700;
+  line-height: 22px;
 }
 .overlay {
   position: fixed;

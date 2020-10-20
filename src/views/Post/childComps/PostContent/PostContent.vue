@@ -6,6 +6,7 @@
       :boxShadow="false"
       defaultOpen="preview"
       :toolbarsFlag="false"
+      previewBackground="#fff"
       ref="md"
     />
   </div>
@@ -22,7 +23,8 @@ export default {
 
 <style scoped>
 /* 穿透，覆盖组件的padding */
-.content >>> .v-note-wrapper .v-note-panel .v-note-show .v-show-content, .v-note-wrapper .v-note-panel .v-note-show .v-show-content-html {
+.content >>> .v-note-wrapper .v-note-panel .v-note-show .v-show-content,
+.v-note-wrapper .v-note-panel .v-note-show .v-show-content-html {
   padding: 0px 10px 15px 10px;
 }
 

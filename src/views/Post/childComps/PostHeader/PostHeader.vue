@@ -20,6 +20,9 @@
           <ul v-else>
             <li>收藏</li>
             <li>分享</li>
+            <li>收入专题</li>
+            <li>显示模式</li>
+            <li>举报</li>
           </ul>
         </div>
       </div>
@@ -78,6 +81,7 @@ export default {
 .menu li {
   line-height: 30px;
   padding: 6px;
+  text-align: left;
 }
 
 .enable {

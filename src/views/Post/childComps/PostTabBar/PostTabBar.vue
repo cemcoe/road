@@ -70,7 +70,7 @@ export default {
   left: 0;
   right: 0;
   display: flex;
-  background-color: rgb(243, 236, 236);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 0 6px #000;
   align-items: center;
 }
@@ -88,14 +88,12 @@ input {
   border-radius: 20px;
   margin-left: 10px;
   box-sizing: border-box;
-  padding: 6px;
+  padding: 6px 16px;
+  font-size: 14px;
+
   outline-style: none;
   width: 90%;
-  background-color: rgb(199, 191, 191);
-}
-
-input:focus {
-  background-color: #fff;
+  background-color: rgb(240, 231, 231);
 }
 
 .right span {
