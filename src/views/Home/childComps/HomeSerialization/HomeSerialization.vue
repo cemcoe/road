@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="items">
+    <div class="items" v-if="notebooks.length">
       <div class="item" v-for="notebook in notebooks" :key="notebook._id">
         <div class="icon" @click="gotoNDetail(notebook._id)">
-          <img src="https://cemcoe.com/m.png" alt="icon" />
+          <img v-lazy="notebook.icon" alt="icon" />
         </div>
         <div class="meta" @click="gotoNDetail(notebook._id)">
           {{ notebook.title }}
@@ -13,17 +13,24 @@
         </div>
       </div>
     </div>
+    <div class="loading" v-else>
+      <loading></loading>
+    </div>
   </div>
 </template>
 
 <script>
 import { getNoteBookList } from "network/notebook.js";
+import Loading from "components/common/loading/Loading";
 
 export default {
   data() {
     return {
       notebooks: [],
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     // 获取连载列表
@@ -54,31 +61,36 @@ export default {
   justify-content: center;
 }
 .item {
-  background-color: rgb(238, 235, 243);
-  box-shadow: 0 0 4px rgb(224, 220, 220);
+  /* background-color: rgb(238, 235, 243); */
+  /* box-shadow: 0 0 4px rgb(224, 220, 220); */
   border-radius: 4px;
 }
 
 .item .icon {
   padding-top: 6px;
   padding-bottom: 6px;
-  height: 120px;
+  /* height: 120px; */
   display: flex;
   justify-content: center;
 }
 .icon img {
-  width: 80%;
+ width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
   background-color: #fff;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+  border-radius: 6px;
 }
 
 .item .meta {
   font-size: 16px;
   padding: 6px;
+  height: 40px;
 }
 
 .item .author {
-  padding: 6px;
+  padding-left: 6px;
   font-size: 12px;
   color: rgba(34, 33, 33, 0.5);
 }
