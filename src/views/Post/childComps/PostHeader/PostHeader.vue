@@ -27,6 +27,11 @@
         </div>
       </div>
     </nav-bar>
+    <div
+        class="overlay"
+        v-show="isShowMenu"
+        @click="more"
+      ></div>
   </div>
 </template>
 
@@ -37,7 +42,8 @@ export default {
   name: "PostHeader",
   data() {
     return {
-      isShowMenu: false, // 是否展示菜单
+      isShowMenu: false, // 是否展示菜单遮罩
+      
     };
   },
   components: {
@@ -75,7 +81,7 @@ export default {
   right: 0;
   top: 44px;
   background-color: rgb(226, 217, 217);
-  z-index: 1504;
+  z-index: 3504;
   min-width: 80px;
 }
 .menu li {
@@ -87,5 +93,17 @@ export default {
 .enable {
   /* 可以使用 */
   background-color: rgb(245, 235, 235);
+}
+
+
+.overlay {
+  position: fixed;
+  top: 44px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2999;
+  background-color: #000;
+  opacity: 0.8;
 }
 </style>
