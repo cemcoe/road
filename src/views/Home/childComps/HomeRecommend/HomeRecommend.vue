@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recommend">
     <div class="post-list" v-if="postList.length" @scroll="onScroll">
       <post-list :postList="postList"></post-list>
     </div>
@@ -88,15 +88,23 @@ export default {
 </script>
 
 <style scoped>
+/* .recommend {
+  position: relative;
+  background-color: #fff;
+  height: 100px;
+} */
 .post-list {
   background-color: rgb(243, 243, 243);
-  position: absolute;
+  max-width: 500px;
+  /* position: absolute;
   top: 84px;
   left: 0;
   right: 0;
-  bottom: 49px;
+  bottom: 49px; */
+  
+  /* transform: translateX(50%); */
 
-  /* height: calc(100vh - 44px - 49px); */
+  height: calc(100vh - 44px - 49px);
   overflow-y: scroll;
 }
 </style>

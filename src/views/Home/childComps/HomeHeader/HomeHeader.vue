@@ -68,24 +68,10 @@ input:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
     0 0 8px rgba(102, 175, 233, 0.6);
 }
-/* 
-.user-info {
-  background-color: rgb(232, 232, 243);
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #f40;
-  border-radius: 50%;
-}  */
 .login {
   font-size: 14px;
 }
 img {
-  position: absolute;
-  top: 2px;
-  right: 12px;
   width: 40px;
   height: 40px;
   border-radius: 50%;

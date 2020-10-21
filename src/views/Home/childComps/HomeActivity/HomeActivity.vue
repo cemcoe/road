@@ -49,10 +49,11 @@ export default {
   margin-top: 10px;
   box-shadow: 1px 1px 4px rgb(182, 178, 178);
 }
+
+
 .activity img {
-  width: 100%;
-  height: 30vw;
-  border-radius: 6px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .meta div {
