@@ -2,7 +2,7 @@
   <div class="info">
     <div class="left">
       <span>字数 {{ postInfo.wordcount }} - </span>
-      <span>阅读 111</span>
+      <span>阅读 {{ postInfo.viewcount }}</span>
     </div>
     <div class="right">
       {{ postInfo.createdAt }}
