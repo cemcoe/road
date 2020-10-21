@@ -49,7 +49,7 @@
 
       <span class="creat-date">{{ createDate }}</span>
       <span>0阅读</span>
-      <span>0评论</span>
+      <span>{{ post.commentcount }} 评论</span>
       <span>0赞</span>
     </div>
   </div>
