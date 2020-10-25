@@ -6,6 +6,15 @@
     <div v-else>
       <loading></loading>
     </div>
+
+    <transition name="fade">
+      <alert-tip
+        :alertText="alertText"
+        @closeTip="closeTip"
+        v-if="isShowAlert"
+      ></alert-tip>
+    </transition>
+
     <go-writer-button />
   </div>
 </template>
@@ -13,6 +22,7 @@
 <script>
 import PostList from "components/content/postList/PostList";
 import Loading from "components/common/loading/Loading";
+import AlertTip from "components/common/AlertTip/AlertTip";
 import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 import { getHomePostList } from "network/post";
 
@@ -24,15 +34,29 @@ export default {
     PostList,
     Loading,
     GoWriterButton,
+    AlertTip,
   },
   data() {
     return {
       postList: [],
       currentPage: 1,
       perPage: 10,
+      isShowAlert: true,
+      alertText: `
+      本项目是一个移动端项目，使用视口在 500px 以内的设备访问以获得更好的访问体验。
+      再次提醒，
+      网站文章数据由狗屁不通文章生成器生成，
+      不具有任何的价值，
+      仅供占位测试使用，亦不代表本人观点。
+      `,
     };
   },
   methods: {
+    closeTip() {
+      this.isShowAlert = false;
+      // 不展示弹出内容
+    },
+
     async loadmore() {
       // 当前的页数加1
       // 将新页数的数据追加
@@ -53,7 +77,7 @@ export default {
         return;
       }
     },
-    onScroll: _throttle(function() {
+    onScroll: _throttle(function () {
       // 上拉加载更多
       console.log("页面进行滚动");
       const postList = document.querySelector(".post-list");
@@ -93,5 +117,13 @@ export default {
 
   height: calc(100vh - 44px - 49px);
   overflow-y: scroll;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
