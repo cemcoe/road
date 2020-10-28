@@ -5,14 +5,7 @@
         <cem-icon name="back"></cem-icon>
       </div>
       <div slot="center">
-        <router-link to="/search">
-          <input
-            class="search"
-            type="text"
-            placeholder="搜索文章专题用户文集"
-            v-model="key"
-          />
-        </router-link>
+        <cem-input placeholder="搜索文章专题用户文集" v-model="key"></cem-input>
       </div>
       <div slot="right">
         <button @click="readySearch">
@@ -26,6 +19,7 @@
 <script>
 import NavBar from "components/common/navbar/NavBar";
 import CemIcon from "components/common/icon/Icon";
+import CemInput from "components/common/Input/Input";
 export default {
   name: "SearchHeader",
   data() {
@@ -36,6 +30,7 @@ export default {
   components: {
     NavBar,
     CemIcon,
+    CemInput,
   },
   methods: {
     readySearch() {
@@ -48,20 +43,4 @@ export default {
 </script>
 
 <style scoped>
-input {
-  border: 0px;
-  border-radius: 20px;
-  padding: 6px;
-  outline-style: none;
-  background-color: rgb(243, 237, 237);
-}
-
-input:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-}
 </style>

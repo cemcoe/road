@@ -4,7 +4,8 @@
       <div slot="left">cemcoe</div>
       <div slot="center">
         <router-link to="/search">
-          <input class="search" type="text" placeholder="搜索感兴趣的内容" />
+          <!-- <input class="search" type="text" placeholder="搜索感兴趣的内容" /> -->
+          <cem-input placeholder="搜索感兴趣的内容"></cem-input>
         </router-link>
       </div>
       <div slot="right">
@@ -25,18 +26,15 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import CemInput from "components/common/Input/Input";
 export default {
   name: "HomeHeader",
-  methods: {
-    // goto_profile() {
-    //   this.$router.push("/u/" + this.$store.state.user._id);
-    // },
+  components: {
+    NavBar,
+    CemInput,
   },
   created() {
     console.log(this.$store.state.user);
-  },
-  components: {
-    NavBar,
   },
   computed: {
     user() {
@@ -50,24 +48,6 @@ export default {
 </script>
 
 <style scoped>
-input {
-  border: 0px;
-  border-radius: 20px;
-  padding: 6px;
-  outline-style: none;
-  text-align: center;
-  background-color: rgb(243, 237, 237);
-  /* border: 1px solid #ccc; */
-}
-
-input:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-}
 .login {
   font-size: 14px;
 }
