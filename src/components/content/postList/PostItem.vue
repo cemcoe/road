@@ -42,15 +42,15 @@
 
     <div class="meta">
       <span>
-        <router-link :to="authorUrl" class="nickname">{{
+        <router-link :to="authorUrl" class="nickname font10px">{{
           post.author.name
         }}</router-link>
       </span>
 
-      <span class="creat-date">{{ createDate }}</span>
-      <span>{{ post.viewcount }} 阅读</span>
-      <span>{{ post.commentcount }} 评论</span>
-      <span>0赞</span>
+      <span class="creat-date font10px">{{ createDate }}</span>
+      <span class="font10px">{{ post.viewcount }} 阅读</span>
+      <span class="font10px">{{ post.commentcount }} 评论</span>
+      <span class="font10px">0赞</span>
     </div>
   </div>
 </template>
@@ -112,7 +112,7 @@ export default {
   color: rgb(97, 101, 105);
   /* margin-top: 12px;
   margin-bottom: 12px; */
-  line-height: 26px;
+  line-height: 28px;
   /* 多行文本截断 */
   display: -webkit-box;
   overflow: hidden;
@@ -122,10 +122,17 @@ export default {
 
 .one-pic .content {
   display: flex;
+  justify-content: space-between;
+}
+
+.one-pic .text {
+  padding-right: 10px;
 }
 
 .one-pic img {
-  width: 120px;
+  width: 33%;
+  /* padding-left: 10px; */
+  border-radius: 6px;
 }
 
 .more-pic .content {
@@ -134,11 +141,20 @@ export default {
 }
 .more-pic .content img {
   width: 33%;
+  border-radius: 6px;
 }
 .meta {
-  font-size: 14px;
-  color: #b4b4b4;
+  color: #c7c4c4;
   padding-right: 12px;
+  /* font-size: 12px; */
+}
+
+/* // 10px小字体 */
+.font10px {
+  display: inline-block;
+  font-size: 12px;
+  transform: scale(0.83, 0.83);
+  *font-size: 10px;
 }
 
 .meta span {
