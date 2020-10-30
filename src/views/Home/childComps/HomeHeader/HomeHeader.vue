@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left">cemcoe</div>
+      <div slot="left">
+        <a href="https://github.com/cemcoe/jianshu_client">cemcoe</a>
+      </div>
       <div slot="center">
         <router-link to="/search">
-          <!-- <input class="search" type="text" placeholder="搜索感兴趣的内容" /> -->
           <cem-input placeholder="搜索感兴趣的内容"></cem-input>
         </router-link>
       </div>
@@ -52,8 +53,9 @@ export default {
   font-size: 14px;
 }
 img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  /* border-radius: 50%; */
+  border-radius: 4px;
 }
 </style>
