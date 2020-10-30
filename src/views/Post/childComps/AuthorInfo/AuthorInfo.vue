@@ -11,7 +11,8 @@
       </div>
     </div>
 
-    <div class="follow">
+    <div class="follow" v-if="this.$store.user">
+      <!-- 用户登录时才能关注和取消关注 -->
       <button
         v-if="!$store.getters.isFollowingAuthor(author)"
         @click="followingUser(author._id)"

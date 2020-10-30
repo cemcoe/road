@@ -2,7 +2,8 @@
   <div class="box">
     <div class="container">
       <div class="left">
-        <input type="text" v-model="content" placeholder="说点什么吧啊" />
+        <input v-if="this.$store.user" type="text" v-model="content" placeholder="说点什么吧啊" />
+        <input v-else type="text" v-model="content" placeholder="您还没有登录，无法评论" disabled />
       </div>
       <div class="right">
         <div @click="commentSubmit" class="item">

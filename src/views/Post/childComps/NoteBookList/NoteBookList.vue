@@ -24,9 +24,12 @@ export default {
   },
   async created() {
     // 获取登录用户连载列表
-    const res = await getAuthorNoteBooks(this.$store.state.user._id);
-    this.notebooks = res.data.notebooks;
-    // console.log(res, "44444444444");
+    if (this.$store.state.user._id) {
+      const res = await getAuthorNoteBooks(this.$store.state.user._id);
+      this.notebooks = res.data.notebooks;
+    } else {
+      console.warn("还没有登录，无法获取用户的连载信息");
+    }
   },
   methods: {
     async add(notebookid) {
