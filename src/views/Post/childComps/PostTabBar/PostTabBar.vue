@@ -3,7 +3,7 @@
     <div class="container">
       <div class="left">
         <input
-          v-if="$store.state.user"
+          v-if="$store.state.user._id"
           type="text"
           v-model="content"
           placeholder="说点什么吧啊"
