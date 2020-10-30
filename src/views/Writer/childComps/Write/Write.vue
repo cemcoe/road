@@ -28,6 +28,7 @@ export default {
     return {
       title: "",
       content: "",
+      status: 1,
     };
   },
   components: {
@@ -35,9 +36,11 @@ export default {
   },
   methods: {
     createNewPost() {
+      // 发布文章
       let post = {
         title: this.title,
         content: this.content,
+        status: this.status,
       };
       createPost(post).then((res) => {
         console.log("文章创建成功", res);
@@ -59,7 +62,12 @@ export default {
       if (!this.rightPost()) {
         this.$toast.show("哇哦，内容没有填写完整");
       } else {
-        this.$toast.show("还没写呢");
+        this.$toast.show("还没写呢，私密文章保存成功，不会出现在首页");
+        // 更改文章status
+        this.status = -1;
+        setInterval(() => {
+          this.createNewPost();
+        }, 1000);
       }
     },
     publish() {
