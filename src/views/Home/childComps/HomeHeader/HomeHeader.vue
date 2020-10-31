@@ -4,9 +4,9 @@
       <div slot="left">
         <a href="https://github.com/cemcoe/jianshu_client">cemcoe</a>
       </div>
-      <div slot="center">
+      <div slot="center" class="search">
         <router-link to="/search">
-          <cem-input placeholder="搜索感兴趣的内容"></cem-input>
+          <button>搜索感兴趣的内容</button>
         </router-link>
       </div>
       <div slot="right">
@@ -57,5 +57,17 @@ img {
   height: 26px;
   /* border-radius: 50%; */
   border-radius: 4px;
+}
+
+.search button {
+  width: 90%;
+  border: 0px;
+  border-radius: 6px;
+  padding: 6px;
+  outline-style: none;
+  text-align: center;
+  background-color: rgb(243, 237, 237);
+  font-size: 12px;
+  letter-spacing: 2px;
 }
 </style>
