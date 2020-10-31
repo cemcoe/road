@@ -13,7 +13,7 @@
         </router-link>
         <div class="follow">
           <router-link to="/following">
-            <span class="follower">关注 {{followingUsers.length}}</span>
+            <span class="follower">关注 {{ followingUsers.length }}</span>
           </router-link>
 
           <span class="fans">粉丝 233</span>
@@ -28,7 +28,10 @@
 
     <div class="mine">
       <ul>
-        <li>我的文章</li>
+        <li>
+          <router-link to="/mypost">我的文章</router-link>
+        </li>
+        
         <li>我的贴子</li>
         <li>赞和收藏</li>
         <li>我的书架</li>
