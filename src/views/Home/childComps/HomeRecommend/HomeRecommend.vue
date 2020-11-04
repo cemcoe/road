@@ -26,6 +26,8 @@ import AlertTip from "components/common/AlertTip/AlertTip";
 import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 import { getHomePostList } from "network/post";
 
+import { getAnnouncementDetail } from "network/announcement";
+
 import { _throttle } from "@/utils/gloal";
 
 export default {
@@ -40,20 +42,21 @@ export default {
     return {
       postList: [],
       currentPage: 0,
-      isShowAlert: true,
-      alertText: `
-      本项目是一个移动端项目，使用视口在 500px 以内的设备访问以获得更好的访问体验。
-      再次提醒，
-      网站文章数据由狗屁不通文章生成器生成，
-      不具有任何的价值，
-      仅供占位测试使用，亦不代表本人观点。
-      `,
+      isShowAlert: false,
+      alertText: '',
     };
   },
   methods: {
     closeTip() {
       this.isShowAlert = false;
       // 不展示弹出内容
+    },
+
+    async getAnnouncement() {
+      const res = await getAnnouncementDetail();
+      const announcement = res.data.announcement.content
+      this.alertText = announcement
+      this.isShowAlert = true
     },
 
     async loadmore() {
@@ -94,6 +97,7 @@ export default {
     }, 800),
   },
   created() {
+    this.getAnnouncement();
     this.loadmore();
   },
 };
