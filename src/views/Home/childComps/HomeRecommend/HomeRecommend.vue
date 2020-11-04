@@ -62,10 +62,7 @@ export default {
       // console.log(this.currentPage);
       this.currentPage++;
       const res = await getHomePostList(this.currentPage);
-      console.log(
-        res,
-        this.currentPage
-      );
+      console.log(res, this.currentPage);
       if (res.status === 404) {
         this.$toast.show("没有数据了", 2000);
         return;
@@ -76,15 +73,15 @@ export default {
       }
     },
 
-
     onScroll: _throttle(function () {
       // 上拉加载更多
-      console.log("页面进行滚动");
+
       const postList = document.querySelector(".post-list");
 
-      let clientHeight = postList.clientHeight;
-      let scrollHeight = postList.scrollHeight;
-      let scrollTop = postList.scrollTop;
+      console.log("页面进行滚动");
+
+      let { clientHeight, scrollHeight, scrollTop } = postList;
+
       console.log(clientHeight, scrollHeight, scrollTop);
 
       let distance = 220; //距离底部还有220的时候，开始触发；
@@ -97,7 +94,7 @@ export default {
     }, 800),
   },
   created() {
-    this.loadmore()
+    this.loadmore();
   },
 };
 </script>
