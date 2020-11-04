@@ -6,15 +6,6 @@
     <div v-else>
       <loading></loading>
     </div>
-
-    <transition name="fade">
-      <alert-tip
-        :alertText="alertText"
-        @closeTip="closeTip"
-        v-if="isShowAlert"
-      ></alert-tip>
-    </transition>
-
     <go-writer-button />
   </div>
 </template>
@@ -22,11 +13,8 @@
 <script>
 import PostList from "components/content/postList/PostList";
 import Loading from "components/common/loading/Loading";
-import AlertTip from "components/common/AlertTip/AlertTip";
 import GoWriterButton from "components/content/goWriterButton/GoWriterButton";
 import { getHomePostList } from "network/post";
-
-import { getAnnouncementDetail } from "network/announcement";
 
 import { _throttle } from "@/utils/gloal";
 
@@ -36,29 +24,14 @@ export default {
     PostList,
     Loading,
     GoWriterButton,
-    AlertTip,
   },
   data() {
     return {
       postList: [],
       currentPage: 0,
-      isShowAlert: false,
-      alertText: '',
     };
   },
   methods: {
-    closeTip() {
-      this.isShowAlert = false;
-      // 不展示弹出内容
-    },
-
-    async getAnnouncement() {
-      const res = await getAnnouncementDetail();
-      const announcement = res.data.announcement.content
-      this.alertText = announcement
-      this.isShowAlert = true
-    },
-
     async loadmore() {
       // 当前的页数加1
       // 将新页数的数据追加
@@ -97,7 +70,6 @@ export default {
     }, 800),
   },
   created() {
-    this.getAnnouncement();
     this.loadmore();
   },
 };
