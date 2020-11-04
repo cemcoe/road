@@ -39,8 +39,7 @@ export default {
   data() {
     return {
       postList: [],
-      currentPage: 1,
-      perPage: 10,
+      currentPage: 0,
       isShowAlert: true,
       alertText: `
       本项目是一个移动端项目，使用视口在 500px 以内的设备访问以获得更好的访问体验。
@@ -65,7 +64,6 @@ export default {
       const res = await getHomePostList(this.currentPage);
       console.log(
         res,
-        "ddddddddddddddddddddddddddddddddddddddddddddddddddd",
         this.currentPage
       );
       if (res.status === 404) {
@@ -77,6 +75,8 @@ export default {
         return;
       }
     },
+
+
     onScroll: _throttle(function () {
       // 上拉加载更多
       console.log("页面进行滚动");
@@ -96,17 +96,8 @@ export default {
       }
     }, 800),
   },
-  async created() {
-    const res = await getHomePostList();
-    console.log(res, "ddddddddddddddddddddddddddddddddddddddddddddddddddd");
-    if (res.status === 404) {
-      this.$toast.show("没有数据了", 2000);
-      return;
-    } else if (res.status === 200) {
-      this.postList.push(...res.data.post);
-      this.$toast.show("数据请求成功", 2000);
-      return;
-    }
+  created() {
+    this.loadmore()
   },
 };
 </script>
