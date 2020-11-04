@@ -1,30 +1,75 @@
 <template>
   <tab-bar>
     <tab-bar-item path="/home">
-      <img slot="item-icon" src="~assets/img/tabbar/home.svg">
-      <img slot="item-icon-active" src="~assets/img/tabbar/home_active.svg">
-      <div slot="item-text">首页</div>
+      <template v-slot:item-icon>
+        <img src="~assets/img/tabbar/home.svg" />
+      </template>
+
+      <template v-slot:item-icon-active>
+        <img src="~assets/img/tabbar/home_active.svg" />
+      </template>
+
+      <template v-slot:item-text>
+        <div>首页</div>
+      </template>
     </tab-bar-item>
+
     <tab-bar-item path="/following">
-      <img slot="item-icon" src="~assets/img/tabbar/following.svg">
-      <img slot="item-icon-active" src="~assets/img/tabbar/following_active.svg">
-      <div slot="item-text">关注</div>
+      <template v-slot:item-icon>
+        <img src="~assets/img/tabbar/following.svg" />
+      </template>
+
+      <template v-slot:item-icon-active>
+        <img src="~assets/img/tabbar/following_active.svg" />
+      </template>
+
+      <template v-slot:item-text>
+        <div>关注</div>
+      </template>
     </tab-bar-item>
+
     <tab-bar-item path="/island">
-      <img slot="item-icon" src="~assets/img/tabbar/island.svg">
-      <img slot="item-icon-active" src="~assets/img/tabbar/island_active.svg">
-      <div slot="item-text">小岛</div>
+      <template v-slot:item-icon>
+        <img src="~assets/img/tabbar/island.svg" />
+      </template>
+
+      <template v-slot:item-icon-active>
+        <img src="~assets/img/tabbar/island_active.svg" />
+      </template>
+
+      <template v-slot:item-text>
+        <div>小岛</div>
+      </template>
     </tab-bar-item>
+
     <tab-bar-item path="/message">
-      <img slot="item-icon" src="~assets/img/tabbar/message.svg">
-      <img slot="item-icon-active" src="~assets/img/tabbar/message_active.svg">
-      <div slot="item-text">消息</div>
+      <template v-slot:item-icon>
+        <img src="~assets/img/tabbar/message.svg" />
+      </template>
+
+      <template v-slot:item-icon-active>
+        <img src="~assets/img/tabbar/message_active.svg" />
+      </template>
+
+      <template v-slot:item-text>
+        <div>消息</div>
+      </template>
     </tab-bar-item>
+
     <tab-bar-item path="/profile">
-      <img slot="item-icon" src="~assets/img/tabbar/profile.svg">
-      <img slot="item-icon-active" src="~assets/img/tabbar/profile_active.svg">
-      <div slot="item-text">我的</div>
+      <template v-slot:item-icon>
+        <img src="~assets/img/tabbar/profile.svg" />
+      </template>
+
+      <template v-slot:item-icon-active>
+        <img src="~assets/img/tabbar/profile_active.svg" />
+      </template>
+
+      <template v-slot:item-text>
+        <div>我的</div>
+      </template>
     </tab-bar-item>
+    
   </tab-bar>
 </template>
 
@@ -32,13 +77,12 @@
 import TabBarItem from "components/common/tabbar/TabBarItem";
 import TabBar from "components/common/tabbar/TabBar";
 
-
 export default {
   name: "MainTabBar",
   components: {
     TabBar,
-    TabBarItem
-  }
+    TabBarItem,
+  },
 };
 </script>
 
