@@ -80,3 +80,33 @@ export function _debounce(fn, interval = 200) {
     }, interval)
   }
 }
+
+
+// 深拷贝
+export function _deepClone(obj = {}) {
+
+  // 不是对象直接返回
+  if (typeof obj !== "object" || obj === null) {
+    return obj
+  }
+
+  // 初始化返回结果
+  let result
+  // 保留原有格式
+  if (obj instanceof Array) {
+    result = []
+  } else {
+    result = {}
+  }
+
+  // 展开复制
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // 递归调用
+      result[key] = _deepClone(obj[key])
+    }
+  }
+
+  // 得到最终结果
+  return result
+}
