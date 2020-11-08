@@ -5,12 +5,22 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+
+    <transition name="fade">
+      <alert-tip
+        :alertText="alertText"
+        @closeTip="closeTip"
+        v-if="isShowAlert"
+      ></alert-tip>
+    </transition>
   </div>
 </template>
 
 <script>
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
 import HomeTabControl from "./childComps/HomeTabControl/HomeTabControl";
+import AlertTip from "components/common/AlertTip/AlertTip";
+import { getAnnouncementDetail } from "network/announcement";
 
 import { mapState } from "vuex";
 
@@ -19,15 +29,26 @@ export default {
   components: {
     HomeHeader,
     HomeTabControl,
+    AlertTip,
   },
   data() {
-    return {};
+    return { isShowAlert: false, alertText: "" };
   },
   created() {
-    // this.$toast.show(
-    //   "再次提醒，网站文章数据由狗屁不通文章生成器生成，不具有任何的价值，仅供占位使用。亦不代表本人观点。",
-    //   4000
-    // );
+    this.getAnnouncement();
+  },
+  methods: {
+    closeTip() {
+      this.isShowAlert = false;
+      // 不展示弹出内容
+    },
+
+    async getAnnouncement() {
+      const res = await getAnnouncementDetail();
+      const announcement = res.data.announcement.content;
+      this.alertText = announcement;
+      this.isShowAlert = true;
+    },
   },
   computed: {
     ...mapState(["userInfo"]),
