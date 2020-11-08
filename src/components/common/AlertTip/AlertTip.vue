@@ -6,15 +6,21 @@
         <span></span>
       </div>
       <p class="tip_text">{{ alertText }}</p>
-      <button class="confrim" @click="closeTip">确认</button>
+
+      <cem-button square type="primary" @click="closeTip">确认</cem-button>
     </section>
   </div>
 </template>
 
 <script>
+import CemButton from "components/common/Button/Button";
+
 export default {
   props: {
     alertText: String,
+  },
+  components: {
+    CemButton,
   },
 
   methods: {
