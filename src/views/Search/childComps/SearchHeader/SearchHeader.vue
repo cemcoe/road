@@ -43,4 +43,9 @@ export default {
 </script>
 
 <style scoped>
+button {
+  outline: none;
+  border: none;
+  background-color: #fff;
+}
 </style>

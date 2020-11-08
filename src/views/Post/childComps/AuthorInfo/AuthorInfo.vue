@@ -13,20 +13,35 @@
 
     <div class="follow" v-if="this.$store.state.user._id">
       <!-- 用户登录时才能关注和取消关注 -->
-      <button
+      <!-- <button
         v-if="!$store.getters.isFollowingAuthor(author)"
         @click="followingUser(author._id)"
       >
         + 关注
-      </button>
-      <button v-else @click="unfollowingUser(author._id)">取消关注</button>
+      </button> -->
+
+      <cem-button
+        type="primary"
+        v-if="!$store.getters.isFollowingAuthor(author)"
+        @click="followingUser(author._id)"
+        >+ 关注</cem-button
+      >
+
+      <!-- <button v-else @click="unfollowingUser(author._id)">取消关注</button> -->
+      <cem-button type="primary" v-else @click="unfollowingUser(author._id)"
+        >取消关注</cem-button
+      >
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import CemButton from "components/common/Button/Button";
 export default {
+  components: {
+    CemButton,
+  },
   methods: {
     followingUser(_id) {
       // 关注当前用户
@@ -45,10 +60,6 @@ export default {
 </script>
 
 <style scoped>
-button {
-  border: none;
-  outline: none;
-}
 .container {
   padding-top: 6px;
   padding-bottom: 6px;
@@ -91,15 +102,9 @@ img {
 .follow {
   display: flex;
   justify-content: flex-end;
-}
-
-.follow button {
-  background-color: rgb(38, 148, 38);
   margin-right: 10px;
   width: 80px;
   padding: 6px 8px;
-  text-align: center;
-  color: aliceblue;
-  border-radius: 20px;
+  
 }
 </style>

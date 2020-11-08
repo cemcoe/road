@@ -8,7 +8,8 @@
         <button @click="$router.push('/search')">
           <cem-icon name="search"></cem-icon>
         </button>
-        <button @click="more"><cem-icon name="more"></cem-icon></button>
+
+        <!-- <button @click="more"><cem-icon name="more"></cem-icon></button> -->
       </div>
     </nav-bar>
   </div>
@@ -35,4 +36,12 @@ export default {
 </script>
 
 <style scoped>
+button {
+  border: none;
+  outline: none;
+  /* padding: 6px;
+  border-radius: 4px; */
+  background-color: #fff;
+  line-height: 100%;
+}
 </style>

@@ -12,18 +12,19 @@
             <img :src="userInfo.avatar" alt="avatar" />
           </div>
           <div class="info">
-            <span>简信</span>
+            <cem-button type="primary">简信</cem-button>
             <div class="follow">
               <!-- <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span> -->
-              <button
-                v-if="!$store.getters.isFollowingAuthor(userInfo)"
+              <cem-button type="primary"  v-if="!$store.getters.isFollowingAuthor(userInfo)"
                 @click="followingUser"
               >
-                关注
-              </button>
-              <button v-else @click="unfollowingUser">取消关注</button>
+                关注</cem-button
+              >
+              <cem-button type="primary" v-else @click="unfollowingUser"
+                >取消关注</cem-button
+              >
             </div>
-            <span>礼物</span>
+            <cem-button type="primary">礼物</cem-button>
           </div>
         </div>
 
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import CemButton from "components/common/Button/Button";
 // TODO:
 // 关注 用户关注粉丝分离
 export default {
@@ -52,6 +54,9 @@ export default {
     userInfo: {},
     authorFollowingUsers: {},
     authorFollowers: {},
+  },
+  components: {
+    CemButton,
   },
   methods: {
     followingUser() {
@@ -65,8 +70,8 @@ export default {
   },
   // 组件销毁，数据重置，避免缓存
   destroyed() {
-    this.$store.commit('set_author', {})
-  }
+    this.$store.commit("set_author", {});
+  },
 };
 </script>
 

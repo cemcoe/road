@@ -7,7 +7,7 @@
         <div class="item">
           <div class="left">
             <router-link :to="'/u/' + user._id">
-              <img :src="imgBaseUrl + user.avatar" alt="avatar" />
+              <img v-lazy="imgBaseUrl + user.avatar" alt="avatar" />
             </router-link>
           </div>
 
@@ -32,7 +32,8 @@
             >
               关注
             </button>
-            <button v-else @click="unfollowingUser(user._id)">取消关注</button>
+            <cem-button type="primary" v-else @click="unfollowingUser(user._id)">取消关注</cem-button>
+            <!-- <button v-else @click="unfollowingUser(user._id)">取消关注</button> -->
           </div>
         </div>
       </div>
@@ -42,9 +43,14 @@
 
 <script>
 import { mapState } from "vuex";
+import CemButton from "components/common/Button/Button";
+
 export default {
   data() {
     return {};
+  },
+  components: {
+    CemButton,
   },
   methods: {
     followingUser(_id) {
@@ -71,9 +77,11 @@ export default {
   padding: 6px;
   border-bottom: 1px solid rgb(207, 198, 207);
 }
-.left,
-.right {
+.left {
   flex: 0 0 60px;
+}
+.right {
+  flex: 0 0 100px;
 }
 .center {
   flex: 1;
@@ -84,7 +92,7 @@ export default {
 }
 
 .right {
-  text-align: center;
+  text-align: right;
 }
 
 img {

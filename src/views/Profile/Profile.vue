@@ -18,7 +18,10 @@
     </div>
 
     <div>
-      <button v-if="user._id" @click="signout">退出登录</button>
+      <!-- <button v-if="user._id" @click="signout">退出登录</button> -->
+      <cem-button type="danger" v-if="user._id" @click="signout"
+        >退出登录</cem-button>
+
       <div v-if="user._id">
         <router-link :to="'/reset/' + user._id">更新用户信息</router-link>
       </div>
@@ -35,6 +38,8 @@
 import ProfileHeader from "./childComps/ProfileHeader/ProfileHeader";
 import UserInfoBanner from "./childComps/UserInfoBanner/UserInfoBanner";
 import ProductBanner from "./childComps/ProductBanner/ProductBanner";
+
+import CemButton from "components/common/Button/Button";
 import { mapState } from "vuex";
 export default {
   name: "Profile",
@@ -42,6 +47,7 @@ export default {
     ProfileHeader,
     UserInfoBanner,
     ProductBanner,
+    CemButton,
   },
   data() {
     return {};
