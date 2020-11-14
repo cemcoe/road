@@ -7,6 +7,10 @@
       <loading></loading>
     </div>
     <go-writer-button />
+
+    <div class="page-state">
+      {{ currentPage }}
+    </div>
   </div>
 </template>
 
@@ -89,5 +93,14 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.page-state {
+  position: fixed;
+  right: 0;
+  bottom: 50px;
+  padding: 4px 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: aliceblue;
 }
 </style>
