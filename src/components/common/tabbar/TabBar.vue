@@ -27,6 +27,6 @@ export default {
   right: 0;
   bottom: 0;
 
-  box-shadow: 0 0 4px #000;
+  box-shadow: 0 0 4px rgb(216, 211, 211);
 }
 </style>
