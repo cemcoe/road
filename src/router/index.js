@@ -5,6 +5,7 @@ import main from './main'
 import home from './home'
 import author from './author'
 import my from './my'
+import user from './user'
 
 // 路由文件说明
 // main 大路由文件
@@ -25,6 +26,7 @@ const routes = [
   home,
   author,
   ...my,
+  ...user,
 ]
 
 const router = new VueRouter({
