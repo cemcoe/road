@@ -15,7 +15,9 @@
             <cem-button type="primary">简信</cem-button>
             <div class="follow">
               <!-- <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span> -->
-              <cem-button type="primary"  v-if="!$store.getters.isFollowingAuthor(userInfo)"
+              <cem-button
+                type="primary"
+                v-if="!$store.getters.isFollowingAuthor(userInfo)"
                 @click="followingUser"
               >
                 关注</cem-button
@@ -34,9 +36,16 @@
         <div class="bio">
           {{ userInfo.bio }}
         </div>
-        <div>
-          <span>{{ authorFollowingUsers.length }} 关注</span> ||
-          <span>{{ authorFollowers.length }} 粉丝</span>
+        <div class="follow">
+          <router-link :to="'/users/' + userInfo._id + '/following'">
+            <span class="follower">关注 {{ authorFollowingUsers.length }}</span>
+          </router-link>
+
+          |
+
+          <router-link :to="'/users/' + userInfo._id + '/followers'">
+            <span class="follower">粉丝 {{ authorFollowers.length }}</span>
+          </router-link>
         </div>
       </div>
       <hr />
