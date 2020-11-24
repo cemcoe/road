@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="follow">
-      <div class="follow-item" v-for="user in followingUsers" :key="user._id">
-        <router-link :to="'/u/' + user._id"> </router-link>
-
+      <div class="following" v-for="user in followingUsers" :key="user._id">
         <div class="item">
           <div class="left">
             <router-link :to="'/u/' + user._id">
@@ -17,23 +15,6 @@
                 {{ user.name }}
               </router-link>
             </span>
-            <span>
-              <router-link :to="'/u/' + user._id">
-                {{ user.bio }}
-              </router-link>
-            </span>
-          </div>
-
-          <div class="right">
-            <!-- <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span> -->
-            <button
-              v-if="!$store.getters.isFollowingAuthor(user)"
-              @click="followingUser(user._id)"
-            >
-              关注
-            </button>
-            <cem-button type="primary" v-else @click="unfollowingUser(user._id)">取消关注</cem-button>
-            <!-- <button v-else @click="unfollowingUser(user._id)">取消关注</button> -->
           </div>
         </div>
       </div>
@@ -46,22 +27,8 @@ import { mapState } from "vuex";
 import CemButton from "components/common/Button/Button";
 
 export default {
-  data() {
-    return {};
-  },
   components: {
     CemButton,
-  },
-  methods: {
-    followingUser(_id) {
-      // 关注当前用户
-      console.log(_id);
-      this.$store.dispatch("followingUser", _id);
-    },
-    unfollowingUser(_id) {
-      // 取消关注当前用户
-      this.$store.dispatch("unfollowingUser", _id);
-    },
   },
   computed: {
     ...mapState(["followingUsers", "imgBaseUrl"]),
@@ -70,34 +37,32 @@ export default {
 </script>
 
 <style scoped>
+
+.follow {
+  display: flex;
+  
+  overflow-y: hidden;
+  
+
+}
 .item {
   display: flex;
   font-size: 12px;
   align-items: center;
+  flex-direction: column;
   padding: 6px;
   border-bottom: 1px solid rgb(207, 198, 207);
 }
 .left {
-  flex: 0 0 60px;
-}
-.right {
-  flex: 0 0 100px;
-}
-.center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 50px;
+  flex: 0 0 70px;
 }
 
-.right {
-  text-align: right;
-}
 
 img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  padding: 2px;
+  border: 4px solid rgb(204, 46, 46);
 }
 </style>
