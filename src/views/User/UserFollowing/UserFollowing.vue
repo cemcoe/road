@@ -1,20 +1,22 @@
 <template>
   <div>
-    <ul>
-      <li v-for="item in userFollowing" :key="item._id">
-        {{ item.name }}
-      </li>
-    </ul>
+    <user-list :userlist=userFollowing></user-list>
   </div>
 </template>
 
 <script>
 import { listfollowingUser } from "network/user";
+import UserList from '../UserList/UserList'
+
 export default {
   data() {
     return {
       userFollowing: [],
     };
+  },
+
+  components: {
+    UserList,
   },
 
   methods: {

@@ -1,15 +1,13 @@
 <template>
   <div>
-    <ul>
-      <li v-for="item in userFollowers" :key="item._id">
-        {{ item.name }}
-      </li>
-    </ul>
+    <user-list :userlist="userFollowers"></user-list>
   </div>
 </template>
 
 <script>
 import { listfollower } from "network/user";
+import UserList from "../UserList/UserList";
+
 export default {
   data() {
     return {
@@ -17,11 +15,15 @@ export default {
     };
   },
 
+  components: {
+    UserList,
+  },
+
   methods: {
     async getUserFollowers() {
       const uid = this.$route.params.uid;
       const result = await listfollower(uid);
-      this.userFollowers = result.data.followers
+      this.userFollowers = result.data.followers;
     },
   },
   mounted() {
