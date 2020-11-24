@@ -14,13 +14,13 @@ export default {
       path: '/u/:id/posts',
       component: AuthorPosts,
       meta: {
-        showFooter: true
+        showFooter: false
       },
     }, {
       path: '/u/:id/more',
       component: AuthorMore,
       meta: {
-        showFooter: true
+        showFooter: false
       },
     },
     {
