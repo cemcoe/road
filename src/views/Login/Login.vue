@@ -20,8 +20,10 @@
           登录
         </button>
       </form>
-      <p>账号：cemcoe:cemcoe</p>
-      <p>账号：robot:robot</p>
+      <p>除cemcoe主账号外，其余测试账号密码统统为cemcoe，注册功能可用，但不能与现有账号重名。</p>
+      <p></p>
+      <p>账号：test:cemcoe</p>
+      <p>账号：robot:cemcoe</p>
     </div>
 
     <div :class="{on: !isDisappear}" class="register">
