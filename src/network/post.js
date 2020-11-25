@@ -39,3 +39,16 @@ export function updatePost(post, id) {
     data: post,
   })
 }
+
+// 将文章放到垃圾箱
+export function gotoTrash(pid) {
+  const post = {
+    "status": -2
+  }
+  return request({
+    method: "patch",
+    url: `/posts/${pid}`,
+    data: post,
+  })
+
+}

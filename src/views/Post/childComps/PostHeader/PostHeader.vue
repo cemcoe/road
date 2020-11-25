@@ -14,7 +14,7 @@
             <li @click="unable">分享</li>
             <li class="enable" @click="editPost">编辑</li>
             <li class="enable" @click="addPostToNoteBook">收入连载</li>
-            <li @click="unable">删除</li>
+            <li class="enable" @click="delPost">删除</li>
           </ul>
           <!-- 看别人的文章 -->
           <ul v-else>
@@ -27,23 +27,20 @@
         </div>
       </div>
     </nav-bar>
-    <div
-        class="overlay"
-        v-show="isShowMenu"
-        @click="more"
-      ></div>
+    <div class="overlay" v-show="isShowMenu" @click="more"></div>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
 import CemIcon from "components/common/icon/Icon";
+
+import { gotoTrash } from "network/post";
 export default {
   name: "PostHeader",
   data() {
     return {
       isShowMenu: false, // 是否展示菜单遮罩
-      
     };
   },
   components: {
@@ -58,6 +55,19 @@ export default {
       console.log("编辑文章");
       console.log(this.$store.state.post);
       this.$router.replace("/writer/" + this.$store.state.post._id);
+    },
+    delPost() {
+      console.log(this.$route.params.id);
+      // 发送更新文章请求
+      gotoTrash(this.$route.params.id).then((res) => {
+        if (res.status === 200) {
+          this.$toast.show("该篇文章已经移到了你的垃圾箱，为你跳到首页");
+          // 跳到首页
+          setTimeout(() => {
+            this.$router.replace(`/`);
+          }, 1000);
+        }
+      });
     },
     addPostToNoteBook() {
       // 向父组件传递数据
@@ -94,7 +104,6 @@ export default {
   /* 可以使用 */
   background-color: rgb(245, 235, 235);
 }
-
 
 .overlay {
   position: fixed;
