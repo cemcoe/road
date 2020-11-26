@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <post-header @addPostToNoteBook="addPostToNoteBook"></post-header>
+    <post-header @addPostToNoteBook="addPostToNoteBook" :postStatus="post.status"></post-header>
     <div v-if="post.title">
       <div class="title">
         <h2>{{ post.title }}</h2>

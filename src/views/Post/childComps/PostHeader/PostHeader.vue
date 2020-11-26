@@ -15,6 +15,12 @@
             <li class="enable" @click="editPost">编辑</li>
             <li class="enable" @click="addPostToNoteBook">收入连载</li>
             <li class="enable" @click="delPost">删除</li>
+            <li class="enable" v-if="postStatus === 1" @click="privatePost">
+              转为私密
+            </li>
+            <li class="enable" v-if="postStatus === -1" @click="publicPost">
+              转为公开
+            </li>
           </ul>
           <!-- 看别人的文章 -->
           <ul v-else>
@@ -35,9 +41,12 @@
 import NavBar from "components/common/navbar/NavBar";
 import CemIcon from "components/common/icon/Icon";
 
-import { gotoTrash } from "network/post";
+import { gotoTrash, gotoPrivate, gotoPublic } from "network/post";
 export default {
   name: "PostHeader",
+  props: {
+    postStatus: {},
+  },
   data() {
     return {
       isShowMenu: false, // 是否展示菜单遮罩
@@ -69,6 +78,33 @@ export default {
         }
       });
     },
+
+    privatePost() {
+      // 发送更新文章请求
+      gotoPrivate(this.$route.params.id).then((res) => {
+        if (res.status === 200) {
+          this.$toast.show("该篇文章已经移到了你的私密文件夹，为你跳到首页");
+          // 跳到首页
+          setTimeout(() => {
+            this.$router.replace(`/`);
+          }, 1000);
+        }
+      });
+    },
+
+    publicPost() {
+      // 发送更新文章请求
+      gotoPublic(this.$route.params.id).then((res) => {
+        if (res.status === 200) {
+          this.$toast.show("该篇文章已经移到了你的公开文件夹，为你跳到首页");
+          // 跳到首页
+          setTimeout(() => {
+            this.$router.replace(`/`);
+          }, 1000);
+        }
+      });
+    },
+
     addPostToNoteBook() {
       // 向父组件传递数据
       this.$emit("addPostToNoteBook");
