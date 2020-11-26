@@ -53,11 +53,21 @@ export function getUserInfo(id) {
 
 
 
-// 获取某人文章列表
-export function getUserPosts(id) {
+// 获取某人文章列表，默认为公开文章
+export function getUserPosts(id, status = 'public') {
+  // 语义化
+  if (status === 'public') {
+    status = 1
+  } else if (status === 'private') {
+    status = -1
+  }
+
   return request({
     method: "get",
     url: `/users/${id}/posts`,
+    params: {
+      status,
+    }
   })
 }
 
