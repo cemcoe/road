@@ -59,10 +59,10 @@ export default {
 
 
 img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   padding: 2px;
-  border: 4px solid rgb(204, 46, 46);
+  border: 2px solid rgb(223, 77, 77);
 }
 </style>
