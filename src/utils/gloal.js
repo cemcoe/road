@@ -16,26 +16,26 @@
 //   };
 // }
 // // 节流
-// export function _throttle(fn, interval) {
-//   var last;
-//   var timer;
-//   var interval = interval || 200;
-//   return function () {
-//     var th = this;
-//     var args = arguments;
-//     var now = +new Date();
-//     if (last && now - last < interval) {
-//       clearTimeout(timer);
-//       timer = setTimeout(function () {
-//         last = now;
-//         fn.apply(th, args);
-//       }, interval);
-//     } else {
-//       last = now;
-//       fn.apply(th, args);
-//     }
-//   }
-// }
+export function _throttle(fn, interval) {
+  var last;
+  var timer;
+  var interval = interval || 200;
+  return function () {
+    var th = this;
+    var args = arguments;
+    var now = +new Date();
+    if (last && now - last < interval) {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        last = now;
+        fn.apply(th, args);
+      }, interval);
+    } else {
+      last = now;
+      fn.apply(th, args);
+    }
+  }
+}
 
 ///////////////////////////////////////////////////////
 
@@ -44,26 +44,26 @@
 // 单位时间的每个函数的执行都是互斥，承重量是一辆车的桥，在桥没有空余时不能让其他车上桥
 // 节流：单位时间只能执行一次任务
 
-export function _throttle(fn, interval = 200) {
-  // 确保单位时间待执行队列中只有一个函数
-  let canRun = true
+// export function _throttle(fn, interval = 200) {
+//   // 确保单位时间待执行队列中只有一个函数
+//   let canRun = true
 
-  return function (...args) {
+//   return function (...args) {
 
-    // 队列中已有，不进入队列
-    if (!canRun) return
+//     // 队列中已有，不进入队列
+//     if (!canRun) return
 
-    // 队列没人，进入队列并上锁
-    canRun = false
+//     // 队列没人，进入队列并上锁
+//     canRun = false
 
-    setTimeout(() => {
-      fn.apply(this, args)
-      // 函数执行，解开锁允许下个运行
+//     setTimeout(() => {
+//       fn.apply(this, args)
+//       // 函数执行，解开锁允许下个运行
 
-      canRun = true
-    }, interval)
-  }
-}
+//       canRun = true
+//     }, interval)
+//   }
+// }
 
 
 /////////////////////////////
