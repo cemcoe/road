@@ -83,7 +83,7 @@ export default {
   right: 0;
   display: flex;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 6px #000;
+  box-shadow: 0 0 4px rgb(216, 211, 211);
   align-items: center;
 }
 .container .right {
