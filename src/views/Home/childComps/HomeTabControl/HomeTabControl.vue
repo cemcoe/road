@@ -25,11 +25,11 @@ export default {
 </script>
 
 <style scoped>
-.tab-control {
+/* .tab-control {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
   background-color: #fff;
   padding: 4px;
-}
+} */
 </style>

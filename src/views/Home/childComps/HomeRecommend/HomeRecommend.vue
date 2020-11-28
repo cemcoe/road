@@ -88,8 +88,8 @@ export default {
 <style scoped>
 .post-list {
   background-color: rgb(243, 243, 243);
-
-  height: calc(100vh - 44px - 49px);
+  /* 44+49+28 =  */
+  height: calc(100vh - 121px);
   overflow-y: scroll;
 }
 

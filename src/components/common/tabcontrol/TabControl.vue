@@ -25,7 +25,6 @@ export default {
 <style scoped>
 .tab {
   display: flex;
-  /* border-bottom: 1px solid rgb(235, 5, 235); */
 }
 .tab-item {
   flex: 1;
@@ -42,8 +41,12 @@ export default {
 }
 
 .tab-item a .title {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  margin-top: 6px;
   font-size: 14px;
+  text-shadow: 0 0 14px #000;
+  letter-spacing: 4px;
+
 }
 
 .tab-item a .under-line {
@@ -55,7 +58,7 @@ export default {
 
 .router-link-exact-active .title {
   /* border-bottom: 4px solid #f40; */
-  color: #000;
+  color:  #fff;
 }
 
 .tab-item .router-link-exact-active .under-line {
