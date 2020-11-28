@@ -9,8 +9,9 @@
       ></author-info>
 
       <author-tab-control />
-
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <div v-else>
       <loading />
