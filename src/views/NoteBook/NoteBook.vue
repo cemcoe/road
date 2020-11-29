@@ -1,26 +1,29 @@
 <template>
   <div class="notebook">
     <note-book-header></note-book-header>
+    <div v-if="!isloading">
+      <note-book-info :notebook="notebook"></note-book-info>
 
-    <note-book-info :notebook="notebook"></note-book-info>
-
-    <div class="post-list">
-      <h2>目录</h2>
-      <span class="length">共{{ postList.length }}篇</span>
-      <div class="postList">
-        <!-- {{ postList }} -->
-        <div class="post" v-for="(post, index) in postList" :key="post._id">
-          <router-link :to="'/p/' + post._id">
-            <span class="index">{{ index + 1 }}</span>
-            <span class="title">
-              {{ post.title }}
-            </span>
-          </router-link>
+      <div class="post-list">
+        <h2>目录</h2>
+        <span class="length">共{{ postList.length }}篇</span>
+        <div class="postList">
+          <!-- {{ postList }} -->
+          <div class="post" v-for="(post, index) in postList" :key="post._id">
+            <router-link :to="'/p/' + post._id">
+              <span class="index">{{ index + 1 }}</span>
+              <span class="title">
+                {{ post.title }}
+              </span>
+            </router-link>
+          </div>
         </div>
       </div>
+
+      <note-book-tab-bar></note-book-tab-bar>
     </div>
 
-    <note-book-tab-bar></note-book-tab-bar>
+    <div v-else>加载中。。。</div>
   </div>
 </template>
 
@@ -41,6 +44,7 @@ export default {
         abstract: "",
         author: {},
       },
+      isloading: true,
     };
   },
   components: {
@@ -54,6 +58,7 @@ export default {
     const notebook = res.data.notebook;
     console.log(notebook);
     // this.notebook = notebook;
+    this.isloading = false;
     this.notebook.title = notebook.title;
     this.notebook.icon = notebook.icon;
     this.notebook.abstract = notebook.abstract;
@@ -82,7 +87,5 @@ export default {
   color: #000;
   padding: 2px;
   line-height: 20px;
-
 }
-
 </style>
