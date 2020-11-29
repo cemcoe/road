@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <nav-bar>
-      <div slot="left" @click="more">
-        <cem-icon name="scann"></cem-icon>
+      <div slot="left">
+        <router-link to="/scan">
+          <cem-icon name="scann"></cem-icon></router-link>
       </div>
       <div slot="center">我的</div>
       <div slot="right">

@@ -8,6 +8,7 @@ const Message = () => import('../views/Message/Message')
 const NoteBook = () => import('../views/NoteBook/NoteBook')
 const Search = () => import('../views/Search/Search')
 const ResetUser = () => import('../views/ResetUser/ResetUser')
+const Scan = () => import('../views/Scan/Scan')
 
 
 export default [
@@ -93,6 +94,14 @@ export default [
     path: '/search',
     name: 'Search',
     component: Search,
+    meta: {
+      showFooter: false,
+    }
+  },
+  {
+    path: '/scan',
+    name: 'Scan',
+    component: Scan,
     meta: {
       showFooter: false,
     }
