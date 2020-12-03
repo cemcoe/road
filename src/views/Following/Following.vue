@@ -34,32 +34,47 @@
       {{$store.followingUsers}}
     </div> -->
     <user-list></user-list>
+
+    <div>
+      <h2>最近更新文章，最近动态等，按时间排序，后端接口开发中。。。</h2>
+      <hr />
+      <div class="post-list" v-if="posts.length">
+        <post-list :postList="posts"></post-list>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import FollowingHeader from './childComps/FollowingHeader/FollowingHeader'
-import UserList from './childComps/UserList/UserList'
+import FollowingHeader from "./childComps/FollowingHeader/FollowingHeader";
+import UserList from "./childComps/UserList/UserList";
+import PostList from "components/content/postList/PostList";
+
+import { listfollowingUser } from "network/user";
 export default {
   name: "Following",
   data() {
     return {
       // userId: this.$store.state.user._id,
       // followingUsers: this.$store.followingUsers, // 用户关注列表
+      posts: [],
     };
   },
   components: {
     FollowingHeader,
     UserList,
+    PostList,
   },
-  mounted() {
+  async mounted() {
     // 请求用户关注列表
-    this.$store.dispatch('listfollowingUser')
+    this.$store.dispatch("listfollowingUser");
+    // 请求用户关注用户的文章列表
+    this.posts = (
+      await listfollowingUser(this.$store.state.user._id, "posts")
+    ).data.postList;
+    console.log(this.posts);
   },
-  computed: {
-    
-
-  },
+  computed: {},
 };
 </script>
 

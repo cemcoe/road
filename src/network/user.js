@@ -101,12 +101,12 @@ export function unfollowingUser(id) {
 
 // 获取关注列表
 // router.get('/users/:id/following', listFollowing)
-export function listfollowingUser(id) {
+export function listfollowingUser(id, type="users") {
   return request({
     method: "get",
     url: `/users/${id}/following`,
     params: {
-      id
+      type,
     }
   })
 }
