@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 import MainTabBar from "components/content/mainTabbar/MainTabBar";
 
 export default {
@@ -20,12 +19,14 @@ export default {
     MainTabBar,
   },
   data() {
-    return {
-      // 缓存一级页面，不缓存文章详情页面
-      catchList: ["Home", "Following", "Island", "Message", "Profile"],
-    };
+    return {};
   },
-
+  computed: {
+    catchList() {
+      // 缓存一级页面，不缓存文章详情页面
+      return ["Home", "Following", "Island", "Message", "Profile"];
+    },
+  },
 };
 </script>
 
