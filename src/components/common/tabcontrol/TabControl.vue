@@ -37,6 +37,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #fff;
 
 }
 
@@ -44,7 +45,7 @@ export default {
   margin-bottom: 6px;
   margin-top: 6px;
   font-size: 14px;
-  text-shadow: 0 0 14px #000;
+  /* text-shadow: 0 0 14px #000; */
   letter-spacing: 4px;
 
 }
@@ -58,7 +59,8 @@ export default {
 
 .router-link-exact-active .title {
   /* border-bottom: 4px solid #f40; */
-  color:  #fff;
+  color:  rgb(8, 8, 8);
+  font-weight: 700;
 }
 
 .tab-item .router-link-exact-active .under-line {
