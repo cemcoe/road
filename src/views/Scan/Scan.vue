@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>扫描功能</div>
-
-    <button @click="change">前后切换</button>
+    <div>扫描功能测试</div>
 
     <div><video></video></div>
   </div>
@@ -11,22 +9,13 @@
 <script>
 export default {
   data() {
-    return {
-      front: false,
-    };
+    return {};
   },
-  methods: {
-    change() {
-      this.front = !this.front;
-      console.log(this.front);
-    },
-  },
+  methods: {},
   created() {
     var constraints = {
       video: {
-        facingMode: this.front ? "user" : "environment",
         audio: true,
-        video: { width: 1280, height: 720 },
       },
     };
 
