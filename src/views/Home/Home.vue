@@ -2,6 +2,7 @@
   <div class="home">
     <home-header></home-header>
     <home-tab-control></home-tab-control>
+
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -13,6 +14,7 @@
         v-if="isShowAlert"
       ></alert-tip>
     </transition>
+
   </div>
 </template>
 
@@ -20,8 +22,8 @@
 import HomeHeader from "./childComps/HomeHeader/HomeHeader";
 import HomeTabControl from "./childComps/HomeTabControl/HomeTabControl";
 import AlertTip from "components/common/AlertTip/AlertTip";
-import { getAnnouncementDetail } from "network/announcement";
 
+import { getAnnouncementDetail } from "network/announcement";
 import { mapState } from "vuex";
 
 export default {
@@ -32,7 +34,10 @@ export default {
     AlertTip,
   },
   data() {
-    return { isShowAlert: false, alertText: "" };
+    return {
+      isShowAlert: false,
+      alertText: "",
+    };
   },
   created() {
     this.getAnnouncement();
