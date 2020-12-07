@@ -124,6 +124,15 @@ export function listfollower(id) {
   })
 }
 
+
+// 获取用户参与的房间列表
+export function listRooms(uid) {
+  return request({
+    method: "get",
+    url: `/users/${uid}/rooms`,
+  })
+}
+
 // 上传用户头像
 // export function uploadImg(imgFile) {
 //   return request({
