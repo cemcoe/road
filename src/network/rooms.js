@@ -25,3 +25,13 @@ export function getRoomDetail(rid) {
   })
 }
 
+// 创建聊天室消息
+export function createRoomMessage(roomId, content) {
+  return request({
+    method: "post",
+    url: `/rooms/${roomId}/messages`,
+    data: {
+      content
+    }
+  })
+}
