@@ -6,7 +6,7 @@
 
     <ul>
       <li v-for="room in rooms" :key="room._id">
-        {{ room._id }}
+        <router-link :to="'/room/' + room._id"> {{ room._id }}</router-link>
       </li>
     </ul>
   </div>

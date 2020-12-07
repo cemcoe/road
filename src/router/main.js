@@ -9,6 +9,7 @@ const NoteBook = () => import('../views/NoteBook/NoteBook')
 const Search = () => import('../views/Search/Search')
 const ResetUser = () => import('../views/ResetUser/ResetUser')
 const Scan = () => import('../views/Scan/Scan')
+const Room = () => import('../views/Room/Room')
 
 
 export default [
@@ -23,6 +24,14 @@ export default [
     path: '/nb/:id',
     name: 'NoteBook',
     component: NoteBook,
+    meta: {
+      showFooter: false
+    }
+  },
+  {
+    path: '/room/:id',
+    name: 'Room',
+    component: Room,
     meta: {
       showFooter: false
     }
