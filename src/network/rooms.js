@@ -16,3 +16,12 @@ export function getRooms() {
     url: '/rooms',
   })
 }
+
+// 获取指定聊天室中的信息
+export function getRoomDetail(rid) {
+  return request({
+    method: "get",
+    url: `/rooms/${rid}/messages`,
+  })
+}
+
