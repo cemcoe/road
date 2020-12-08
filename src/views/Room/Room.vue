@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getRoomDetail, createRoomMessage } from "network/rooms";
+import { getRoomMessage, createRoomMessage } from "network/rooms";
 export default {
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     async getMessage() {
-      const res = await getRoomDetail(this.$route.params.id);
+      const res = await getRoomMessage(this.$route.params.id);
       console.log(res);
       this.messages = res.data.messages;
     },

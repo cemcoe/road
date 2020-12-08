@@ -18,7 +18,7 @@ export function getRooms() {
 }
 
 // 获取指定聊天室中的信息
-export function getRoomDetail(rid) {
+export function getRoomMessage(rid) {
   return request({
     method: "get",
     url: `/rooms/${rid}/messages`,
