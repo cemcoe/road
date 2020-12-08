@@ -12,7 +12,7 @@
             <img :src="userInfo.avatar" alt="avatar" />
           </div>
           <div class="info">
-            <cem-button type="primary">简信</cem-button>
+            <cem-button type="primary" @click="create">简信</cem-button>
             <div class="follow">
               <!-- <span>是否已经关注{{$store.getters.isFollowingAuthor}}</span> -->
               <cem-button
@@ -56,6 +56,7 @@
 
 <script>
 import CemButton from "components/common/Button/Button";
+import { createRoom } from "network/rooms";
 // TODO:
 // 关注 用户关注粉丝分离
 export default {
@@ -75,6 +76,24 @@ export default {
     unfollowingUser() {
       // 取消关注当前用户
       this.$store.dispatch("unfollowingUser", this.userInfo._id);
+    },
+
+    async create() {
+      // 获取登录用户id
+      // 创建聊天室
+      const creator = this.$store.state.user._id;
+      const res = await createRoom([this.$route.params.id]);
+      console.log(res);
+      if (res.status === 200) {
+        this.$toast.show("房间创建成功，为你跳转");
+        const rid = res.data.room._id;
+        console.log(rid);
+
+        setTimeout(() => {
+          // 跳转到聊天室
+          this.$router.replace(`/room/${rid}`);
+        }, 1000);
+      }
     },
   },
   // 组件销毁，数据重置，避免缓存
