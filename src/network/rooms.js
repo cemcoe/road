@@ -25,6 +25,14 @@ export function getRoomMessage(rid) {
   })
 }
 
+// 获取指定聊天室的详情
+export function getRoomDetail(rid) {
+  return request({
+    method: "get",
+    url: `/rooms/${rid}`,
+  })
+}
+
 // 创建聊天室消息
 export function createRoomMessage(roomId, content) {
   return request({
