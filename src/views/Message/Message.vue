@@ -2,13 +2,21 @@
   <div>
     message
 
-    <button @click="create">创建聊天室</button>
-
-    <ul>
-      <li v-for="room in rooms" :key="room._id">
-        <router-link :to="'/room/' + room._id"> {{ room._id }}</router-link>
-      </li>
-    </ul>
+    <div class="room-list">
+      <div v-for="room in rooms" :key="room._id" class="room">
+        <router-link :to="'/room/' + room.rid">
+          <div class="sender-avatar">
+            <img v-lazy="$store.state.imgBaseUrl + room.sender.avatar" alt="" />
+          </div>
+          <div class="center">
+            <div class="sender-name">
+              {{ room.sender.name }}
+            </div>
+            <div class="new-message">最新消息数据占位</div>
+          </div>
+        </router-link>
+      </div>
+    </div>
 
     <div>
       <button @click="getNotificationPermission">获取通知权限</button>
@@ -18,7 +26,6 @@
 </template>
 
 <script>
-import { createRoom } from "network/rooms";
 import { listRooms } from "network/user";
 
 export default {
@@ -33,17 +40,26 @@ export default {
     this.getUserRooms();
   },
   methods: {
-    async create() {
-      // 获取登录用户id
-      const creator = this.$store.state.user._id;
-      const res = await createRoom([creator]);
-      console.log(res);
-    },
-
     async getUserRooms() {
       const res = await listRooms(this.$store.state.user._id);
       console.log(res, "--------------");
-      this.rooms = res.data.rooms;
+      const rooms = res.data.rooms;
+
+      // 格式化rooms列表
+
+      const uid = this.$store.state.user._id;
+      // members中没有的就是对方
+      const result = rooms.map((room) => {
+        const obj = {};
+        const sender = room.members.filter((member) => member._id !== uid)[0];
+        obj.sender = sender;
+        obj.rid = room._id;
+        return obj;
+      });
+
+      this.rooms = result;
+
+      console.log(result);
     },
 
     getNotificationPermission() {
@@ -79,5 +95,29 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.room {
+  height: 60px;
+  border-bottom: 1px solid #000;
+}
+
+.room a {
+  display: flex;
+}
+
+.room .sender-avatar {
+  width: 60px;
+  margin-right: 6px;
+}
+
+.room a img {
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
 </style>
