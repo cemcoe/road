@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="nav">
+      <button @click="$router.back()">返回</button>
+      <span> {{ sender.name }}</span>
+    </div>
     roomId: {{ this.$route.params.id }} || {{ messages.length }}
     <hr />
 
@@ -11,20 +15,26 @@
       <hr />
     </div>
 
-    <ul>
-      <li v-for="message in messages">
-        {{ message.content }}
-        {{ message.creator.name }}
-      </li>
-    </ul>
+    <div class="messages">
+      <div
+        v-for="message in messages"
+        :key="message._id"
+        class="message"
+        :class="{ on: isLoginUser(message.creator._id) }"
+      >
+        <div class="user">
+          <img v-lazy="baseImgUrl + message.creator.avatar" alt="" />
+        </div>
+        <div class="content">{{ message.content }}</div>
+      </div>
+    </div>
 
     <hr />
 
-    <div>
-      <input type="text" v-model="message" />
-      <button @click="createMessage">创建测试新消息</button>
+    <div class="tabbar">
+      <input type="text" v-model="message" placeholder="在这里输入内容" />
+      <button @click="createMessage">发送</button>
     </div>
-    <div><button @click="getMessage">更新消息列表</button></div>
   </div>
 </template>
 
@@ -41,6 +51,7 @@ export default {
       messages: [],
       message: "",
       sender: {}, // 左侧用户
+      baseImgUrl: this.$store.state.imgBaseUrl,
     };
   },
   created() {
@@ -73,16 +84,68 @@ export default {
       // this.detail.sender = res.data.room.members.filter(member => member._id !== this.$store.state.user._id)
       // console.log(this.detail)
     },
+
+    isLoginUser(uid) {
+      return uid === this.$store.state.user._id;
+    },
   },
 };
 </script>
 
 <style scoped>
-li {
-  margin: 10px;
+.messages {
+  margin-bottom: 100px;
+}
+.messages div {
+  margin: 6px;
 }
 
+.message {
+  display: flex;
+}
+
+.message .user {
+  width: 30px;
+  height: 30px;
+}
+
+.message .content {
+  background-color: rgb(233, 222, 222);
+  padding: 10px;
+}
+
+.message .user img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* 登录用户发送信息内容在左侧，头像在右侧 */
+.on {
+  flex-direction: row-reverse;
+}
+
+.on .content {
+  background-color: rgb(221, 220, 226);
+}
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 49px;
+  display: flex;
+}
 input {
+  flex: 1;
   background-color: rgb(235, 224, 224);
+  padding: 10px;
+}
+
+.tabbar button {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
 }
 </style>
