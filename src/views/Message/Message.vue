@@ -5,14 +5,19 @@
     <div class="room-list">
       <div v-for="room in rooms" :key="room._id" class="room">
         <router-link :to="'/room/' + room.rid">
-          <div class="sender-avatar">
+          <div class="left sender-avatar">
             <img v-lazy="$store.state.imgBaseUrl + room.sender.avatar" alt="" />
           </div>
+
           <div class="center">
             <div class="sender-name">
               {{ room.sender.name }}
             </div>
-            <div class="new-message">最新消息数据占位</div>
+            <div class="new-message">{{ room.latestMessage.content }}</div>
+          </div>
+
+          <div class="right">
+            {{ room.latestMessage.createdAt }}
           </div>
         </router-link>
       </div>
@@ -54,6 +59,7 @@ export default {
         const sender = room.members.filter((member) => member._id !== uid)[0];
         obj.sender = sender;
         obj.rid = room._id;
+        obj.latestMessage = room.latestMessage;
         return obj;
       });
 
@@ -96,28 +102,45 @@ export default {
 </script>
 
 <style scoped>
+
+.room-list {
+  background-color: rgb(245, 238, 238);
+}
 .room {
-  height: 60px;
-  border-bottom: 1px solid #000;
+  background-color: #fff;
+  margin-top: 6px;
 }
 
 .room a {
   display: flex;
+  padding: 4px;
 }
 
-.room .sender-avatar {
-  width: 60px;
-  margin-right: 6px;
-}
-
-.room a img {
+.room img {
   width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
-.center {
+.room .left {
+  width: 40px;
+  height: 40px;
+  padding-right: 6px;
+}
+.room .center {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+}
+
+.room .center .new-message {
+  font-size: 12px;
+  color: #000;
+}
+.room .right {
+  width: 100px;
+  overflow: hidden;
+  font-size: 12px;
 }
 </style>
