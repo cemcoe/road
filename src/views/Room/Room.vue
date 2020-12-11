@@ -56,6 +56,7 @@ export default {
       sender: {}, // 左侧用户
       baseImgUrl: this.$store.state.imgBaseUrl,
       timeInterval: 6000, // 轮询时间间隔
+      interval: null,
     };
   },
   created() {
@@ -63,11 +64,19 @@ export default {
     this.getDetail();
 
     // 定时轮询
-    setInterval(() => {
-      console.log("轮询中。。。" + new Date());
+    this.interval = setInterval(() => {
+      console.log("room轮询中。。。");
 
       this.getMessage();
     }, this.timeInterval);
+  },
+  beforeRouteLeave(to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    // 将定时器清除
+    clearInterval(this.interval);
+    console.log("room页面定时器已经清除");
+    next();
   },
   methods: {
     async getMessage() {

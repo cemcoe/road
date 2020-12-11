@@ -43,18 +43,30 @@ export default {
     return {
       rooms: [],
       timeInterval: 6000, // 轮询时间间隔
+      interval: null,
     };
   },
   created() {
     this.$toast.show("占位,欸,还没写呢");
     this.getUserRooms();
-
+  },
+  activated() {
+    // 该组件被keepalive不会触发created
+    console.log("activited");
     // 定时轮询
-    setInterval(() => {
-      console.log("轮询中。。。" + new Date());
+    this.interval = setInterval(() => {
+      console.log("roomlist轮询中。。。");
 
       this.getUserRooms();
     }, this.timeInterval);
+  },
+  beforeRouteLeave(to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    // 将定时器清除
+    clearInterval(this.interval);
+    console.log("聊天室列表定时器已经清除");
+    next();
   },
   methods: {
     async getUserRooms() {
