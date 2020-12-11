@@ -152,7 +152,7 @@ export default {
 }
 input {
   flex: 1;
-  background-color: rgb(235, 224, 224);
+  background-color: rgb(224, 211, 211);
   padding: 10px;
 }
 
@@ -160,5 +160,7 @@ input {
   border: none;
   outline: none;
   padding: 10px 20px;
+  background-color: #000;
+  color: aliceblue;
 }
 </style>

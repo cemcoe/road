@@ -1,6 +1,8 @@
 <template>
   <div>
-    message
+    <div class="info">
+      <div>简信</div>
+    </div>
 
     <div class="room-list">
       <div v-for="room in rooms" :key="room._id" class="room">
@@ -118,6 +120,7 @@ export default {
 .room {
   background-color: #fff;
   margin-top: 6px;
+  padding: 10px;
 }
 
 .room a {
@@ -134,7 +137,7 @@ export default {
 .room .left {
   width: 40px;
   height: 40px;
-  padding-right: 6px;
+  padding-right: 12px;
 }
 .room .center {
   flex: 1;
