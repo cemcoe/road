@@ -4,7 +4,10 @@
       <button @click="$router.back()">返回</button>
       <span> {{ sender.name }}</span>
     </div>
-    roomId: {{ this.$route.params.id }} || {{ messages.length }}
+
+    <p>roomId: {{ this.$route.params.id }} || {{ messages.length }}</p>
+    <p>轮询时间间隔：{{ timeInterval }}ms</p>
+
     <hr />
 
     <div class="meta">
@@ -52,11 +55,19 @@ export default {
       message: "",
       sender: {}, // 左侧用户
       baseImgUrl: this.$store.state.imgBaseUrl,
+      timeInterval: 6000, // 轮询时间间隔
     };
   },
   created() {
     this.getMessage();
     this.getDetail();
+
+    // 定时轮询
+    setInterval(() => {
+      console.log("轮询中。。。" + new Date());
+
+      this.getMessage();
+    }, this.timeInterval);
   },
   methods: {
     async getMessage() {
@@ -68,6 +79,8 @@ export default {
     async createMessage() {
       const res = await createRoomMessage(this.$route.params.id, this.message);
       console.log(res);
+      // 清空输入框
+      this.message = "";
       this.getMessage();
     },
 

@@ -27,6 +27,8 @@
       <button @click="getNotificationPermission">获取通知权限</button>
       <button @click="notifyMe">通知</button>
     </div>
+
+    <div class="pannel">短轮询时间间隔：{{ timeInterval }}ms</div>
   </div>
 </template>
 
@@ -38,11 +40,19 @@ export default {
   data() {
     return {
       rooms: [],
+      timeInterval: 6000, // 轮询时间间隔
     };
   },
   created() {
     this.$toast.show("占位,欸,还没写呢");
     this.getUserRooms();
+
+    // 定时轮询
+    setInterval(() => {
+      console.log("轮询中。。。" + new Date());
+
+      this.getUserRooms();
+    }, this.timeInterval);
   },
   methods: {
     async getUserRooms() {
@@ -102,7 +112,6 @@ export default {
 </script>
 
 <style scoped>
-
 .room-list {
   background-color: rgb(245, 238, 238);
 }
