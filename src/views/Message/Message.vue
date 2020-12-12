@@ -19,7 +19,7 @@
           </div>
 
           <div class="right">
-            {{ room.latestMessage.createdAt }}
+            {{ room.latestMessageDate }}
           </div>
         </router-link>
       </div>
@@ -36,6 +36,7 @@
 
 <script>
 import { listRooms } from "network/user";
+import { formatDate } from "@/utils/time";
 
 export default {
   name: "Message",
@@ -84,6 +85,9 @@ export default {
         obj.sender = sender;
         obj.rid = room._id;
         obj.latestMessage = room.latestMessage;
+
+        // 格式化时间
+        obj.latestMessageDate = formatDate(room.latestMessage.createdAt);
         return obj;
       });
 
