@@ -1,6 +1,10 @@
 <template>
   <div>
-    <write-header @preview="preview" @publish="publish"></write-header>
+    <write-header
+      @preview="preview"
+      @publish="publish"
+      :wordcount="wordcount"
+    ></write-header>
     <div class="write">
       <textarea
         type="text"
@@ -11,7 +15,17 @@
       <div id="main">
         <mavon-editor
           :subfield="false"
-          :toolbarsFlag="false"
+          :toolbars="{
+            bold: true, // 粗体
+            italic: true, // 斜体
+            header: true, // 标题
+            imagelink: true, // 图片链接
+            code: true, // code
+            undo: true, // 上一步
+            redo: true, // 下一步
+            preview: true, // 预览
+            htmlcode: true, // 展示html源码
+          }"
           placeholder="请输入正文"
           v-model="content"
         />
@@ -29,6 +43,7 @@ export default {
       title: "",
       content: "",
       status: 1,
+      wordcount: 0, // 字数
     };
   },
   components: {
@@ -80,7 +95,15 @@ export default {
       }
     },
   },
-
+  watch: {
+    title: () => {
+      console.log("title change");
+    },
+    content: function (newContent, oldContent) {
+      console.log("content change");
+      this.wordcount = newContent.length;
+    },
+  },
   computed: {},
 };
 </script>

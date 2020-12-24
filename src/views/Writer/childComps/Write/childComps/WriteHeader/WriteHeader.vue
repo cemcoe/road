@@ -5,7 +5,7 @@
         <button @click="$router.back()">
           <cem-icon name="back"></cem-icon>
         </button>
-        <span>{{ 0 }}字</span>
+        <span>{{ wordcount }}字</span>
       </div>
 
       <div slot="right">
@@ -21,6 +21,9 @@ import NavBar from "components/common/navbar/NavBar";
 import CemIcon from "components/common/icon/Icon";
 export default {
   name: "WriteHeader",
+  props: {
+    wordcount: {},
+  },
   data() {
     return {};
   },
@@ -36,8 +39,6 @@ export default {
       this.$emit("publish");
     },
   },
-  created() {},
-  computed: {},
 };
 </script>
 
