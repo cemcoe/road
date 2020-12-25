@@ -4,6 +4,7 @@ const Writer = () => import('../views/Writer/Writer')
 const Post = () => import('../views/Post/Post')
 const Following = () => import('../views/Following/Following')
 const Island = () => import('../views/Island/Island')
+const IslandDetail = () => import('../views/Island/IslandDetail')
 const Message = () => import('../views/Message/Message')
 const NoteBook = () => import('../views/NoteBook/NoteBook')
 const Search = () => import('../views/Search/Search')
@@ -85,6 +86,14 @@ export default [
     component: Island,
     meta: {
       showFooter: true
+    },
+  },
+  {
+    path: '/island/:islandId',
+    name: 'IslandDetail',
+    component: IslandDetail,
+    meta: {
+      showFooter: false
     },
   },
   {
