@@ -21,3 +21,10 @@ export function getIslandDetail(islandId) {
     url: `/islands/${islandId}`,
   })
 }
+
+export function getCurrentIslandPostList(islandId) {
+  return request({
+    method: "get",
+    url: `/islands/${islandId}/islandPosts`,
+  })
+}
