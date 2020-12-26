@@ -2,6 +2,13 @@
   <div class="container">
     展示帖子列表，开发中。。。
 
+    <div class="create-island">
+      <form>
+        <input v-model="island" type="text" />
+      </form>
+      <button @click="newIsland">创建小岛</button>
+    </div>
+
     <div class="post" v-for="post in islandPostList" :key="post._id">
       <router-link class="author" :to="'/u/' + post.author._id">
         <img
@@ -27,12 +34,13 @@
 </template>
 
 <script>
-import { getIslandPostList } from "network/island";
+import { getIslandPostList, createIsland } from "network/island";
 export default {
   name: "Island",
   data() {
     return {
       islandPostList: [],
+      island: "",
     };
   },
   created() {
@@ -40,6 +48,17 @@ export default {
     getIslandPostList().then(
       (res) => (this.islandPostList = res.data.islandPost)
     );
+  },
+  methods: {
+    async newIsland() {
+      const island = {
+        name: this.island,
+        // 未来可能添加其他字段
+      };
+      const res = await createIsland(island);
+      // 跳转到小岛详情页
+      this.$router.push(`/island/${res.data.island._id}`);
+    },
   },
 };
 </script>
