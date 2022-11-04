@@ -1,0 +1,17 @@
+/* value */
+:root {
+  --main-bgc-color: rgb(236, 226, 226);
+  --main-text-color: #000;
+  --primary-color: #000;
+  /* Vant global */
+  --van-search-left-icon-color: var(--primary-color);
+  --van-nav-bar-icon-color: #000;
+}
+
+/* Text and background color for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bgc-color: #000;
+    --main-text-color: rgb(240, 228, 228);
+  }
+}

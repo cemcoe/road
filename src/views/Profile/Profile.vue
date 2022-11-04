@@ -1,82 +1,231 @@
-<template>
-  <div>
-    <profile-header></profile-header>
-    <user-info-banner></user-info-banner>
-    <product-banner></product-banner>
+<script setup>
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+import { showConfirmDialog, showToast } from "vant";
+import useLoginStore from "@/stores/modules/login";
+import { works } from "./works";
 
-    <div class="li-item">
-      <div>我的钱包</div>
-      <div>简书活动</div>
-      <div>每日任务</div>
-      <div>我的小岛</div>
-      <div>浏览历史</div>
-      <div>开启夜间模式</div>
-      <div>设置</div>
-      <div>
-        <router-link to="/about">关于</router-link>
-      </div>
-    </div>
+const router = useRouter();
+const loginStore = useLoginStore();
+const { userInfo, getFollowingCount, getFollowersCount, isLogin } =
+  storeToRefs(loginStore);
 
-    <div>
-      <!-- <button v-if="user._id" @click="signout">退出登录</button> -->
-      <cem-button type="danger" v-if="user._id" @click="signout"
-        >退出登录</cem-button>
+onMounted(() => {
+  loginStore.getFollowingAction();
+  loginStore.getFollowersAction();
+});
 
-      <div v-if="user._id">
-        <router-link :to="'/reset/' + user._id">更新用户信息</router-link>
-      </div>
-    </div>
-    <div>
-      <li>简书公告1</li>
-      <li>简书公告2</li>
-    </div>
-    <hr />
-  </div>
-</template>
+const goAuthPage = (path) => {
+  if (isLogin.value) {
+    router.push(path);
+  } else {
+    router.push("/login");
+  }
+};
 
-<script>
-import ProfileHeader from "./childComps/ProfileHeader/ProfileHeader";
-import UserInfoBanner from "./childComps/UserInfoBanner/UserInfoBanner";
-import ProductBanner from "./childComps/ProductBanner/ProductBanner";
-
-import CemButton from "components/common/Button/Button";
-import { mapState } from "vuex";
-export default {
-  name: "Profile",
-  components: {
-    ProfileHeader,
-    UserInfoBanner,
-    ProductBanner,
-    CemButton,
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    signout() {
-      this.$store.commit("del_token");
-      this.$store.commit("del_user");
-      this.user = {};
-      this.$toast.show("退出登录成功", 2000);
-    },
-  },
-  computed: {
-    ...mapState(["user"]),
-  },
+const logout = () => {
+  showConfirmDialog({
+    title: "提醒",
+    message: "确定清除缓存？",
+  })
+    .then(() => {
+      loginStore.logoutAction().then(() => {
+        showToast("成功");
+      });
+    })
+    .catch(() => {
+      // on cancel
+    });
 };
 </script>
 
+<template>
+  <div class="profile">
+    <div class="header">
+      <van-nav-bar title="我的" left-text="Back" left-arrow>
+        <template #left>
+          <van-icon name="scan" color="#000" size="20" />
+        </template>
+        <template #right>
+          <van-icon name="search" color="#000" size="20" />
+        </template>
+      </van-nav-bar>
+    </div>
+    <div class="card user">
+      <div class="user-info">
+        <div class="avatar" @click="goAuthPage(`/u/${userInfo._id}`)">
+          <img :src="userInfo.avatar" alt="" srcset="" />
+        </div>
+        <div class="info">
+          <div class="name">
+            <div class="user-info" @click="goAuthPage(`/u/${userInfo._id}`)">
+              {{ userInfo.name || "请登录" }}
+            </div>
+          </div>
+          <div class="bottom-line">
+            <span
+              class="item"
+              @click="goAuthPage(`/u/${userInfo._id}/following`)"
+              >关注
+              <span class="value">{{ getFollowingCount }}</span>
+            </span>
+            <span
+              class="item"
+              @click="goAuthPage(`/u/${userInfo._id}/followers`)"
+              >粉丝
+              <span class="value">{{ getFollowersCount }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <van-divider />
+
+      <div class="works">
+        <div
+          class="work"
+          v-for="work in works"
+          :key="work.id"
+          @click="$router.push(work.path)"
+        >
+          <div class="img">
+            <img :src="work.img" :alt="work.title" />
+          </div>
+          <div class="title">{{ work.title }}</div>
+          <div class="info">{{ work.info }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="ad">
+      <img src="@/assets/img/home/banner.png" alt="" />
+    </div>
+
+    <div class="settings">
+      <van-cell-group :border="false">
+        <van-cell :border="false" title="清除缓存" is-link @click="logout" />
+        <van-cell
+          :border="false"
+          title="关于"
+          is-link
+          to="/u/5f6836ac7ce71b1a82ac3b75"
+        />
+      </van-cell-group>
+      <van-cell-group :border="false">
+        <van-cell
+          :border="false"
+          title="GitHub"
+          is-link
+          url="https://github.com/cemcoe/xbook"
+        />
+        <van-cell
+          :border="false"
+          title="Twitter"
+          is-link
+          url="https://twitter.com/cem_coe"
+        />
+      </van-cell-group>
+    </div>
+  </div>
+</template>
+
 <style scoped>
-.li-item {
-  width: 90%;
-  margin: 10px auto;
-  box-shadow: 0px 0px 10px rgb(223, 217, 217);
-  padding: 16px;
-  border-radius: 6px;
+.card {
+  width: 90vw;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 10px;
+  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 
-.li-item div {
-  padding: 10px;
-  margin-bottom: 4px;
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info .avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.user-info .avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.user-info .info {
+  display: flex;
+  flex-direction: column;
+
+  height: 50px;
+  justify-content: space-around;
+  margin-left: 16px;
+}
+
+.user-info .name {
+  color: #000;
+  font-weight: 700;
+}
+
+.user-info .info .item {
+  color: rgb(165, 159, 159);
+  margin-right: 10px;
+}
+
+.info .item .value {
+  color: #000;
+}
+
+.ad {
+  width: 90vw;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+}
+
+.ad img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgb(228, 225, 225);
+}
+
+.works {
+  display: flex;
+  justify-content: space-around;
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work .img {
+  width: 30px;
+}
+
+.work .img img {
+  width: 100%;
+}
+
+.work .title {
+  margin-top: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.work .info {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.settings {
+  margin: 20px auto;
 }
 </style>

@@ -1,38 +1,71 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
+import { tabbarRoutes } from "./tabbar-routes";
 
-import main from './main'
-import home from './home'
-import author from './author'
-import my from './my'
-import user from './user'
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    // {
+    //   path: "/",
+    //   redirect: "/home",
+    // },
+    ...tabbarRoutes,
+    {
+      path: "/p/:postId",
+      component: () => import("@/views/post/post.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/u/:userId",
+      component: () => import("@/views/user/user.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/search",
+      component: () => import("@/views/search/search.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/login",
+      component: () => import("@/views/login/login.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/editor",
+      component: () => import("@/views/editor/editor.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/editor/:postId",
+      component: () => import("@/views/editor/editor.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/u/:uid/followers",
+      component: () => import("@/views/user-followers/user-followers.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+    {
+      path: "/u/:uid/following",
+      component: () => import("@/views/user-following/user-following.vue"),
+      meta: {
+        hideTabBar: true,
+      },
+    },
+  ],
+});
 
-// 路由文件说明
-// main 大路由文件
-// home home相关的路由
-// author author相关的路由
-
-
-// meta变量说明
-// requireAuth: true 是否登录才能访问
-// showFooter: true 是否要展示底部导航
-
-
-Vue.use(VueRouter)
-
-
-const routes = [
-  ...main,
-  home,
-  author,
-  ...my,
-  ...user,
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  // base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+export default router;

@@ -1,104 +1,88 @@
-<template>
-  <div class="container">
-    <post-header @addPostToNoteBook="addPostToNoteBook" :postStatus="post.status"></post-header>
-    <div v-if="post.title">
-      <div class="title">
-        <h2>{{ post.title }}</h2>
-      </div>
+<script setup>
+import { onUnmounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+import { usePostStore } from "@/stores/modules/post";
+import PostAuthor from "./components/post-author.vue";
+import MarkedPreView from "@/components/marked-preview/marked-preview.vue";
 
-      <author-info :authorInfo="author"></author-info>
+const router = useRouter();
+const route = useRoute();
 
-      <post-info :postInfo="post"></post-info>
+const postId = route?.params?.postId;
 
-      <post-content :postContent="post.content"></post-content>
+const postStore = usePostStore();
+postStore.fetchPostDetail(postId);
 
-      <post-comments :postComments="postComments"></post-comments>
+const { postDetail } = storeToRefs(postStore);
 
-      <post-tab-bar :postId="post._id"></post-tab-bar>
+onUnmounted(() => {
+  postStore.postDetail = {};
+});
 
-      <note-book-list v-show="isShowNoteBookList"></note-book-list>
+const onClickLeft = () => history.back();
 
-      <div
-        class="overlay"
-        v-show="isShowNoteBookList"
-        @click="overlayClick"
-      ></div>
-    </div>
-    <div v-else>
-      <loading />
-    </div>
-  </div>
-</template>
+const show = ref(false);
+const showPopup = () => {
+  show.value = true;
+};
 
-<script>
-import { mapState } from "vuex";
-
-import Loading from "components/common/loading/Loading";
-import PostHeader from "./childComps/PostHeader/PostHeader";
-import AuthorInfo from "./childComps/AuthorInfo/AuthorInfo";
-import PostInfo from "./childComps/PostInfo/PostInfo";
-import PostContent from "./childComps/PostContent/PostContent";
-import PostComments from "./childComps/PostComments/PostComments";
-import PostTabBar from "./childComps/PostTabBar/PostTabBar";
-import NoteBookList from "./childComps/NoteBookList/NoteBookList";
-
-export default {
-  components: {
-    Loading,
-    PostHeader,
-    AuthorInfo,
-    PostContent,
-    PostInfo,
-    PostComments,
-    PostTabBar,
-    NoteBookList,
-  },
-  data() {
-    return {
-      isShowNoteBookList: false,
-    };
-  },
-  methods: {
-    addPostToNoteBook() {
-      console.log("添加到连载按钮被点击，展示连载列表");
-      this.isShowNoteBookList = true;
-    },
-    overlayClick() {
-      console.log("遮罩被点击，为你隐藏连载列表");
-      this.isShowNoteBookList = false;
-    },
-  },
-  mounted() {
-    this.$store.dispatch("getPostDetail", this.$route.params.id);
-    this.$store.dispatch("getPostComments", this.$route.params.id);
-  },
-  computed: {
-    ...mapState(["post", "author", "postComments"]),
-  },
-  // 组件销毁，文章数据重置，避免缓存
-  destroyed() {
-    // 重置文章数据
-    this.$store.commit("set_post", {});
-    // 重置作者数据
-    this.$store.commit("set_author", {});
-  },
+const edit = () => {
+  router.replace("/editor/" + postId);
 };
 </script>
 
+<template>
+  <div class="post">
+    <van-nav-bar
+      title="文章"
+      left-arrow
+      fixed
+      @click-left="onClickLeft"
+      @click-right="showPopup"
+    >
+      <template #right>
+        <van-icon size="20" name="more-o" />
+      </template>
+    </van-nav-bar>
+
+    <div class="post" v-if="postDetail.title">
+      <div class="title">
+        <h2>{{ postDetail.title }}</h2>
+      </div>
+      <PostAuthor :author="postDetail.author"></PostAuthor>
+
+      <MarkedPreView :markdownString="postDetail.content" />
+    </div>
+
+    <van-popup
+      v-model:show="show"
+      position="bottom"
+      round
+      :style="{ height: '30%', padding: '10px' }"
+    >
+      <van-cell-group>
+        <van-cell @click="edit" title="编辑" is-link />
+        <van-cell title="Cell title" is-link value="Content" />
+        <van-cell
+          title="Cell title"
+          is-link
+          arrow-direction="down"
+          value="Content"
+        />
+      </van-cell-group>
+    </van-popup>
+  </div>
+</template>
+
 <style scoped>
-h2 {
-  padding: 10px;
-  font-weight: 700;
-  line-height: 22px;
+.post {
+  --van-nav-bar-icon-color: #000;
+  margin-top: var(--van-nav-bar-height);
 }
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 29999;
-  background-color: #000;
-  opacity: 0.8;
+.title {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
 }
 </style>
