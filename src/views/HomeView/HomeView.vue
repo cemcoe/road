@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import type { IPost } from "@/types";
-import { getHomePostList } from "@/service/modules/home";
+import { storeToRefs } from "pinia";
+import { useHomeStore } from "@/stores/home";
 
-const postList = ref<IPost[]>([]);
-getHomePostList().then((res) => {
-  const { status, data } = res;
-  console.log(status, data);
-  if (status === 200) {
-    postList.value = data.post;
-  }
-});
+const homeStore = useHomeStore();
+homeStore.getHomePostListAction();
+
+const { postList } = storeToRefs(homeStore);
 </script>
 
 <template>
