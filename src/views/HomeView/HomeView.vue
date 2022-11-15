@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useHomeStore } from "@/stores/home";
+import PostList from "@/components/PostList/PostList.vue";
 
 const homeStore = useHomeStore();
 homeStore.getHomePostListAction();
@@ -10,7 +11,7 @@ const { postList } = storeToRefs(homeStore);
 
 <template>
   <div class="home">
-    <h2 v-for="post in postList" :key="post._id">{{ post.title }}</h2>
+    <PostList :postList="postList" />
   </div>
 </template>
 

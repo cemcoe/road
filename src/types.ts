@@ -6,7 +6,7 @@ export interface IResponse<T> {
 export interface IPost {
   commentcount: number;
   viewcount: number;
-  imgsLink: any[];
+  imgsLink: string[];
   status: number;
   _id: string;
   title: string;
