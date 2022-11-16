@@ -5,12 +5,15 @@ import type { IPost } from "@/types";
 
 export const useHomeStore = defineStore("home", () => {
   const postList = ref<IPost[]>([]);
+  const page = ref(1);
+  const per_page = ref(10);
 
-  function getHomePostListAction(page = 1, per_page = 10) {
-    getHomePostList(page, per_page).then((res) => {
+  async function getHomePostListAction() {
+    getHomePostList(page.value, per_page.value).then((res) => {
       const { status, data } = res;
       if (status === 200) {
-        postList.value = data.post;
+        postList.value.push(...data.post);
+        page.value++;
       }
     });
   }

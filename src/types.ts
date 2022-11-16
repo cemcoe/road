@@ -13,8 +13,8 @@ export interface IPost {
   wordcount: number;
   author: IAuthor;
   abstract: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: String;
+  updatedAt: String;
 }
 
 export interface IAuthor {
@@ -26,6 +26,6 @@ export interface IAuthor {
   private_post_count: number;
   _id: string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

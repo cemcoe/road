@@ -16,8 +16,8 @@ interface IPost {
   wordcount: number;
   author: IAuthor;
   abstract: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface IAuthor {
@@ -29,8 +29,8 @@ interface IAuthor {
   private_post_count: number;
   _id: string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 // -------------------------------
