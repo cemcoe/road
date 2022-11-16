@@ -30,3 +30,16 @@ export interface IAuthor {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IUser {
+  gender: string;
+  bio: string;
+  avatar: string;
+  following_count: number;
+  follower_count: number;
+  private_post_count: number;
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}

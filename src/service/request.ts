@@ -2,6 +2,14 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
   const BASE_URL = "https://jian.cemcoe.com/jianshu_api";
   const url = BASE_URL + input;
 
+  // 合并init
+  init = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    ...init,
+  };
+
   return new Promise((resolve, reject) => {
     fetch(url, init)
       .then((response) => {

@@ -8,15 +8,15 @@ const tabbarRoutes = [
       imageActive: "tabbar/home_active.svg",
     },
   },
-  {
-    path: "/following",
-    component: () => import("@/views/FollowingView/FollowingView.vue"),
-    meta: {
-      text: "关注",
-      image: "tabbar/following.svg",
-      imageActive: "tabbar/following_active.svg",
-    },
-  },
+  // {
+  //   path: "/following",
+  //   component: () => import("@/views/FollowingView/FollowingView.vue"),
+  //   meta: {
+  //     text: "关注",
+  //     image: "tabbar/following.svg",
+  //     imageActive: "tabbar/following_active.svg",
+  //   },
+  // },
   {
     path: "/profile",
     component: () => import("@/views/ProfileView/ProfileView.vue"),

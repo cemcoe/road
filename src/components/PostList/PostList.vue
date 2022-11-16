@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IPost } from "@/types";
+// import type { IPost } from "@/types";
 import PostItem from "./PostItem.vue";
 
 defineProps<{

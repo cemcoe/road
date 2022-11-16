@@ -174,7 +174,7 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   display: inline-block;
   font-size: 12px;
   transform: scale(0.83, 0.83);
-  *font-size: 10px;
+  font-size: 10px;
 }
 
 .meta span {
