@@ -3,7 +3,7 @@ import type { IPost } from "@/types";
 import PostItem from "./PostItem.vue";
 
 defineProps<{
-  postList: IPost[];
+  postList: any[];
 }>();
 </script>
 

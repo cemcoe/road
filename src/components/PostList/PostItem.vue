@@ -15,6 +15,7 @@ interface IPost {
   title: string;
   wordcount: number;
   author: IAuthor;
+  content?: string;
   abstract: string;
   createdAt: string;
   updatedAt: string;
