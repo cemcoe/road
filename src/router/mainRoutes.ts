@@ -13,13 +13,13 @@ const MainRoutes = [
   //     hideTabBar: true,
   //   },
   // },
-  // {
-  //   path: "/login",
-  //   component: () => import("@/views/LoginView/LoginView.vue"),
-  //   meta: {
-  //     hideTabBar: true,
-  //   },
-  // },
+  {
+    path: "/login",
+    component: () => import("@/views/LoginView/LoginView.vue"),
+    meta: {
+      hideTabBar: true,
+    },
+  },
   // {
   //   path: "/editor",
   //   component: () => import("@/views/EditorView/EditorView.vue"),
