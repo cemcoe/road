@@ -17,3 +17,13 @@ export function login(loginInfo: loginInfo) {
     body: JSON.stringify(loginInfo),
   });
 }
+
+// 获取特定用户的信息
+export function getUserInfo(id: any) {
+  return request<IResponse<IResult>>(`/users/${id}`);
+}
+
+// 获取某人文章列表，默认为公开文章
+export function getUserPosts(id: any, status = "public") {
+  return request<IResponse<any>>(`/users/${id}/posts?status=${status}`);
+}
