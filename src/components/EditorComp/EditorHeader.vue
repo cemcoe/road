@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const emits = defineEmits(["goBack", "preview", "publish", "update"]);
 
-const props = defineProps({
+defineProps({
   isNewPost: {
     type: Boolean,
     default: true,

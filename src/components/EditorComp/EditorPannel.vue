@@ -29,7 +29,7 @@ const useMenu = () => {
   };
 };
 
-const { showMenu, switchMeunStatus, saveToPrivatePost } = useMenu();
+const { showMenu, switchMeunStatus } = useMenu();
 </script>
 
 <template>
