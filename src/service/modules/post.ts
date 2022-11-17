@@ -9,3 +9,20 @@ interface IPostRes {
 export function getPostDetail(postId: any) {
   return request<IResponse<IPostRes>>(`/posts/${postId}`);
 }
+
+// 创建文章
+export function createPost(post: any) {
+  return request("/posts", {
+    // 传一个对象过来，以后如果添加字段时就简单了
+    method: "post",
+    body: JSON.stringify(post),
+  });
+}
+
+// 更新文章
+export function updatePost(id: any, post: any) {
+  return request(`/posts/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(post),
+  });
+}

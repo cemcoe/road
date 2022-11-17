@@ -14,8 +14,8 @@ export interface IPost {
   author: IAuthor;
   content?: string;
   abstract: string;
-  createdAt: String;
-  updatedAt: String;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IAuthor {

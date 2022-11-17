@@ -79,6 +79,7 @@ const goAuthPage = (path: string) => {
         is-link
         @click="loginStore.logoutAction"
       />
+      <van-cell :border="false" title="换账号登录" is-link to="/login" />
       <van-cell
         :border="false"
         title="关于"

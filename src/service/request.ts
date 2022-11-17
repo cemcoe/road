@@ -6,6 +6,7 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
   init = {
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}` || "",
     },
     ...init,
   };
