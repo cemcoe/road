@@ -2,6 +2,7 @@
   font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
   font-size: 14px;
+  max-width: 750px; /* px-to-viewport-ignore */
 }
 
 body {
