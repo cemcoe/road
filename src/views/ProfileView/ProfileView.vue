@@ -21,80 +21,81 @@ const goAuthPage = (path: string) => {
 
 <template>
   <LoginCard></LoginCard>
-
-  <div class="header">
-    <van-nav-bar title="我的" left-text="Back" left-arrow>
-      <template #left>
-        <!-- <van-icon name="scan" color="#000" size="20" /> -->
-      </template>
-      <template #right>
-        <!-- <van-icon name="search" color="#000" size="20" /> -->
-      </template>
-    </van-nav-bar>
-  </div>
-  <div class="card user">
-    <div class="user-info">
-      <div class="avatar" @click="goAuthPage(`/u/${userInfo.id}`)">
-        <img :src="userInfo.avatar" alt="" srcset="" />
-      </div>
-      <div class="info">
-        <div class="name">
-          <div class="user-info" @click="goAuthPage(`/u/${userInfo.id}`)">
-            {{ userInfo.name || "请登录" }}
+  <div v-if="isLogin">
+    <div class="header">
+      <van-nav-bar title="我的" left-text="Back" left-arrow>
+        <template #left>
+          <!-- <van-icon name="scan" color="#000" size="20" /> -->
+        </template>
+        <template #right>
+          <!-- <van-icon name="search" color="#000" size="20" /> -->
+        </template>
+      </van-nav-bar>
+    </div>
+    <div class="card user">
+      <div class="user-info">
+        <div class="avatar" @click="goAuthPage(`/u/${userInfo.id}`)">
+          <img :src="userInfo.avatar" alt="" srcset="" />
+        </div>
+        <div class="info">
+          <div class="name">
+            <div class="user-info" @click="goAuthPage(`/u/${userInfo.id}`)">
+              {{ userInfo.name || "请登录" }}
+            </div>
+          </div>
+          <div class="bottom-line">
+            {{ userInfo.bio }}
           </div>
         </div>
-        <div class="bottom-line">
-          {{ userInfo.bio }}
+      </div>
+
+      <van-divider />
+
+      <div class="works">
+        <div
+          class="work"
+          v-for="work in works"
+          :key="work.id"
+          @click="$router.push(work.path)"
+        >
+          <div class="img">
+            <img :src="userInfo.avatar" :alt="work.title" />
+          </div>
+          <div class="title">{{ work.title }}</div>
+          <div class="info">{{ work.info }}</div>
         </div>
       </div>
     </div>
 
-    <van-divider />
-
-    <div class="works">
-      <div
-        class="work"
-        v-for="work in works"
-        :key="work.id"
-        @click="$router.push(work.path)"
-      >
-        <div class="img">
-          <img :src="userInfo.avatar" :alt="work.title" />
-        </div>
-        <div class="title">{{ work.title }}</div>
-        <div class="info">{{ work.info }}</div>
-      </div>
+    <div class="ad">
+      <img src="@/assets/img/home/banner.png" alt="" />
     </div>
-  </div>
 
-  <div class="ad">
-    <img src="@/assets/img/home/banner.png" alt="" />
-  </div>
-
-  <div class="settings">
-    <van-cell-group :border="false">
-      <van-cell
-        :border="false"
-        title="清除缓存"
-        is-link
-        @click="loginStore.logoutAction"
-      />
-      <van-cell :border="false" title="换账号登录" is-link to="/login" />
-    </van-cell-group>
-    <van-cell-group :border="false">
-      <van-cell
-        :border="false"
-        title="GitHub"
-        is-link
-        url="https://github.com/cemcoe/xbook"
-      />
-      <van-cell
-        :border="false"
-        title="Twitter"
-        is-link
-        url="https://twitter.com/cem_coe"
-      />
-    </van-cell-group>
+    <div class="settings">
+      <van-cell-group :border="false">
+        <van-cell
+          :border="false"
+          title="清除缓存"
+          is-link
+          @click="loginStore.logoutAction"
+        />
+        <van-cell :border="false" title="换账号登录" is-link to="/login" />
+      </van-cell-group>
+      <van-cell-group :border="false">
+        <van-cell
+          :border="false"
+          title="GitHub"
+          is-link
+          url="https://github.com/cemcoe/xbook"
+        />
+        <van-cell
+          :border="false"
+          title="Twitter"
+          is-link
+          url="https://twitter.com/cem_coe"
+        />
+      </van-cell-group>
+    </div>
   </div>
 </template>
 
