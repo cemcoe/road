@@ -37,8 +37,6 @@ export const usePostStore = defineStore("post", () => {
       const { status, data } = res;
       if (status === 200) {
         postDetail.value = data.post;
-        postDetail.value.author.avatar =
-          "https://jian.cemcoe.com/jianshu_api" + data.post.author.avatar;
       }
     });
   }

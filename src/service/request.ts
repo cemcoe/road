@@ -1,5 +1,6 @@
+import { BASE_URL } from "./config";
+
 export async function request<T>(input: string, init: Object = {}): Promise<T> {
-  const BASE_URL = "https://jian.cemcoe.com/jianshu_api";
   const url = BASE_URL + input;
 
   // 合并init

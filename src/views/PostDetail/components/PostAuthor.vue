@@ -17,12 +17,12 @@ defineProps({
   <div class="container">
     <div class="author-info">
       <div class="info-item avatar">
-        <router-link :to="'/u/' + author?._id">
+        <router-link :to="'/u/' + author?.id">
           <img :src="author?.avatar" alt="avatar"
         /></router-link>
       </div>
       <div class="info-item username">
-        <router-link :to="'/u/' + author?._id">{{ author?.name }}</router-link>
+        <router-link :to="'/u/' + author?.id">{{ author?.name }}</router-link>
       </div>
     </div>
     <!-- <div class="follow" v-show="author.avatar">

@@ -34,12 +34,12 @@ const goAuthPage = (path: string) => {
   </div>
   <div class="card user">
     <div class="user-info">
-      <div class="avatar" @click="goAuthPage(`/u/${userInfo._id}`)">
+      <div class="avatar" @click="goAuthPage(`/u/${userInfo.id}`)">
         <img :src="userInfo.avatar" alt="" srcset="" />
       </div>
       <div class="info">
         <div class="name">
-          <div class="user-info" @click="goAuthPage(`/u/${userInfo._id}`)">
+          <div class="user-info" @click="goAuthPage(`/u/${userInfo.id}`)">
             {{ userInfo.name || "请登录" }}
           </div>
         </div>
@@ -59,7 +59,7 @@ const goAuthPage = (path: string) => {
         @click="$router.push(work.path)"
       >
         <div class="img">
-          <img :src="work.img" :alt="work.title" />
+          <img :src="userInfo.avatar" :alt="work.title" />
         </div>
         <div class="title">{{ work.title }}</div>
         <div class="info">{{ work.info }}</div>
@@ -80,12 +80,6 @@ const goAuthPage = (path: string) => {
         @click="loginStore.logoutAction"
       />
       <van-cell :border="false" title="换账号登录" is-link to="/login" />
-      <van-cell
-        :border="false"
-        title="关于"
-        is-link
-        to="/u/5f6836ac7ce71b1a82ac3b75"
-      />
     </van-cell-group>
     <van-cell-group :border="false">
       <van-cell

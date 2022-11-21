@@ -7,40 +7,37 @@ import { computed } from "vue";
 // 不支持呀
 // https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
 interface IPost {
-  commentcount: number;
-  viewcount: number;
-  imgsLink: string[];
-  status: number;
-  _id: string;
+  id: number;
   title: string;
   wordcount: number;
   author: IAuthor;
   content?: string;
   abstract: string;
-  createdAt: string;
-  updatedAt: string;
+  commentcount: number;
+  viewcount: number;
+  imgsLink: string[];
+  status: number;
+  created_at: string;
+  updated_at: string;
 }
 
 interface IAuthor {
   gender: string;
   bio: string;
   avatar: string;
-  following_count: number;
-  follower_count: number;
-  private_post_count: number;
-  _id: string;
+  id: number;
   name: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 // -------------------------------
 
 const props = defineProps<IPost>();
 
-const postUrl = computed(() => "/p/" + props._id);
-const authorUrl = computed(() => "/u/" + props.author._id);
-const createDate = computed(() => props.createdAt);
+const postUrl = computed(() => "/p/" + props.id);
+const authorUrl = computed(() => "/u/" + props.author.id);
+const createDate = computed(() => props.created_at);
 const imgsLinkLength = computed(() => props.imgsLink.length);
 </script>
 

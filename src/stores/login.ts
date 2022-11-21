@@ -20,8 +20,6 @@ const useLoginStore = defineStore("login", {
       console.log(this.loginInfo);
       const res = await login(this.loginInfo);
       const { token, user } = res.data;
-      const { avatar } = user;
-      user.avatar = "https://jian.cemcoe.com/jianshu_api" + avatar;
       localStorage.setItem("token", token);
       localStorage.setItem("userInfo", JSON.stringify(user));
       this.token = token;

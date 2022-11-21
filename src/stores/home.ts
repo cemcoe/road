@@ -12,7 +12,7 @@ export const useHomeStore = defineStore("home", () => {
     getHomePostList(page.value, per_page.value).then((res) => {
       const { status, data } = res;
       if (status === 200) {
-        postList.value.push(...data.post);
+        postList.value.push(...data.postList);
         page.value++;
       }
     });
