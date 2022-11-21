@@ -17,12 +17,12 @@ const { postList } = storeToRefs(homeStore);
 // 后面记得改
 const homeScroll = ref<any>();
 const { isReachBottom, scrollTop } = useScroll(homeScroll);
-watch(isReachBottom, () => {
-  // console.log(isReachBottom.value);
+
+watch(isReachBottom, async () => {
+  console.log(isReachBottom.value);
   if (isReachBottom.value) {
-    homeStore.getHomePostListAction().then(() => {
-      isReachBottom.value = false;
-    });
+    await homeStore.getHomePostListAction();
+    isReachBottom.value = false;
   }
 });
 
