@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useHomeStore } from "@/stores/home";
 import { useScroll } from "@/hooks/useScroll";
 import HomeNavBar from "./components/HomeNavBar.vue";
 import PostList from "@/components/PostList/PostList.vue";
+
+const router = useRouter();
 
 const homeStore = useHomeStore();
 homeStore.getHomePostListAction();
@@ -28,6 +31,10 @@ watch(scrollTop, () => {
     console.log("doing");
   }
 });
+
+const clickGoEditorBtn = () => {
+  router.push("/editor");
+};
 </script>
 
 <template>
@@ -40,6 +47,9 @@ watch(scrollTop, () => {
       <div class="post-list-container">
         <PostList :postList="postList" />
       </div>
+    </div>
+    <div class="go-editor" @click="clickGoEditorBtn">
+      <van-icon name="edit" color="#f40" size="26" />
     </div>
   </div>
 </template>
