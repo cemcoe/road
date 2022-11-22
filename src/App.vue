@@ -4,7 +4,12 @@ import TabBar from "./components/TabBar/TabBar.vue";
 </script>
 
 <template>
-  <RouterView />
+  <router-view v-slot="{ Component }">
+    <keep-alive :include="['HomeView', 'b']">
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+
   <TabBar v-if="!$route.meta.hideTabBar" />
 </template>
 
