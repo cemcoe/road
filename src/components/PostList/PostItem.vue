@@ -93,15 +93,15 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
     <div class="meta">
       <span>
-        <router-link :to="authorUrl" class="nickname font10px">{{
+        <router-link :to="authorUrl" class="nickname">{{
           author.name
         }}</router-link>
       </span>
 
-      <span class="creat-date font10px">{{ createDate }}</span>
-      <span class="font10px">{{ viewcount }} 阅读</span>
-      <span class="font10px">{{ commentcount }} 评论</span>
-      <span class="font10px">0赞</span>
+      <span class="creat-date">{{ createDate }}</span>
+      <span class="">{{ viewcount }} 阅读</span>
+      <span class="">{{ commentcount }} 评论</span>
+      <span class="">0赞</span>
     </div>
   </div>
 </template>
@@ -160,18 +160,10 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   width: 33%;
   border-radius: 6px;
 }
-.meta {
+.meta span {
   color: #c7c4c4;
   padding-right: 12px;
-  /* font-size: 12px; */
-}
-
-/* // 10px小字体 */
-.font10px {
-  display: inline-block;
   font-size: 12px;
-  transform: scale(0.83, 0.83);
-  font-size: 10px;
 }
 
 .meta span {
