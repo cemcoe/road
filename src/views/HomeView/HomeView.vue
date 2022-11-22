@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onActivated } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useHomeStore } from "@/stores/home";
@@ -35,6 +35,12 @@ watch(scrollTop, () => {
 const clickGoEditorBtn = () => {
   router.push("/editor");
 };
+
+onActivated(() => {
+  homeScroll.value.scrollTo({
+    top: scrollTop.value,
+  });
+});
 </script>
 
 <template>
