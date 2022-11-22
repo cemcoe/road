@@ -83,3 +83,10 @@ npm run lint
 ```
 
 更多信息可参考 [开发流水账](https://www.jianshu.com/nb/47900649)
+
+## 知识点参考
+
+- https://vitejs.dev/guide/env-and-mode.html
+- https://nodejs.dev/en/learn/writing-files-with-nodejs/
+- https://www.typescriptlang.org/tsconfig
+- https://stackoverflow.com/questions/49996456/importing-json-file-in-typescript
