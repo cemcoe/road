@@ -8,7 +8,7 @@ import { getAssetURL } from "@/utils/getAssetsImg";
     <van-tabbar route active-color="#ff9845">
       <template v-for="(item, index) in tabbarRoutes" :key="index">
         <van-tabbar-item replace :to="item.path">
-          <span>{{ item.meta.text }}</span>
+          <!-- <span>{{ item.meta.text }}</span> -->
           <template #icon="props">
             <img
               :src="
