@@ -34,6 +34,7 @@
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/marked">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/vant">
   <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/cemcoe/xbook">
+  <img alt="GitHub package.json dependency version (dev dep on branch)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/dev/typescript">
  
 </p>
 
