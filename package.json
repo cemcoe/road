@@ -2,8 +2,8 @@
   "name": "xbook",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
-    "dev:s": "vite --mode staging",
+    "dev": "vite --mode staging",
+    "dev:local": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
