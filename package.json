@@ -1,6 +1,6 @@
 {
   "name": "xbook",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "dev:s": "vite --mode staging",

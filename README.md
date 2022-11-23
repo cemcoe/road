@@ -12,7 +12,7 @@
 
 <div align="center">
   
-  一个写点啥的项目。
+  XBook | Just a DEMO
   
 </div>
 
@@ -38,30 +38,13 @@
  
 </p>
 
-## 项目运行
+## Project Setup
 
-```
+```sh
 git clone git@github.com:cemcoe/xbook.git
 
 cd xbook
 
-npm install
-
-npm run dev
-```
-
-## 项目目录结构
-
-- assets 静态资源 css imgs
-- views 路由组件
-- components 公共组件
-- utils 功能函数
-- store pinia 代码
-- service 网络请求相关
-
-## Project Setup
-
-```sh
 npm install
 ```
 
@@ -83,11 +66,11 @@ npm run build
 npm run lint
 ```
 
-更多信息可参考 [开发流水账](https://www.jianshu.com/nb/47900649)
-
-## 知识点参考
+## AKlist
 
 - https://vitejs.dev/guide/env-and-mode.html
 - https://nodejs.dev/en/learn/writing-files-with-nodejs/
 - https://www.typescriptlang.org/tsconfig
 - https://stackoverflow.com/questions/49996456/importing-json-file-in-typescript
+
+[more info](https://www.jianshu.com/nb/47900649)
