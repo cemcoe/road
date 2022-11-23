@@ -47,7 +47,7 @@ onActivated(() => {
   <div class="home">
     <HomeNavBar />
     <div class="home-scroll" ref="homeScroll">
-      <div class="banner" @click="$router.push('/p/636313b09bc97a88804b814c')">
+      <div class="banner">
         <img src="@/assets/img/home/banner.png" alt="banner" />
       </div>
       <div class="post-list-container">

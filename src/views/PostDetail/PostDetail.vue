@@ -45,7 +45,7 @@ onBeforeUnmount(() => postStore.initPostDetail());
       @click-right="showPopup"
     >
       <template #right>
-        <van-icon size="20" name="more-o" />
+        <van-icon size="20" name="ellipsis" />
       </template>
     </van-nav-bar>
 
