@@ -2,6 +2,8 @@
 import { ref, watch, onActivated } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
+import { showNotify } from "vant";
+import "vant/es/notify/style";
 import { useHomeStore } from "@/stores/home";
 import { useScroll } from "@/hooks/useScroll";
 import HomeNavBar from "./components/HomeNavBar.vue";
@@ -40,6 +42,11 @@ onActivated(() => {
   homeScroll.value.scrollTo({
     top: scrollTop.value,
   });
+});
+
+showNotify({
+  message: `网站文章数据由狗屁不通文章生成器生成,不具有任何的价值,仅供占位测试使用，亦不代表本人观点。
+           个人精力有限未适配大屏幕，使用移动设备（或者缩小桌面浏览器窗口）登录访问以获得更好体验。`,
 });
 </script>
 
