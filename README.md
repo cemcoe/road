@@ -17,23 +17,31 @@
 </div>
 
 <p align="center">
+  <a href="https://api.cemcoe.com">
+    <img alt="Website" src="https://img.shields.io/website?down_color=lightgrey&down_message=offine&label=api.cemcoe.com&up_color=green&up_message=online&url=https%3A%2F%2Fapi.cemcoe.com">
+  </a>
   <a href="https://x.cemcoe.com">
     <img alt="Website" src="https://img.shields.io/website?down_color=lightgrey&down_message=offine&label=x.cemcoe.com&up_color=green&up_message=online&url=https%3A%2F%2Fx.cemcoe.com">
   </a>
+  
+</p>
+
+<p align="center">
   <img alt="GitHub deployments" src="https://img.shields.io/github/deployments/cemcoe/xbook/Production?label=vercel">
+  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/cemcoe/xbook">
 </p>
 
 <p align="center">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/vue">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/vue-router">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/pinia">
-  <img alt="GitHub package.json dependency version (dev dep on branch)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/dev/vite">
+  
 </p>
 
 <p align="center">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/marked">
   <img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/vant">
-  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/cemcoe/xbook">
+  <img alt="GitHub package.json dependency version (dev dep on branch)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/dev/vite">
   <img alt="GitHub package.json dependency version (dev dep on branch)" src="https://img.shields.io/github/package-json/dependency-version/cemcoe/xbook/dev/typescript">
  
 </p>
