@@ -43,20 +43,16 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
 <template>
   <div class="post-item">
-    <router-link :to="postUrl">
-      <div class="title">
-        <span>{{ title }}</span>
-      </div>
-    </router-link>
+    <div class="title">
+      <span>{{ title }}</span>
+    </div>
 
     <section class="abstract">
       <!-- 文章中没有图片 -->
       <div class="no-pic" v-if="imgsLinkLength === 0">
-        <router-link :to="postUrl">
-          <div class="content">
-            <div class="text">{{ abstract }}</div>
-          </div>
-        </router-link>
+        <div class="content">
+          <div class="text">{{ abstract }}</div>
+        </div>
       </div>
 
       <!-- 文章中有1张或2张图片 -->
@@ -64,44 +60,35 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
         class="one-pic"
         v-if="imgsLink.length === 1 || imgsLink.length === 2"
       >
-        <router-link :to="postUrl">
-          <div class="content">
-            <div class="text">
-              {{ abstract }}
-            </div>
-            <img :src="imgsLink[0]" alt="imgs" />
-            <!-- 文章中有{{imgs.length}}张图片 -->
+        <div class="content">
+          <div class="text">
+            {{ abstract }}
           </div>
-        </router-link>
+          <img :src="imgsLink[0]" alt="imgs" />
+          <!-- 文章中有{{imgs.length}}张图片 -->
+        </div>
       </div>
 
       <!-- 文章中的图片超过三张 -->
 
       <div class="more-pic" v-if="imgsLinkLength >= 3">
-        <router-link :to="postUrl">
-          <div class="content">
-            <img
-              v-for="img in imgsLink.slice(0, 3)"
-              :src="img"
-              alt="img"
-              :key="img"
-            />
-          </div>
-        </router-link>
+        <div class="content">
+          <img
+            v-for="img in imgsLink.slice(0, 3)"
+            :src="img"
+            alt="img"
+            :key="img"
+          />
+        </div>
       </div>
     </section>
 
     <div class="meta">
-      <span>
-        <router-link :to="authorUrl" class="nickname">{{
-          author.name
-        }}</router-link>
-      </span>
-
-      <span class="creat-date">{{ createDate }}</span>
-      <span class="">{{ viewcount }} 阅读</span>
-      <span class="">{{ commentcount }} 评论</span>
-      <span class="">0赞</span>
+      <span>{{ author.name }}</span>
+      <span>{{ createDate }}</span>
+      <span>{{ viewcount }} 阅读</span>
+      <span>{{ commentcount }} 评论</span>
+      <span>0赞</span>
     </div>
   </div>
 </template>
@@ -114,16 +101,21 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   background-color: #fff;
   box-shadow: 4px 4px 6px #e4e1e1;
 }
-.title span {
+
+/* title */
+.title {
   font-size: 16px;
   line-height: 24px;
   color: #000000;
+  font-weight: 700;
 }
 
+/* abstract */
 .abstract {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 .abstract .text {
   font-size: 14px;
   color: rgb(97, 101, 105);
@@ -142,10 +134,6 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   justify-content: space-between;
 }
 
-.one-pic .text {
-  padding-right: 10px;
-}
-
 .one-pic img {
   width: 33%;
   /* padding-left: 10px; */
@@ -160,13 +148,11 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   width: 33%;
   border-radius: 6px;
 }
+
+/* meta */
 .meta span {
   color: #c7c4c4;
   padding-right: 12px;
   font-size: 12px;
-}
-
-.meta span {
-  padding-right: 12px;
 }
 </style>
