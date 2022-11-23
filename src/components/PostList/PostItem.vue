@@ -43,11 +43,11 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
 <template>
   <div class="post-item">
-    <div class="title">
+    <div class="title" @click="$router.push(postUrl)">
       <span>{{ title }}</span>
     </div>
 
-    <section class="abstract">
+    <section class="abstract" @click="$router.push(postUrl)">
       <!-- 文章中没有图片 -->
       <div class="no-pic" v-if="imgsLinkLength === 0">
         <div class="content">
@@ -84,7 +84,7 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
     </section>
 
     <div class="meta">
-      <span>{{ author.name }}</span>
+      <span @click="$router.push(authorUrl)">{{ author.name }}</span>
       <span>{{ createDate }}</span>
       <span>{{ viewcount }} 阅读</span>
       <span>{{ commentcount }} 评论</span>
@@ -100,6 +100,10 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 4px 4px 6px #e4e1e1;
+}
+
+.post-item:hover {
+  box-shadow: 4px 4px 6px #000000;
 }
 
 /* title */
