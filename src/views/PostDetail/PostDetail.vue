@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { usePostStore } from "@/stores/post";
@@ -31,6 +31,8 @@ const showPopup = () => {
 const edit = () => {
   router.replace("/editor/" + postId);
 };
+
+onBeforeUnmount(() => postStore.initPostDetail());
 </script>
 
 <template>
@@ -55,6 +57,7 @@ const edit = () => {
 
       <MarkedPreView :markdownString="postDetail?.content" />
     </div>
+    <van-skeleton v-else title :row="8" />
 
     <van-popup
       v-model:show="show"

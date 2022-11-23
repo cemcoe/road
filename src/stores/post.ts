@@ -64,11 +64,40 @@ export const usePostStore = defineStore("post", () => {
     return postDetail.value?.content?.length;
   });
 
+  function initPostDetail() {
+    postDetail.value = {
+      commentcount: 0,
+      viewcount: 0,
+      imgsLink: [],
+      status: 0,
+      _id: "",
+      title: "",
+      wordcount: 0,
+      author: {
+        gender: "",
+        bio: "",
+        avatar: "",
+        following_count: 0,
+        follower_count: 0,
+        private_post_count: 0,
+        _id: "",
+        name: "",
+        createdAt: "",
+        updatedAt: "",
+      },
+      content: "",
+      abstract: "",
+      createdAt: "",
+      updatedAt: "",
+    };
+  }
+
   return {
     postDetail,
     fetchPostDetail,
     createPostAction,
     updatePostAction,
     getPostWordcount,
+    initPostDetail,
   };
 });

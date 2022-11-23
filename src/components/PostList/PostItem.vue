@@ -103,7 +103,7 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 }
 
 .post-item:hover {
-  box-shadow: 4px 4px 6px #000000;
+  box-shadow: 4px 4px 6px #c2bcbc;
 }
 
 /* title */
