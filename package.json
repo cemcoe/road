@@ -18,7 +18,7 @@
     "marked": "^4.2.2",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.23",
-    "vant": "^4.0.0-beta.1",
+    "vant": "^4.0.7",
     "vue": "^3.2.41",
     "vue-router": "^4.1.5"
   },
