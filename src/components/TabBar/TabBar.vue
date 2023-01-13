@@ -11,8 +11,8 @@ import { getAssetURL } from "@/utils/getAssetsImg";
           <!-- <span>{{ item.meta.text }}</span> -->
           <template #icon="props">
             <img
-              width="30px"
-              height="30px"
+              width="30"
+              height="30"
               alt="icon"
               :src="
                 props.active
