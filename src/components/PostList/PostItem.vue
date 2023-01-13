@@ -123,9 +123,13 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   justify-content: space-between;
 }
 
+.one-pic .content .text {
+  width: 66%;
+}
+
 .one-pic img {
-  width: 32%;
-  border-radius: 6px;
+  width: 33%;
+  border-radius: 4px;
 }
 
 .more-pic .content {
@@ -133,8 +137,8 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   justify-content: space-between;
 }
 .more-pic .content img {
-  width: 32%;
-  border-radius: 6px;
+  width: 33%;
+  border-radius: 4px;
 }
 
 /* meta */

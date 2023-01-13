@@ -7,4 +7,5 @@
 
 body {
   background-color: rgb(250, 247, 247);
+  min-width: 300px;
 }
