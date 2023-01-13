@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import { ref, watch, onActivated } from "vue";
-import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
-import { showNotify } from "vant";
-import "vant/es/notify/style";
 import { useHomeStore } from "@/stores/home";
 import { useScroll } from "@/hooks/useScroll";
 import HomeNavBar from "./components/HomeNavBar.vue";
 import PostList from "@/components/PostList/PostList.vue";
-
-const router = useRouter();
 
 const homeStore = useHomeStore();
 homeStore.getHomePostListAction();
@@ -34,19 +29,10 @@ watch(scrollTop, () => {
   }
 });
 
-const clickGoEditorBtn = () => {
-  router.push("/editor");
-};
-
 onActivated(() => {
   homeScroll.value.scrollTo({
     top: scrollTop.value,
   });
-});
-
-showNotify({
-  message: `网站文章数据由狗屁不通文章生成器生成,不具有任何的价值,仅供占位测试使用，亦不代表本人观点。
-           个人精力有限未适配大屏幕，使用移动设备（或者缩小桌面浏览器窗口）登录访问以获得更好体验。`,
 });
 </script>
 
@@ -54,15 +40,9 @@ showNotify({
   <div class="home">
     <HomeNavBar />
     <div class="home-scroll" ref="homeScroll">
-      <div class="banner">
-        <img src="@/assets/img/home/banner.png" alt="banner" />
-      </div>
       <div class="post-list-container">
         <PostList :postList="postList" />
       </div>
-    </div>
-    <div class="go-editor" @click="clickGoEditorBtn">
-      <van-icon name="edit" color="#f40" size="26" />
     </div>
   </div>
 </template>
@@ -75,23 +55,5 @@ showNotify({
 .home-scroll {
   height: calc(100vh - 46px - 50px);
   overflow-y: auto;
-}
-
-.go-editor {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  right: 50px;
-  bottom: 100px;
-  border-radius: 50%;
-  /* background-color: rgb(236, 221, 221); */
-  background-color: #fff;
-  line-height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  /* box-shadow: 0 0 40px rgb(8, 8, 8); */
-  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 </style>

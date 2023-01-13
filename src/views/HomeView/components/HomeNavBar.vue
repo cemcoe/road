@@ -2,7 +2,7 @@
 
 <template>
   <div class="nav-bar">
-    <div class="title">写点啥</div>
+    <div class="title">见证我的前端之旅</div>
   </div>
 </template>
 
