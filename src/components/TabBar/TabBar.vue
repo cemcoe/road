@@ -11,6 +11,9 @@ import { getAssetURL } from "@/utils/getAssetsImg";
           <!-- <span>{{ item.meta.text }}</span> -->
           <template #icon="props">
             <img
+              width="30px"
+              height="30px"
+              alt="icon"
               :src="
                 props.active
                   ? getAssetURL(item.meta.imageActive)
@@ -27,8 +30,5 @@ import { getAssetURL } from "@/utils/getAssetsImg";
 <style scoped>
 .container {
   height: var(--van-tabbar-height);
-}
-img {
-  height: 30px;
 }
 </style>

@@ -143,9 +143,9 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
 /* meta */
 .meta span {
-  color: #c7c4c4;
+  color: #807d7d;
   padding-right: 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .abstract .text {
