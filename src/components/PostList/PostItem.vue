@@ -2,6 +2,7 @@
 // import type { IPost } from "@/types";
 // https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
 import { computed } from "vue";
+import { utcFormat } from "@/utils/fotmat";
 
 // TODO: 什么？你说我为什么不把类型抽出去？
 // 不支持呀
@@ -85,10 +86,7 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
     <div class="meta">
       <span @click="$router.push(authorUrl)">{{ author.name }}</span>
-      <span>{{ createDate }}</span>
-      <span>{{ viewcount }} 阅读</span>
-      <span>{{ commentcount }} 评论</span>
-      <span>0赞</span>
+      <span>{{ utcFormat(createDate) }}</span>
     </div>
   </div>
 </template>

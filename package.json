@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/marked": "^4.0.7",
+    "dayjs": "^1.11.7",
     "esbuild": "^0.15.14",
     "highlight.js": "^11.6.0",
     "lodash": "^4.17.21",
