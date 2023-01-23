@@ -4,8 +4,9 @@ const tabbarRoutes = [
     component: () => import("@/views/HomeView/HomeView.vue"),
     meta: {
       text: "首页",
-      image: "tabbar/home.svg",
-      imageActive: "tabbar/home_active.svg",
+      iconName: "home",
+      // image: "tabbar/home.svg",
+      // imageActive: "tabbar/home_active.svg",
     },
   },
   // {
@@ -22,8 +23,9 @@ const tabbarRoutes = [
     component: () => import("@/views/ProfileView/ProfileView.vue"),
     meta: {
       text: "我的",
-      image: "tabbar/profile.svg",
-      imageActive: "tabbar/profile_active.svg",
+      iconName: "profile",
+      // image: "tabbar/profile.svg",
+      // imageActive: "tabbar/profile_active.svg",
     },
   },
 ];
