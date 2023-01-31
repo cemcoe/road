@@ -65,9 +65,8 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
           <div class="text">
             {{ abstract }}
           </div>
-          <img :src="imgsLink[0]" alt="imgs" />
-          <!-- 文章中有{{imgs.length}}张图片 -->
         </div>
+        <div class="img-container"><img :src="imgsLink[0]" alt="imgs" /></div>
       </div>
 
       <!-- 文章中的图片超过三张 -->
@@ -95,13 +94,13 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 .post-item {
   padding: 12px 10px;
   margin: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #fff;
-  box-shadow: 4px 4px 6px #e4e1e1;
+  box-shadow: 4px 4px 6px #f2f1f1;
 }
 
 .post-item:hover {
-  box-shadow: 4px 4px 6px #c2bcbc;
+  box-shadow: 4px 4px 6px #dcd9d9;
 }
 
 /* title */
@@ -116,29 +115,42 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 .abstract {
   padding-top: 10px;
   padding-bottom: 10px;
+  /* height: 180px; */
+  /* background-color: #ccc; */
+}
+
+.one-pic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .one-pic .content {
-  display: flex;
-  justify-content: space-between;
+  flex: 1;
 }
 
-.one-pic .content .text {
-  width: 66%;
-}
-
-.one-pic img {
+.one-pic .img-container {
   width: 33%;
+  margin-left: 10px;
+
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one-pic .img-container img {
+  width: 100%;
   border-radius: 4px;
 }
 
 .more-pic .content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .more-pic .content img {
   width: 33%;
-  border-radius: 4px;
 }
 
 /* meta */
@@ -151,13 +163,14 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 .abstract .text {
   font-size: 14px;
   color: rgb(97, 101, 105);
-  /* margin-top: 12px;
-  margin-bottom: 12px; */
   line-height: 28px;
-  /* 多行文本截断 */
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
+
+  text-align: justify;
 }
 </style>
