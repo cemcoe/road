@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@sentry/tracing": "^7.34.0",
+    "@sentry/vue": "^7.34.0",
     "@types/marked": "^4.0.7",
     "dayjs": "^1.11.7",
     "esbuild": "^0.15.14",
