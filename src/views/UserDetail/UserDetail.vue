@@ -58,7 +58,10 @@ const activeName = ref("post");
     </van-tabs>
 
     <div class="content">
-      <PostList v-show="activeName === 'post'" :postList="postList"></PostList>
+      <div v-show="activeName === 'post'">
+        <PostList v-if="postList.length !== 0" :postList="postList"></PostList>
+      </div>
+
       <div v-show="activeName === 'more'" class="more">more</div>
     </div>
   </div>
