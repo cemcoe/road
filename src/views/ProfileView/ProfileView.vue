@@ -38,20 +38,25 @@ onMounted(async () => {
 });
 
 let touchStartClientX = 0;
-let touchEndClientX = 0;
+let touchStartClientY = 0;
 
 function handelTouchStart(event: TouchEvent) {
   touchStartClientX = event.changedTouches[0].clientX;
+  touchStartClientY = event.changedTouches[0].clientY;
 }
 
 function handelTouchEnd(event: TouchEvent) {
-  touchEndClientX = event.changedTouches[0].clientX;
-  if (touchEndClientX - touchStartClientX < -10) {
-    console.log("向左滑动");
-    showRight.value = true;
-  } else if (touchEndClientX - touchStartClientX > 10) {
-    console.log("向右滑动");
-    showRight.value = false;
+  const touchEndClientX = event.changedTouches[0].clientX;
+  const touchEndClientY = event.changedTouches[0].clientY;
+  const clientYStep = touchEndClientY - touchStartClientY;
+  if (-10 < clientYStep && clientYStep < 10) {
+    if (touchEndClientX - touchStartClientX < -10) {
+      console.log("向左滑动");
+      showRight.value = true;
+    } else if (touchEndClientX - touchStartClientX > 10) {
+      console.log("向右滑动");
+      showRight.value = false;
+    }
   }
 }
 </script>
