@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import useLoginStore from "@/stores/login";
 import LoginCard from "./components/LoginCard.vue";
+import PostList from "@/components/PostList/PostList.vue";
+import { getUserPosts } from "@/service/modules/user";
 
 const router = useRouter();
 
@@ -21,9 +23,19 @@ const goAuthPage = (path: string) => {
 const showRight = ref(false);
 
 const handelClick = () => {
-  console.log("go");
   showRight.value = true;
 };
+
+const activeName = ref("post");
+
+const postList = ref([]);
+onMounted(async () => {
+  const res = await getUserPosts(userInfo.value.id);
+  const { status, data } = res;
+  if (status === 200) {
+    postList.value = data.postList;
+  }
+});
 </script>
 
 <template>
@@ -94,6 +106,21 @@ const handelClick = () => {
         </div>
       </div>
     </div>
+
+    <van-tabs v-model:active="activeName">
+      <van-tab name="post" title="文章"></van-tab>
+      <van-tab name="more" title="更多"></van-tab>
+      <van-tab name="more" title="占喂"></van-tab>
+      <van-tab name="more" title="站位"></van-tab>
+    </van-tabs>
+
+    <div class="content">
+      <div v-show="activeName === 'post'">
+        <PostList v-if="postList.length !== 0" :postList="postList"></PostList>
+      </div>
+
+      <div v-show="activeName === 'more'" class="more">more</div>
+    </div>
   </div>
 </template>
 
@@ -106,7 +133,6 @@ const handelClick = () => {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px 10px;
-  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 
 .user-info {
