@@ -37,7 +37,7 @@ interface IAuthor {
 const props = defineProps<IPost>();
 
 const postUrl = computed(() => "/p/" + props.id);
-const authorUrl = computed(() => "/u/" + props.author.id);
+// const authorUrl = computed(() => "/u/" + props.author.id);
 const createDate = computed(() => props.created_at);
 const imgsLinkLength = computed(() => props.imgsLink.length);
 </script>
@@ -84,8 +84,8 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
     </section>
 
     <div class="meta">
-      <span @click="$router.push(authorUrl)">{{ author.name }}</span>
-      <span>{{ utcFormat(createDate) }}</span>
+      <span>{{ author.name }}</span>
+      <span>{{ utcFormat(createDate, "YYYY-MM-DD") }}</span>
     </div>
   </div>
 </template>
@@ -96,11 +96,10 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
   margin: 10px;
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 4px 4px 6px #f2f1f1;
 }
 
 .post-item:hover {
-  box-shadow: 4px 4px 6px #dcd9d9;
+  background-color: rgb(250, 247, 247);
 }
 
 /* title */
@@ -155,14 +154,14 @@ const imgsLinkLength = computed(() => props.imgsLink.length);
 
 /* meta */
 .meta span {
-  color: #807d7d;
+  color: #9b9999;
   padding-right: 12px;
   font-size: 14px;
 }
 
 .abstract .text {
   font-size: 14px;
-  color: rgb(97, 101, 105);
+  color: rgb(29, 29, 29);
   line-height: 28px;
   display: -webkit-box;
   overflow: hidden;
