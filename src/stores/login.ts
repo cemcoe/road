@@ -5,8 +5,8 @@ const useLoginStore = defineStore("login", {
   state: () => {
     return {
       loginInfo: {
-        name: "test",
-        password: "cemcoe",
+        name: "cemcoe",
+        password: "test",
       },
       token: localStorage.getItem("token") || "",
       userInfo: localStorage.getItem("userInfo")

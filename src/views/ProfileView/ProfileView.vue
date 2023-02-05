@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import useLoginStore from "@/stores/login";
@@ -29,13 +29,29 @@ const handelClick = () => {
 const activeName = ref("post");
 
 const postList = ref([]);
-onMounted(async () => {
-  const res = await getUserPosts(userInfo.value.id);
-  const { status, data } = res;
-  if (status === 200) {
-    postList.value = data.postList;
-  }
-});
+// onMounted(async () => {
+//   if (isLogin.value) {
+//     const res = await getUserPosts(userInfo.value.id);
+//     const { status, data } = res;
+//     if (status === 200) {
+//       postList.value = data.postList;
+//     }
+//   }
+// });
+
+watch(
+  isLogin,
+  async () => {
+    if (isLogin.value) {
+      const res = await getUserPosts(userInfo.value.id);
+      const { status, data } = res;
+      if (status === 200) {
+        postList.value = data.postList;
+      }
+    }
+  },
+  { immediate: true }
+);
 
 let touchStartClientX = 0;
 let touchStartClientY = 0;
