@@ -8,9 +8,10 @@ export const useHomeStore = defineStore("home", () => {
   const page = ref(1);
   const per_page = ref(10);
   const isLoading = ref(false);
+  const isGetAllData = ref(false);
 
   async function getHomePostListAction() {
-    if (isLoading.value) {
+    if ((isLoading.value && isGetAllData.value) || isGetAllData.value) {
       return {};
     }
 
@@ -20,22 +21,20 @@ export const useHomeStore = defineStore("home", () => {
 
     isLoading.value = false;
     const { status, data } = res;
-    if (status === 200) {
+    if (status === 200 && !isGetAllData.value) {
+      if (data.postList.length === 0) {
+        isGetAllData.value = true;
+        return {};
+      }
       postList.value.push(...data.postList);
       page.value++;
     }
-    // getHomePostList(page.value, per_page.value).then((res) => {
-    //   isLoading.value = false;
-    //   const { status, data } = res;
-    //   if (status === 200) {
-    //     postList.value.push(...data.postList);
-    //     page.value++;
-    //   }
-    // });
   }
 
   return {
     postList,
+    isLoading,
+    isGetAllData,
     getHomePostListAction,
   };
 });

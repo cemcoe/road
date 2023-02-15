@@ -9,7 +9,7 @@ import PostList from "@/components/PostList/PostList.vue";
 const homeStore = useHomeStore();
 homeStore.getHomePostListAction();
 
-const { postList } = storeToRefs(homeStore);
+const { postList, isLoading, isGetAllData } = storeToRefs(homeStore);
 
 // 后面记得改
 const homeScroll = ref<any>();
@@ -46,7 +46,11 @@ onActivated(() => {
           <van-skeleton :row="3" />
           <van-skeleton :row="3" />
         </template>
-        <PostList :postList="postList" />
+        <PostList
+          :postList="postList"
+          :isLoading="isLoading"
+          :isGetAllData="isGetAllData"
+        />
       </div>
       <div class="pc">
         <div class="info">
