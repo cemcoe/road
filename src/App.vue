@@ -4,13 +4,13 @@ import TabBar from "./components/TabBar/TabBar.vue";
 </script>
 
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view class="view" v-slot="{ Component }">
     <keep-alive :include="['HomeView', 'b']">
       <component :is="Component" />
     </keep-alive>
   </router-view>
 
-  <TabBar v-if="!$route.meta.hideTabBar" />
+  <TabBar class="tab-bar phone" v-if="!$route.meta.hideTabBar" />
 </template>
 
 <style scoped></style>

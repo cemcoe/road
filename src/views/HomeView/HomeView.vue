@@ -40,13 +40,24 @@ onActivated(() => {
   <div class="home">
     <HomeNavBar />
     <div class="home-scroll" ref="homeScroll">
-      <div class="post-list-container">
+      <div class="post-list-container main">
         <template v-if="postList.length === 0">
           <van-skeleton :row="3" />
           <van-skeleton :row="3" />
           <van-skeleton :row="3" />
         </template>
         <PostList :postList="postList" />
+      </div>
+      <div class="pc">
+        <div class="info">
+          <div class="image">
+            <img width="300" src="@/assets/img/code.svg" alt="" />
+          </div>
+          <div class="text">可扫描二维码体验手机版哦</div>
+        </div>
+        <div class="info">
+          <div class="text">移动端优先，电脑版适配中。。。</div>
+        </div>
       </div>
     </div>
   </div>
@@ -56,5 +67,23 @@ onActivated(() => {
 .home-scroll {
   height: calc(100vh - 46px - 50px);
   overflow-y: auto;
+  /* background-color: #ccc; */
+  /* margin: 30px; */
+  display: flex;
+}
+
+.info {
+  width: 360px;
+  height: 360px;
+  background-color: #fff;
+  margin: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  font-size: 20px;
 }
 </style>

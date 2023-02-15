@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar phone">
     <div class="title">见证我的前端之旅</div>
   </div>
 </template>

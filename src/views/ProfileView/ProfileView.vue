@@ -80,8 +80,8 @@ function handelTouchEnd(event: TouchEvent) {
 <template>
   <div @touchstart="handelTouchStart" @touchend="handelTouchEnd">
     <LoginCard></LoginCard>
-    <div v-if="isLogin">
-      <div class="header">
+    <div v-if="isLogin" class="main">
+      <div class="header phone">
         <van-nav-bar title="我的" left-text="Back" left-arrow>
           <template #left>
             <!-- <van-icon name="scan" color="#000" size="20" /> -->
@@ -170,7 +170,7 @@ function handelTouchEnd(event: TouchEvent) {
 
 <style scoped>
 .card {
-  width: 90vw;
+  /* width: 90vw; */
   margin: 0 auto;
   background-color: #fff;
   border-radius: 10px;

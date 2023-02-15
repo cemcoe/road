@@ -41,15 +41,17 @@ onBeforeUnmount(() => postStore.initPostDetail());
       title="文章"
       left-arrow
       fixed
+      placeholder
       @click-left="onClickLeft"
       @click-right="showPopup"
+      class="phone"
     >
       <template #right>
         <van-icon size="20" name="ellipsis" />
       </template>
     </van-nav-bar>
 
-    <div class="post" v-if="postDetail?.title">
+    <div class="post main" v-if="postDetail?.title">
       <div class="title">
         <h2>{{ postDetail?.title }}</h2>
       </div>
@@ -104,7 +106,6 @@ onBeforeUnmount(() => postStore.initPostDetail());
 <style scoped>
 .post {
   --van-nav-bar-icon-color: #000;
-  margin-top: var(--van-nav-bar-height);
 }
 .title {
   padding: 10px;

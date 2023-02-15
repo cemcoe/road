@@ -2,10 +2,34 @@
   font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
   font-size: 14px;
-  max-width: 750px; /* px-to-viewport-ignore */
 }
 
 body {
   background-color: rgb(250, 247, 247);
   min-width: 300px;
+}
+
+/*媒体查询*/
+/*当页面大于 740 时，大屏幕，主要是PC 端*/
+/*隐藏底部栏 */
+@media (min-width: 740px) {
+  .home-scroll {
+    height: 100vh !important;
+  }
+
+  .main {
+    width: 600px;
+  }
+
+  .phone {
+    /* 只在手机上展示 */
+    display: none !important;
+  }
+}
+
+@media (max-width: 740px) {
+  .pc {
+    /* 只在pc上展示 */
+    display: none !important;
+  }
 }
