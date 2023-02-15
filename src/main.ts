@@ -8,7 +8,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "normalize.css";
-import "./assets/index.css";
+import "./assets/css/index.css";
 
 import buildInfo from "./buildInfo.json";
 

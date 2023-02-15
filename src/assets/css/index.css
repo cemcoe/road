@@ -1,4 +1,4 @@
 @import "./reset.css";
 @import "./values.css";
 @import "./base.css";
-@import "./font/iconfont.css";
+@import "../font/iconfont.css";
