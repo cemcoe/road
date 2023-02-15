@@ -87,6 +87,7 @@ const textareaFocus = () => {
         id="title"
         placeholder="请输入标题"
         @focus="inputFocus"
+        maxlength="30"
       />
       <!-- TODO: 这个行数要动态调整 -->
       <textarea
@@ -101,7 +102,7 @@ const textareaFocus = () => {
 
     <EditorPannel @insert="insert" />
   </div>
-  <MarkedPreview :markdownString="postDetail.content" />
+  <MarkedPreview v-show="isPreview" :markdownString="postDetail.content" />
 </template>
 
 <style scoped>
@@ -116,8 +117,8 @@ const textareaFocus = () => {
 
 .content {
   margin-bottom: 49px;
-  height: calc(100vh - 44px - 50px);
-  overflow-y: scroll;
+  /* height: calc(100vh - 44px - 50px); */
+  /* overflow-y: scroll; */
   padding: 10px;
   box-sizing: border-box;
   line-height: 40px;
@@ -126,7 +127,10 @@ const textareaFocus = () => {
 .content #title {
   outline: 0 none;
   border: none !important;
-  font-size: 20px;
+  font-size: 24px;
+  line-height: 30px;
+  /* background-color: #ccc; */
+  width: 100%;
 }
 
 ::-webkit-input-placeholder {
@@ -138,6 +142,8 @@ const textareaFocus = () => {
   border: none !important;
   width: 100%;
   resize: none;
+  line-height: 30px;
+  letter-spacing: 4px;
 
   overflow-y: hidden;
 }
