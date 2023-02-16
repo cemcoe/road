@@ -29,15 +29,6 @@ const handelClick = () => {
 const activeName = ref("post");
 
 const postList = ref([]);
-// onMounted(async () => {
-//   if (isLogin.value) {
-//     const res = await getUserPosts(userInfo.value.id);
-//     const { status, data } = res;
-//     if (status === 200) {
-//       postList.value = data.postList;
-//     }
-//   }
-// });
 
 watch(
   isLogin,
@@ -52,6 +43,23 @@ watch(
   },
   { immediate: true }
 );
+
+watch(activeName, async () => {
+  // console.log(activeName.value);
+  if (activeName.value === "private") {
+    const res = await getOwnerPostList("private");
+    const { status, data } = res;
+    if (status === 200) {
+      postList.value = data.postList;
+    }
+  } else if (activeName.value === "post") {
+    const res = await getOwnerPostList();
+    const { status, data } = res;
+    if (status === 200) {
+      postList.value = data.postList;
+    }
+  }
+});
 
 let touchStartClientX = 0;
 let touchStartClientY = 0;
@@ -149,13 +157,19 @@ function handelTouchEnd(event: TouchEvent) {
 
       <van-tabs v-model:active="activeName">
         <van-tab name="post" title="文章"></van-tab>
-        <van-tab name="more" title="更多"></van-tab>
+        <van-tab name="private" title="私密文章"></van-tab>
         <van-tab name="more" title="占喂"></van-tab>
         <van-tab name="more" title="站位"></van-tab>
       </van-tabs>
 
       <div class="content">
         <div v-show="activeName === 'post'">
+          <PostList
+            v-if="postList.length !== 0"
+            :postList="postList"
+          ></PostList>
+        </div>
+        <div v-show="activeName === 'private'">
           <PostList
             v-if="postList.length !== 0"
             :postList="postList"

@@ -29,6 +29,6 @@ export function getUserPosts(id: any, status = "public") {
 }
 
 // 获取登录用户的文章列表，包含公开和私密
-export function getOwnerPostList() {
-  return request<IResponse<any>>(`/owner/posts`);
+export function getOwnerPostList(status = "") {
+  return request<IResponse<any>>(`/owner/posts?status=${status}`);
 }
