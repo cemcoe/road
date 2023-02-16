@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emits = defineEmits(["goBack", "preview", "publish"]);
+const emits = defineEmits(["goBack", "preview"]);
 
 defineProps({
   isNewPost: {
@@ -19,11 +19,6 @@ const preview = () => {
   console.log("preview click");
   emits("preview");
 };
-
-const publish = () => {
-  console.log("publish click");
-  emits("publish");
-};
 </script>
 
 <template>
@@ -37,9 +32,6 @@ const publish = () => {
       </div>
       <div class="right">
         <button class="item" @click="preview">预览</button>
-        <button class="item preview" v-if="isNewPost" @click="publish">
-          发布
-        </button>
       </div>
     </header>
   </div>

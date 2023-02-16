@@ -57,7 +57,7 @@ onBeforeUnmount(() => postStore.initPostDetail());
       </div>
       <PostAuthor :author="postDetail?.author"></PostAuthor>
 
-      <MarkedPreView :markdownString="postDetail?.content" />
+      <MarkedPreView :markdownString="postDetail?.content_html" />
     </div>
     <van-skeleton v-else title :row="8" />
 

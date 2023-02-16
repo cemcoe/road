@@ -33,6 +33,7 @@ export const usePostStore = defineStore("post", () => {
     },
     content: "",
     abstract: "",
+    content_html: "",
     createdAt: "",
     updatedAt: "",
   });
@@ -106,6 +107,7 @@ export const usePostStore = defineStore("post", () => {
       },
       content: "",
       abstract: "",
+      content_html: "",
       createdAt: "",
       updatedAt: "",
     };

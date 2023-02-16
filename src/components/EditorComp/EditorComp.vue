@@ -41,11 +41,6 @@ const insert = (value: string) => {
   useInsertText(dom, value);
 };
 
-// 创建新文章
-const publish = () => {
-  postStore.createPostAction();
-};
-
 const inputFocus = () => {
   console.log("iuput focus");
 };
@@ -65,7 +60,6 @@ function textareaBlur() {
     @goBack="goBack"
     @preview="preview"
     :wordcount="postStore.getPostWordcount"
-    @publish="publish"
   />
 
   <div class="editor" v-show="!isPreview">
@@ -132,8 +126,8 @@ function textareaBlur() {
   border: none !important;
   width: 100%;
   resize: none;
-  line-height: 30px;
-  letter-spacing: 4px;
+  line-height: 26px;
+  letter-spacing: 2px;
 
   overflow-y: hidden;
 }
