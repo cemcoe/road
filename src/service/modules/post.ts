@@ -21,7 +21,7 @@ export function createPost(post: any) {
 
 // 更新文章
 export function updatePost(id: any, post: any) {
-  return request(`/posts/${id}`, {
+  return request<IResponse<any>>(`/posts/${id}`, {
     method: "PATCH",
     body: JSON.stringify(post),
   });

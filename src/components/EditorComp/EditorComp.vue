@@ -45,13 +45,6 @@ const publish = () => {
   postStore.createPostAction();
 };
 
-// 更新文档
-const update = () => {
-  postStore.updatePostAction(postId).then(() => {
-    router.back();
-  });
-};
-
 const inputFocus = () => {
   console.log("iuput focus");
 };
@@ -59,6 +52,11 @@ const inputFocus = () => {
 const textareaFocus = () => {
   console.log("testarea focus");
 };
+
+function textareaBlur() {
+  console.log(postDetail);
+  postStore.updatePostAction();
+}
 </script>
 
 <template>
@@ -67,7 +65,6 @@ const textareaFocus = () => {
     @preview="preview"
     :wordcount="postStore.getPostWordcount"
     @publish="publish"
-    @update="update"
     :isNewPost="!postId"
   />
 
@@ -89,6 +86,7 @@ const textareaFocus = () => {
         placeholder="请输入正文"
         rows="600"
         @focus="textareaFocus"
+        @blur="textareaBlur"
       ></textarea>
     </div>
 

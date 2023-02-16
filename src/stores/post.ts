@@ -68,13 +68,16 @@ export const usePostStore = defineStore("post", () => {
     router.replace("/editor/" + insertId);
   }
 
-  async function updatePostAction(id: any) {
+  async function updatePostAction() {
     const data = {
       title: postDetail.value.title,
       content: postDetail.value.content,
     };
-    const res = await updatePost(id, data);
+    const res = await updatePost(postId, data);
     console.log(res);
+    if (res.status === 200) {
+      router.replace("/p/" + postId);
+    }
   }
 
   const getPostWordcount = computed(() => {
