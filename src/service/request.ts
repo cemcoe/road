@@ -24,7 +24,12 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
           if (status === 500) {
             console.warn("服务端错误，请稍后重新尝试: ", url);
             showNotify("服务端错误，请稍后重新尝试");
+          } else if (status === 401) {
+            showNotify("请重新登录");
+          } else if (status === 404) {
+            showNotify("接口路径找不到");
           } else {
+            showNotify("请求错误");
             console.log("未处理看业务需要: ", url);
           }
         }
@@ -38,7 +43,6 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
         // 即使响应的 HTTP 状态码是 404 或 500。
         // 相反，它会将 Promise 状态标记为 resolve（如果响应的 HTTP 状态码不在 200 - 299 的范围内，则设置 resolve 返回值的 ok 属性为 false），
         // 仅当网络故障时或请求被阻止时，才会标记为 reject。
-        showNotify("请检查网络设置");
         console.warn(error);
       });
   });

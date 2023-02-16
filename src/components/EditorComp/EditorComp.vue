@@ -14,14 +14,19 @@ const route = useRoute();
 const postId = route?.params?.postId;
 
 const postStore = usePostStore();
+const { postDetail } = storeToRefs(postStore);
+
 if (postId) {
   // 编辑模式，请求原数据
   postStore.fetchPostDetail(postId);
+} else {
+  // 默认创建文章
+  postDetail.value.title = "默认标题";
+
+  postStore.createPostAction();
 }
 
 defineEmits(["routeLeave"]);
-
-const { postDetail } = storeToRefs(postStore);
 
 const isPreview = ref(false);
 
