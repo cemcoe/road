@@ -77,9 +77,6 @@ export const usePostStore = defineStore("post", () => {
     };
     const res = await updatePost(postId, data);
     console.log(res);
-    if (res.status === 200) {
-      router.replace("/p/" + postId);
-    }
   }
 
   const getPostWordcount = computed(() => {
