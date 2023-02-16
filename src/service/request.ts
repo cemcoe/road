@@ -21,16 +21,24 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
         const { ok } = response;
         if (!ok) {
           const { status, url } = response;
-          if (status === 500) {
-            console.warn("服务端错误，请稍后重新尝试: ", url);
-            showNotify("服务端错误，请稍后重新尝试");
-          } else if (status === 401) {
-            showNotify("请重新登录");
-          } else if (status === 404) {
-            showNotify("接口路径找不到");
-          } else {
-            showNotify("请求错误");
-            console.log("未处理看业务需要: ", url);
+          switch (status) {
+            case 500: {
+              console.warn("服务端错误，请稍后重新尝试: ", url);
+              showNotify("服务端错误，请稍后重新尝试");
+              break;
+            }
+            case 401: {
+              showNotify("请重新登录");
+              break;
+            }
+            case 404: {
+              showNotify("接口路径找不到");
+              break;
+            }
+            default: {
+              showNotify("请求错误");
+              console.log("未处理看业务需要: ", url);
+            }
           }
         }
         return response.json();
