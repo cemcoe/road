@@ -12,7 +12,7 @@ export function getPostDetail(postId: any) {
 
 // 创建文章
 export function createPost(post: any) {
-  return request("/posts", {
+  return request<IResponse<any>>("/posts", {
     // 传一个对象过来，以后如果添加字段时就简单了
     method: "post",
     body: JSON.stringify(post),

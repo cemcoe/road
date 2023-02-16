@@ -1,10 +1,16 @@
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { defineStore } from "pinia";
 import { getPostDetail, createPost, updatePost } from "@/service/modules/post";
 import { computed } from "vue";
 import type { IPost } from "@/types";
 
 export const usePostStore = defineStore("post", () => {
+  const route = useRoute();
+  const router = useRouter();
+
+  const postId = route?.params?.postId;
+
   // If you specify a generic type argument but omit the initial value, the resulting type will be a union type that includes undefined:
   const postDetail = ref<IPost>({
     commentcount: 0,
@@ -32,6 +38,16 @@ export const usePostStore = defineStore("post", () => {
     updatedAt: "",
   });
 
+  if (postId) {
+    // 编辑模式，请求原数据
+    fetchPostDetail(postId);
+  } else {
+    // 默认创建文章
+    postDetail.value.title = "默认标题";
+
+    createPostAction();
+  }
+
   async function fetchPostDetail(postId: any) {
     getPostDetail(postId).then((res) => {
       const { status, data } = res;
@@ -41,14 +57,15 @@ export const usePostStore = defineStore("post", () => {
     });
   }
 
-  async function createPostAction() {
+  async function createPostAction(status = 0) {
     const data = {
       title: postDetail.value.title,
       content: postDetail.value.content,
-      status: 1,
+      status,
     };
     const res = await createPost(data);
-    console.log(res);
+    const { insertId } = res.data;
+    router.replace("/editor/" + insertId);
   }
 
   async function updatePostAction(id: any) {
@@ -93,6 +110,7 @@ export const usePostStore = defineStore("post", () => {
   }
 
   return {
+    postId,
     postDetail,
     fetchPostDetail,
     createPostAction,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import useInsertText from "./useInsertText.js";
 import { usePostStore } from "@/stores/post";
@@ -9,22 +9,9 @@ import EditorPannel from "./EditorPannel.vue";
 import MarkedPreview from "../MarkedPreview/MarkedPreview.vue";
 
 const router = useRouter();
-const route = useRoute();
-
-const postId = route?.params?.postId;
 
 const postStore = usePostStore();
-const { postDetail } = storeToRefs(postStore);
-
-if (postId) {
-  // 编辑模式，请求原数据
-  postStore.fetchPostDetail(postId);
-} else {
-  // 默认创建文章
-  postDetail.value.title = "默认标题";
-
-  postStore.createPostAction();
-}
+const { postDetail, postId } = storeToRefs(postStore);
 
 defineEmits(["routeLeave"]);
 
