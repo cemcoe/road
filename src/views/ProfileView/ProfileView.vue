@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 import useLoginStore from "@/stores/login";
 import LoginCard from "./components/LoginCard.vue";
 import PostList from "@/components/PostList/PostList.vue";
-import { getUserPosts } from "@/service/modules/user";
+import { getOwnerPostList } from "@/service/modules/user";
 
 const router = useRouter();
 
@@ -43,7 +43,7 @@ watch(
   isLogin,
   async () => {
     if (isLogin.value) {
-      const res = await getUserPosts(userInfo.value.id);
+      const res = await getOwnerPostList();
       const { status, data } = res;
       if (status === 200) {
         postList.value = data.postList;
