@@ -11,7 +11,8 @@ import MarkedPreview from "../MarkedPreview/MarkedPreview.vue";
 const router = useRouter();
 
 const postStore = usePostStore();
-const { postDetail, postId } = storeToRefs(postStore);
+postStore.init();
+const { postDetail } = storeToRefs(postStore);
 
 defineEmits(["routeLeave"]);
 
@@ -65,7 +66,6 @@ function textareaBlur() {
     @preview="preview"
     :wordcount="postStore.getPostWordcount"
     @publish="publish"
-    :isNewPost="!postId"
   />
 
   <div class="editor" v-show="!isPreview">

@@ -8,8 +8,7 @@ import type { IPost } from "@/types";
 export const usePostStore = defineStore("post", () => {
   const route = useRoute();
   const router = useRouter();
-
-  const postId = route?.params?.postId;
+  let postId: string | string[];
 
   // If you specify a generic type argument but omit the initial value, the resulting type will be a union type that includes undefined:
   const postDetail = ref<IPost>({
@@ -38,14 +37,17 @@ export const usePostStore = defineStore("post", () => {
     updatedAt: "",
   });
 
-  if (postId) {
-    // 编辑模式，请求原数据
-    fetchPostDetail(postId);
-  } else {
-    // 默认创建文章
-    postDetail.value.title = "默认标题";
+  function init() {
+    postId = route?.params?.postId;
+    if (postId) {
+      // 编辑模式，请求原数据
+      fetchPostDetail(postId);
+    } else {
+      // 默认创建文章
+      postDetail.value.title = "默认标题";
 
-    createPostAction();
+      createPostAction();
+    }
   }
 
   async function fetchPostDetail(postId: any) {
@@ -113,7 +115,8 @@ export const usePostStore = defineStore("post", () => {
   }
 
   return {
-    postId,
+    // postId,
+    init,
     postDetail,
     fetchPostDetail,
     createPostAction,
