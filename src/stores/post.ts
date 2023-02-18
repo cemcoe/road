@@ -19,6 +19,7 @@ export const usePostStore = defineStore("post", () => {
     _id: "",
     title: "",
     wordcount: 0,
+    isOwner: false,
     author: {
       gender: "",
       bio: "",
@@ -93,6 +94,7 @@ export const usePostStore = defineStore("post", () => {
       _id: "",
       title: "",
       wordcount: 0,
+      isOwner: false,
       author: {
         gender: "",
         bio: "",

@@ -14,6 +14,7 @@ export interface IPost {
   author: IAuthor;
   content?: string;
   abstract: string;
+  isOwner: boolean;
   content_html: string;
   createdAt: string;
   updatedAt: string;

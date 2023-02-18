@@ -100,7 +100,7 @@ onBeforeUnmount(() => postStore.initPostDetail());
             title="文章状态"
             :value="postDetail.status === 0 ? '私密' : '公开'"
           />
-          <van-cell title="编辑" @click="edit" />
+          <van-cell v-if="postDetail.isOwner" title="编辑" @click="edit" />
         </van-cell-group>
       </van-space>
     </van-popup>
