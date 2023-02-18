@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 function initCamera() {
   // 1. 买个 PerspectiveCamera 透视相机
@@ -33,11 +34,18 @@ const material = new THREE.MeshNormalMaterial();
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
+// 添加辅助坐标轴
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
+
 // 5. 将渲染的内容插入到DOM上
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animation);
 document.body.appendChild(renderer.domElement);
+
+// 添加轨道控制器，OrbitControls
+const controls = new OrbitControls(camera, renderer.domElement);
 
 function animation(time: any) {
   mesh.rotation.x = time / 2000;
@@ -45,6 +53,7 @@ function animation(time: any) {
   // camera.position.z = time / 1000;
   // 6. 渲染
   renderer.render(scene, camera);
+  controls.update();
 }
 </script>
 
