@@ -21,6 +21,13 @@ const MainRoutes = [
     },
   },
   {
+    path: "/lab",
+    component: () => import("@/views/LabView/LabView.vue"),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     path: "/editor",
     component: () => import("@/views/EditorView/EditorView.vue"),
     meta: {
