@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import * as THREE from "three";
 
-// 1. 相机
-const camera = new THREE.PerspectiveCamera(
-  70,
-  window.innerWidth / window.innerHeight,
-  0.01,
-  10
-);
-camera.position.z = 1;
+function initCamera() {
+  // 1. 买个 PerspectiveCamera 透视相机
+  const camera = new THREE.PerspectiveCamera(
+    70, // fov — 摄像机视锥体垂直视野角度
+    window.innerWidth / window.innerHeight, // aspect — 摄像机视锥体长宽比 通常是使用画布的宽/画布的高
+    0.01, // near — 摄像机视锥体近端面
+    10 // far — 摄像机视锥体远端面
+  );
+
+  // 1.2 三脚架摆放相机位置，position属性继承自 Object3D
+  // 表示对象局部位置的Vector3。默认值为(0, 0, 0)。
+  camera.position.z = 1;
+  // TODO: 相机位置的切换
+  // TODO: threejs 坐标系统
+
+  return camera;
+}
+
+const camera = initCamera();
 
 // 2. 场景
 const scene = new THREE.Scene();
@@ -28,11 +39,11 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animation);
 document.body.appendChild(renderer.domElement);
 
-// 6. 动画
 function animation(time: any) {
   mesh.rotation.x = time / 2000;
   mesh.rotation.y = time / 1000;
-
+  // camera.position.z = time / 1000;
+  // 6. 渲染
   renderer.render(scene, camera);
 }
 </script>
