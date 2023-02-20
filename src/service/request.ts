@@ -1,3 +1,4 @@
+import router from "@/router";
 import { showNotify } from "vant";
 import "vant/es/notify/style";
 
@@ -29,6 +30,7 @@ export async function request<T>(input: string, init: Object = {}): Promise<T> {
             }
             case 401: {
               showNotify("请重新登录");
+              router.push("/login");
               break;
             }
             case 404: {
