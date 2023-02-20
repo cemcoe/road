@@ -41,16 +41,16 @@ onActivated(() => {
     <HomeNavBar />
     <div class="home-scroll" ref="homeScroll">
       <div class="post-list-container main">
-        <template v-if="postList.length === 0">
-          <van-skeleton :row="3" />
-          <van-skeleton :row="3" />
-          <van-skeleton :row="3" />
-        </template>
         <PostList
           :postList="postList"
           :isLoading="isLoading"
           :isGetAllData="isGetAllData"
         />
+        <template v-if="postList.length === 0">
+          <van-skeleton :row="3" />
+          <van-skeleton :row="3" />
+          <van-skeleton :row="3" />
+        </template>
       </div>
       <div class="pc">
         <div class="info">
