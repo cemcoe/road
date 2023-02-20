@@ -1,32 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { useMenu } from "./useMenu";
 
 const emits = defineEmits(["insert", "saveToPrivatePost"]);
 
 const insert = (val: string) => {
   console.log("insert", val);
   emits("insert", val);
-};
-
-const useMenu = () => {
-  const showMenu = ref(false);
-
-  const switchMeunStatus = () => {
-    console.log("你点击了设置，为你切换菜单状态");
-    showMenu.value = !showMenu.value;
-  };
-
-  const saveToPrivatePost = () => {
-    console.log("将文章保存为私密");
-    // emit 交给主文件处理
-    emits("saveToPrivatePost");
-  };
-
-  return {
-    showMenu,
-    switchMeunStatus,
-    saveToPrivatePost,
-  };
 };
 
 const { showMenu, switchMeunStatus } = useMenu();
