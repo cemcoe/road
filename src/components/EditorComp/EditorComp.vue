@@ -3,12 +3,14 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import useInsertText from "./useInsertText.js";
+import { useMenu } from "./useMenu";
 import { usePostStore } from "@/stores/post";
 import EditorHeader from "./EditorHeader.vue";
 import EditorPannel from "./EditorPannel.vue";
 import MarkedPreview from "../MarkedPreview/MarkedPreview.vue";
 
 const router = useRouter();
+const { showMenu } = useMenu;
 
 const postStore = usePostStore();
 postStore.init();
@@ -43,13 +45,16 @@ const insert = (value: string) => {
 
 const inputFocus = () => {
   console.log("iuput focus");
+  showMenu.value = true;
 };
 
 const textareaFocus = () => {
   console.log("testarea focus");
+  showMenu.value = true;
 };
 
 function textareaBlur() {
+  showMenu.value = false;
   console.log(postDetail);
   postStore.updatePostAction();
 }

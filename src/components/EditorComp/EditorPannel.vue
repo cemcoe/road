@@ -8,7 +8,7 @@ const insert = (val: string) => {
   emits("insert", val);
 };
 
-const { showMenu, switchMeunStatus } = useMenu();
+const { showMenu, switchMeunStatus } = useMenu;
 </script>
 
 <template>
