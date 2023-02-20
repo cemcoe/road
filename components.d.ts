@@ -7,9 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/PostList/PostList copy.vue')['default']
     EditorComp: typeof import('./src/components/EditorComp/EditorComp.vue')['default']
     EditorHeader: typeof import('./src/components/EditorComp/EditorHeader.vue')['default']
     EditorPannel: typeof import('./src/components/EditorComp/EditorPannel.vue')['default']
+    HomePostList: typeof import('./src/components/PostList/HomePostList.vue')['default']
     MarkedPreview: typeof import('./src/components/MarkedPreview/MarkedPreview.vue')['default']
     PostItem: typeof import('./src/components/PostList/PostItem.vue')['default']
     PostList: typeof import('./src/components/PostList/PostList.vue')['default']

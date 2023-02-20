@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 import { useHomeStore } from "@/stores/home";
 import { useScroll } from "@/hooks/useScroll";
 import HomeNavBar from "./components/HomeNavBar.vue";
+import HomeInfo from "./components/HomeInfo.vue";
 import PostList from "@/components/PostList/PostList.vue";
 
 const homeStore = useHomeStore();
@@ -41,6 +42,7 @@ onActivated(() => {
     <HomeNavBar />
     <div class="home-scroll" ref="homeScroll">
       <div class="post-list-container main">
+        <HomeInfo />
         <PostList
           :postList="postList"
           :isLoading="isLoading"
