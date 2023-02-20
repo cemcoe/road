@@ -47,6 +47,21 @@
  
 </p>
 
+## 很久以前的日志
+
+- [01 | 准备工作](https://www.jianshu.com/p/562241e6363a)
+- [02 | 可能会遇到的问题](https://www.jianshu.com/p/88f2c0dc7390)
+- [03 | 开发环境配置](https://www.jianshu.com/p/7f400a6d5296)
+- [04 | 后端初始化](https://www.jianshu.com/p/8f752a87304b)
+- [05 | 用户模型 model 设计](https://www.jianshu.com/p/7951d6450c32)
+- [06 | 设计用户注册接口](https://www.jianshu.com/p/5f5b21c74f05)
+- [07 | 前端项目初始化](https://www.jianshu.com/p/58ee92a99e73)
+- [08 | 前后联调](https://www.jianshu.com/p/306ba9f7def2)
+- [10 | 登录功能的后端部分](https://www.jianshu.com/p/08587667edad)
+- [11 | 登录前端实现](https://www.jianshu.com/p/03722ec0e6a3)
+- [12 | 简单的私信功能](https://www.jianshu.com/p/8c6080edca6e)
+- [13 | 编写 markdown 编辑器时遇到的冷知识](https://www.jianshu.com/p/d5e7e5921249)
+
 ## Project Setup
 
 ```sh
@@ -75,7 +90,7 @@ npm run build
 npm run lint
 ```
 
-## AKlist
+## 帮助列表
 
 - https://vitejs.dev/guide/env-and-mode.html
 - https://nodejs.dev/en/learn/writing-files-with-nodejs/
