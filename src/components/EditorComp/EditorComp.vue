@@ -2,11 +2,11 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
-import useInsertText from "./useInsertText.js";
+// import useInsertText from "./useInsertText.js";
 import { useMenu } from "./useMenu";
 import { usePostStore } from "@/stores/post";
 import EditorHeader from "./EditorHeader.vue";
-import EditorPannel from "./EditorPannel.vue";
+// import EditorPannel from "./EditorPannel.vue";
 import MarkedPreview from "../MarkedPreview/MarkedPreview.vue";
 
 const router = useRouter();
@@ -37,11 +37,11 @@ const goBack = () => {
   router.back();
 };
 
-const insert = (value: string) => {
-  console.log("insert", value);
-  const dom = document.querySelector("#post");
-  useInsertText(dom, value);
-};
+// const insert = (value: string) => {
+//   console.log("insert", value);
+//   const dom = document.querySelector("#post");
+//   useInsertText(dom, value);
+// };
 
 const inputFocus = () => {
   console.log("iuput focus");
@@ -89,7 +89,7 @@ function textareaBlur() {
       ></textarea>
     </div>
 
-    <EditorPannel @insert="insert" />
+    <!-- <EditorPannel @insert="insert" /> -->
   </div>
   <MarkedPreview v-show="isPreview" :markdownString="postDetail.content" />
 </template>

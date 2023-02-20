@@ -13,38 +13,40 @@ function goNewPage(href: string) {
 </script>
 
 <template>
-  <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-    <van-swipe-item v-for="image in images" :key="image">
-      <img style="width: 100%; height: 100%" :src="image" />
-    </van-swipe-item>
-    <template #indicator="{ active, total }">
-      <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
-    </template>
-  </van-swipe>
-  <van-grid style="margin: 10px">
-    <van-grid-item
-      style="display: flex; flex-direction: column"
-      @click="$router.push('/lab')"
-    >
-      <van-image :src="labImageURL" />
-    </van-grid-item>
-    <van-grid-item
-      @click="goNewPage('https://github.com/cemcoe')"
-      icon="photo-o"
-      text="Github"
-    />
-    <van-grid-item
-      @click="goNewPage('https://www.jianshu.com/u/e20f22d3e8d3')"
-      icon="photo-o"
-      text="简书"
-    />
-    <van-grid-item
-      style="display: flex; flex-direction: column"
-      @click="$router.push('/lab')"
-    >
-      <van-image :src="labImageURL" />
-    </van-grid-item>
-  </van-grid>
+  <div class="phone">
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="image in images" :key="image">
+        <img style="width: 100%; height: 100%" :src="image" />
+      </van-swipe-item>
+      <template #indicator="{ active, total }">
+        <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
+      </template>
+    </van-swipe>
+    <van-grid style="margin: 10px">
+      <van-grid-item
+        style="display: flex; flex-direction: column"
+        @click="$router.push('/lab')"
+      >
+        <van-image :src="labImageURL" />
+      </van-grid-item>
+      <van-grid-item
+        @click="goNewPage('https://github.com/cemcoe')"
+        icon="photo-o"
+        text="Github"
+      />
+      <van-grid-item
+        @click="goNewPage('https://www.jianshu.com/u/e20f22d3e8d3')"
+        icon="photo-o"
+        text="简书"
+      />
+      <van-grid-item
+        style="display: flex; flex-direction: column"
+        @click="$router.push('/lab')"
+      >
+        <van-image :src="labImageURL" />
+      </van-grid-item>
+    </van-grid>
+  </div>
 </template>
 
 <style scoped>
