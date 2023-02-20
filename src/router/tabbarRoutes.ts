@@ -9,6 +9,18 @@ const tabbarRoutes = [
       // imageActive: "tabbar/home_active.svg",
     },
   },
+  {
+    path: "/editor",
+    component: () => import("@/views/EditorView/EditorView.vue"),
+    meta: {
+      text: "编写",
+      iconName: "edit",
+      iconType: "vant",
+      isNeedLogin: true,
+      // image: "tabbar/home.svg",
+      // imageActive: "tabbar/home_active.svg",
+    },
+  },
   // {
   //   path: "/following",
   //   component: () => import("@/views/FollowingView/FollowingView.vue"),

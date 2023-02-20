@@ -10,10 +10,16 @@ import { tabbarRoutes } from "@/router/tabbarRoutes";
     placeholder
   >
     <template v-for="(item, index) in tabbarRoutes" :key="index">
-      <van-tabbar-item replace :to="item.path">
+      <van-tabbar-item :to="item.path">
         <span style="font-size: 14px">{{ item.meta.text }}</span>
         <template #icon>
           <van-icon
+            v-if="item.meta.iconType === 'vant'"
+            size="20"
+            :name="item.meta.iconName"
+          />
+          <van-icon
+            v-else
             class-prefix="my-icon"
             size="20"
             :name="item.meta.iconName"
