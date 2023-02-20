@@ -69,6 +69,7 @@ export const usePostStore = defineStore("post", () => {
     };
     const res = await createPost(data);
     const { insertId } = res.data;
+    postId = insertId;
     router.replace("/editor/" + insertId);
   }
 

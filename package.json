@@ -2,8 +2,8 @@
   "name": "road",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite --mode staging",
-    "dev:local": "vite",
+    "dev": "vite --mode staging --host",
+    "dev:local": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
