@@ -19,7 +19,7 @@ const { currentUserInfo } = storeToRefs(userStore);
 
         <div class="top">
           <div class="avatar">
-            <van-image round fit="contain" :src="currentUserInfo.avatar" />
+            <img :src="currentUserInfo.avatar" />
           </div>
         </div>
 
@@ -61,8 +61,13 @@ const { currentUserInfo } = storeToRefs(userStore);
   border-radius: 50%;
   border: 6px solid #fff;
   background-color: rgb(227, 225, 225);
+  overflow: hidden;
 }
 
+.avatar img {
+  width: 100%;
+  height: 100%;
+}
 .bio {
   padding-top: 10px;
   padding-bottom: 10px;
