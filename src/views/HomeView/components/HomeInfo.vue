@@ -5,7 +5,7 @@ const images = [
   "https://cdn.pixabay.com/photo/2022/11/14/19/25/squirrel-7592356_960_720.jpg",
 ];
 
-const labImageURL = new URL("./lab.png", import.meta.url).href;
+const labImageURL = new URL("./lab.webp", import.meta.url).href;
 
 function goNewPage(href: string) {
   window.location.href = href;

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import "https://cdn.jsdelivr.net/npm/@google/model-viewer@3.0.1/dist/model-viewer.min.js";
-
+import "@google/model-viewer";
 const glbUrl = new URL("./first.glb", import.meta.url).href;
 </script>
 
