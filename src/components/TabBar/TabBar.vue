@@ -8,6 +8,7 @@ import { tabbarRoutes } from "@/router/tabbarRoutes";
     inactive-color="rgb(165 165 165)"
     active-color="#000"
     placeholder
+    safe-area-inset-bottom
   >
     <template v-for="(item, index) in tabbarRoutes" :key="index">
       <van-tabbar-item :to="item.path">
