@@ -3,7 +3,6 @@ import { ref, watch, onActivated } from "vue";
 import { storeToRefs } from "pinia";
 import { useHomeStore } from "@/stores/home";
 import { useScroll } from "@/hooks/useScroll";
-import HomeNavBar from "./components/HomeNavBar.vue";
 import HomeInfo from "./components/HomeInfo.vue";
 import PostList from "@/components/PostList/PostList.vue";
 
@@ -39,7 +38,7 @@ onActivated(() => {
 
 <template>
   <div class="home">
-    <HomeNavBar />
+    <van-nav-bar safe-area-inset-top title="见证我的前端之旅"> </van-nav-bar>
     <div class="home-scroll" ref="homeScroll">
       <div class="post-list-container main">
         <HomeInfo />

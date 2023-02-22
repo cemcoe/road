@@ -90,7 +90,12 @@ function handelTouchEnd(event: TouchEvent) {
     <LoginCard></LoginCard>
     <div v-if="isLogin" class="main">
       <div class="header phone">
-        <van-nav-bar title="我的" left-text="Back" left-arrow>
+        <van-nav-bar
+          safe-area-inset-top
+          title="我的"
+          left-text="Back"
+          left-arrow
+        >
           <template #left>
             <!-- <van-icon name="scan" color="#000" size="20" /> -->
           </template>

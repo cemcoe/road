@@ -42,6 +42,7 @@ onBeforeUnmount(() => postStore.initPostDetail());
       left-arrow
       fixed
       placeholder
+      safe-area-inset-top
       @click-left="onClickLeft"
       @click-right="showPopup"
       class="phone"

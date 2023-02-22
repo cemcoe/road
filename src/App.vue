@@ -10,7 +10,7 @@ import TabBar from "./components/TabBar/TabBar.vue";
     </keep-alive>
   </router-view>
 
-  <TabBar class="tab-bar phone" v-if="!$route.meta.hideTabBar" />
+  <TabBar class="tab-bar" v-if="!$route.meta.hideTabBar" />
 </template>
 
 <style scoped></style>

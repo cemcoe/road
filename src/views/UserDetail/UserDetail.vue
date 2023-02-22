@@ -37,6 +37,7 @@ const activeName = ref("post");
     <van-nav-bar
       left-arrow
       fixed
+      safe-area-inset-top
       @click-left="onClickLeft"
       @click-right="openSearch"
       :border="false"
