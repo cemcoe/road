@@ -9,6 +9,7 @@ import router from "./router";
 
 import "normalize.css";
 import "./assets/css/index.css";
+import "vant/es/toast/style";
 
 import buildInfo from "./buildInfo.json";
 
