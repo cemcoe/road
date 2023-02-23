@@ -21,6 +21,15 @@ const tabbarRoutes = [
       // imageActive: "tabbar/home_active.svg",
     },
   },
+  {
+    path: "/discover",
+    component: () => import("@/views/DiscoverView/DiscoverView.vue"),
+    meta: {
+      text: "探索",
+      iconName: "flower-o",
+      iconType: "vant",
+    },
+  },
   // {
   //   path: "/following",
   //   component: () => import("@/views/FollowingView/FollowingView.vue"),
