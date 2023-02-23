@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { tabbarRoutes } from "@/router/tabbarRoutes";
 import ModeView from "./ModeView.vue";
@@ -7,7 +7,7 @@ import ModeView from "./ModeView.vue";
 const route = useRoute();
 const router = useRouter();
 
-const active = ref(route.path);
+const active = ref();
 const modeViewRef = ref<any>();
 
 function beforeChange(name: string) {
@@ -19,6 +19,10 @@ function beforeChange(name: string) {
   active.value = name;
   router.push(name);
 }
+
+watchEffect(() => {
+  active.value = route.path;
+});
 </script>
 
 <template>
