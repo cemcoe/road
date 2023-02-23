@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { tabbarRoutes } from "@/router/tabbarRoutes";
 import ModeView from "./ModeView.vue";
 
+const route = useRoute();
 const router = useRouter();
-const active = ref(0);
+
+const active = ref(route.path);
 const modeViewRef = ref<any>();
 
-function tabbarItemClick(path: string) {
-  if (path === "/editor") {
+function beforeChange(name: string) {
+  if (name === "/editor") {
     // console.log("拦截");
     modeViewRef.value.showBottom = true;
     return false;
   }
-  router.push(path);
+  active.value = name;
+  router.push(name);
 }
 </script>
 
@@ -27,9 +30,10 @@ function tabbarItemClick(path: string) {
       active-color="#000"
       placeholder
       safe-area-inset-bottom
+      :before-change="beforeChange"
     >
       <template v-for="(item, index) in tabbarRoutes" :key="index">
-        <van-tabbar-item @click="tabbarItemClick(item.path)">
+        <van-tabbar-item :name="item.path">
           <span style="font-size: 14px">{{ item.meta.text }}</span>
           <template #icon>
             <van-icon
