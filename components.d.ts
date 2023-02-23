@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     EditorPannel: typeof import('./src/components/EditorComp/EditorPannel.vue')['default']
     HomePostList: typeof import('./src/components/PostList/HomePostList.vue')['default']
     MarkedPreview: typeof import('./src/components/MarkedPreview/MarkedPreview.vue')['default']
+    ModeView: typeof import('./src/components/TabBar/ModeView.vue')['default']
     PostItem: typeof import('./src/components/PostList/PostItem.vue')['default']
     PostList: typeof import('./src/components/PostList/PostList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
